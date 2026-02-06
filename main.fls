@@ -361,4 +361,5 @@ OUTPUT main.toc
 INPUT main.aux
 INPUT .\main.out
 INPUT .\main.out
+INPUT main.run.xml
 OUTPUT main.run.xml
