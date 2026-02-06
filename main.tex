@@ -880,9 +880,28 @@ E = \frac{1}{1 + \Theta\!\left(\frac{p^{1.5}}{n}\right)}
 
 Η παράλληλη υλοποίηση του αλγορίθμου του Dijkstra για τις συντομότερες διαδρομές από μία πηγή είναι πολύ παρόμοια με την παράλληλη υλοποίηση του αλγορίθμου του Prim για τα ελάχιστα δέντρα επικάλυψης (Ενότητα 2). Ο πίνακας γειτνίασης με βάρη διαιρείται χρησιμοποιώντας τη χαρτογράφηση τμημάτων μνήμης (Ενότητα 5.1.1). Κάθε ένας από τους $p$ επεξεργαστές ανατίθεται σε $n/p$ διαδοχικές στήλες του πίνακα γειτνίασης με βάρη και υπολογίζει $n/p$ τιμές του πίνακα $l$. Κατά τη διάρκεια κάθε επανάληψης, όλοι οι επεξεργαστές εκτελούν υπολογισμούς και επικοινωνία ανάλογη με εκείνη που εκτελείται στην παράλληλη υλοποίηση του αλγορίθμου του Prim. 
 
+\begin{table}[ht]
+\centering
+\caption{Επιδόσεις των αλγορίθμων Prim και Dijkstra σε διαφορετικές αρχιτεκτονικές.}
+\label{tab:prim_dijkstra_performance}
+\begingroup
+\setlength{\tabcolsep}{6pt}% reduce column separation
+\footnotesize
+\begin{tabular}{lp{4.6cm}cc}
+\toprule
+\textbf{Αρχιτεκτονική} & \textbf{Μέγιστος αριθμός επεξεργαστών για $E=\Theta(1)$} & \textbf{Αντίστοιχος παράλληλος χρόνος} & \textbf{Συνάρτηση ισοαποδοτικότητας} \\
+\midrule
+Δακτύλιος & $\Theta(\sqrt{n})$ & $\Theta(n^{1.5})$ & $\Theta(p^{4})$ \\
+Πλέγμα & $\Theta(n^{0.66})$ & $\Theta(n^{1.33})$ & $\Theta(p^{3})$ \\
+Υπερκύβος & $\Theta\left(\dfrac{n}{\log n}\right)$ & $\Theta(n\log n)$ & $\Theta\big(p^{2}\log^{2} p\big)$ \\
+\bottomrule
+\end{tabular}
+\endgroup
+\end{table}
+
 \clearpage
 \printbibliography[
-  title={Βιβλιογραφία}
+    title={Βιβλιογραφία}
 ]
 \addcontentsline{toc}{section}{Βιβλιογραφία}
 
