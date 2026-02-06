@@ -1,0 +1,7 @@
+\xpg@aux {}{greek}
+\contentsline {section}{Εισαγωγή}{3}{section*.2}%
+\contentsline {section}{\numberline {1}Αλγόριθμοι Γραφημάτων}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Ορισμοί και Αναπαράσταση}{4}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Eλάχιστο δέντρο επικάλυψης: Ο αλγόριθμος του Prim}{7}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Παράλληλη Υλοποίηση}{10}{subsection.2.1}%
+\contentsline {section}{Βιβλιογραφία}{14}{section*.11}%

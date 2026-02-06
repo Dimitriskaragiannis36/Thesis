@@ -1,0 +1,854 @@
+% =====================================================================
+%  Thesis — Dimitrios Karagiannis
+%  Sequential and Parallel Algorithms
+%  Compatible with XeLaTeX
+% =====================================================================
+
+\documentclass[12pt,a4paper]{article}
+
+% ---------------- PACKAGES ----------------
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{greek}
+\setotherlanguage{english}
+
+\setmainfont{Times New Roman}
+\newfontfamily\greekfont[Script=Greek]{Times New Roman}
+\newfontfamily\englishfont{Times New Roman}
+\newfontfamily\greekfontsf[Script=Greek]{Arial}
+\newfontfamily\greekfonttt[Script=Greek]{Courier New}
+
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{enumerate}
+
+\usepackage{amsmath, amssymb}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{afterpage}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+
+\usepackage{hyperref}
+
+% For algorithms
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{caption}
+
+% TikZ
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+
+\tikzset{
+    vertex/.style={circle, draw, fill=blue!20, minimum size=8mm, font=\small},
+    edge weight/.style={font=\small, inner sep=1pt, fill=white, text=black}
+}
+
+
+
+% ---------------- HYPERREF SETTINGS ----------------
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+
+\usepackage{array}
+\usepackage[table]{xcolor}
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\addbibresource{references.bib}
+
+
+% =====================================================================
+%  DOCUMENT INFO
+% =====================================================================
+\title{Σειριακοί και Παράλληλοι Αλγόριθμοι\\[4pt]
+\large Sequential and Parallel Algorithms}
+\author{Καραγιάννης Δημήτριος \\ 1115202200293 \\ \texttt{sdi2200293@di.uoa.gr}}
+\date{Καλοκαίρι 2026}
+
+% =====================================================================
+\begin{document}
+
+% ---------------- COVER PAGE ----------------
+\thispagestyle{empty}
+\begin{center}
+\includegraphics[width=0.15\textwidth]{ekpa_logo.jpg}\\[0.5cm]
+
+\textbf{\Large Εθνικό και Καποδιστριακό Πανεπιστήμιο Αθηνών}\\[0.3cm]
+\textbf{\large Τμήμα Πληροφορικής και Τηλεπικοινωνιών}\\[3cm]
+
+{\Large \textbf{Πτυχιακή Εργασία}}\\[0.5cm]
+{\large \textbf{Σειριακοί και Παράλληλοι Αλγόριθμοι}}\\[3cm]
+
+\textbf{Καραγιάννης Δημήτριος}\\[0.2cm]
+1115202200293\\[0.2cm]
+\texttt{sdi2200293@di.uoa.gr}\\[3cm]
+
+Επιβλέπων Καθηγητής: \textbf{Λουκά Μαρία}\\[1.5cm]
+
+\vfill
+{\large Καλοκαίρι 2026}\\[0.3cm]
+\end{center}
+\clearpage
+
+\tableofcontents
+\clearpage
+
+% ---------------- BODY ----------------
+\section*{Εισαγωγή}
+\addcontentsline{toc}{section}{Εισαγωγή}
+Σύντομη εισαγωγή... \nocite{*}
+\clearpage
+
+\section{Αλγόριθμοι Γραφημάτων}
+Η θεωρία γραφημάτων διαδραματίζει σημαντικό ρόλο στην επιστήμη των υπολογιστών, επειδή παρέχει έναν εύκολο και συστηματικό τρόπο για τη μοντελοποίηση πολλών προβλημάτων. Πολλά προβλήματα μπορούν να εκφραστούν με όρους γραφημάτων και να επιλυθούν με τη χρήση τυπικών αλγορίθμων γραφημάτων. Το παρόν κεφάλαιο παρουσιάζει παράλληλες υλοποιήσεις κάποιων σημαντικών και θεμελιωδών αλγορίθμων γραφημάτων.
+
+
+\subsection{Ορισμοί και Αναπαράσταση}
+Ένα μη κατευθυνόμενο γράφημα G είναι ένα ζεύγος (V, E), όπου V είναι ένα πεπερασμένο σύνολο σημείων που ονομάζονται κορυφές και E είναι
+ένα πεπερασμένο σύνολο ακμών. Μια ακμή $e \in E$
+ είναι ένα μη ταξινομημένο ζεύγος (u, v), όπου $(u, v) \in V$. Μια ακμή (u, v)
+υποδηλώνει ότι οι κορυφές u και v είναι συνδεδεμένες. Ομοίως, ένα κατευθυνόμενο γράφημα G είναι ένα ζεύγος (V, E),
+όπου V είναι το σύνολο των κορυφών όπως μόλις ορίσαμε, αλλά μια ακμή $(u, v) \in E$ είναι ένα διατεταγμένο ζεύγος, δηλαδή
+υποδηλώνει ότι υπάρχει σύνδεση από το u στο v. Το Σχήμα ~\ref{fig:Σχήμα 1} απεικονίζει ένα μη κατευθυνόμενο και ένα
+κατευθυνόμενο γράφημα. Χρησιμοποιούμε τον όρο γράφημα για να αναφερθούμε τόσο στα κατευθυνόμενα όσο και στα μη κατευθυνόμενα γραφήματα.
+
+Πολλοί ορισμοί είναι κοινοί για κατευθυνόμενα και μη κατευθυνόμενα γραφήματα, αν και ορισμένοι όροι έχουν ελαφρώς διαφορετική σημασία στο καθένα.
+Αν η (u, v) είναι μια ακμή σε ένα μη κατευθυνόμενο γράφημα, τότε η (u, v) συνδέει (\textbf{incident on}) τις κορυφές u και v.
+Ωστόσο, αν το γράφημα είναι κατευθυνόμενο, τότε η ακμή (u, v) ξεκινάει (\textbf{incident from}) από την κορυφή u και καταλήγει (\textbf{incident to}) στην κορυφή v.
+Για παράδειγμα, στο Σχήμα ~\ref{fig:Σχήμα 1}(α), η ακμή e συνδέει (\textbf{incident on}) τις κορυφές 5 και 4, ενώ στο Σχήμα ~\ref{fig:Σχήμα 1}(β), η ακμή f ξεκινάει (\textbf{incident from}) από την κορυφή 5 και καταλήγει (\textbf{incident to}) στην κορυφή 2.
+Αν η (u, v) είναι μια ακμή σε έναν μη κατευθυνόμενο γράφημα G = (V, E), οι κορυφές u και v λέγεται ότι είναι γειτονικές (\textbf{adjacent}) μεταξύ τους.
+Αν το γράφημα είναι κατευθυνόμενο, η κορυφή v λέγεται ότι είναι γειτονική της (\textbf{adjacent to}) κορυφής u.
+
+
+
+\begin{figure}[ht]
+\centering
+
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}[scale=1.0, every node/.style={transform shape}]
+    \node[vertex] (5) at (0,2) {5};
+    \node[vertex] (2) at (-1,-0.5) {2};
+    \node[vertex] (3) at (1,0) {3}; 
+    \node[vertex] (1) at (1,-2.7) {1};
+    \node[vertex] (6) at (3,0) {6};
+    \node[vertex] (4) at (2.3,2.2) {4};
+
+    \draw (5) -- (2);
+    \draw (5) -- (3); 
+    \draw (5) -- (4) node[midway, above left, edge weight] {e};
+    \draw (2) -- (1); 
+    \draw (3) -- (1); 
+    \draw (3) -- (6); 
+    \draw (5) -- (6); 
+    \draw[bend left=80] (4) to (1);
+
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}[scale=1.0, every node/.style={transform shape}]
+    \node[vertex] (6) at (0,2) {6};
+    \node[vertex] (3) at (-1,0) {3};
+    \node[vertex] (4) at (1,0) {4}; 
+    \node[vertex] (1) at (0,-2.7) {1};
+    \node[vertex] (2) at (3,-2) {2};
+    \node[vertex] (5) at (2.3,2) {5};
+
+    \draw[->] (6) -- (3);
+    \draw[->] (6) -- (4);
+    \draw[->] (3) -- (4);
+    \draw[->] (3) -- (1);
+    \draw[->] (4) -- (1);
+    \draw[bend right=20, ->] (1) to (5);
+    \draw[->] (5) -- (6);
+    \draw[->] (5) -- (2) node[midway, right, xshift=4pt, edge weight] {f};
+    \draw[->] (2) -- (1);
+
+\end{tikzpicture}
+\end{minipage}
+
+\vspace{0.3cm}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{(a) Ένα μη κατευθυνόμενο γράφημα και (b) ένα κατευθυνόμενο γράφημα.}
+\label{fig:Σχήμα 1}
+\end{figure}
+\vspace{0.5cm}
+
+\begin{figure}[ht]
+\centering
+
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}[scale=1.0, every node/.style={transform shape}]
+    \node[vertex] (1) at (1,2) {1};
+    \node[vertex] (2) at (0,0) {2};
+    \node[vertex] (3) at (2,0) {3}; 
+    \node[vertex] (4) at (0,-2) {4};
+    \node[vertex] (5) at (2,-2) {5};
+
+    \draw (1) -- (2);
+    \draw (2) -- (3); 
+    \draw (2) -- (5); 
+    \draw (3) -- (5); 
+    \draw (5) -- (4); 
+
+ 
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+\[
+A =
+\begin{bmatrix}
+0 & 1 & 0 & 0 & 0 \\
+1 & 0 & 1 & 0 & 1 \\
+0 & 1 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 1 \\
+0 & 1 & 1 & 1 & 0 
+\end{bmatrix}
+\]
+
+\end{minipage}
+
+\vspace{0.3cm}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Ένα μη κατευθυνόμενο γράφημα και η αναπαράσταση του με πίνακα γειτνίασης.}
+\label{fig:Σχήμα 2}
+\end{figure}
+\vspace{0.5cm}
+
+
+Μια διαδρομή (ή μονοπάτι) από μια κορυφή v σε μια κορυφή u είναι μια ακολουθία <$v_0$, $v_1$, $v_2$, ..., $v_k$> κορυφών, όπου $v_0$ = v, $v_k$ = u, και $(v_i, v_{i+1}) \in E$ για i = 0, 1, ..., k-1. Το μήκος μιας διαδρομής ορίζεται ως το πλήθος των ακμών της. Αν υπάρχει διαδρομή από το v στο u, τότε το u είναι προσπελάσιμο (\textbf{reachable}) από το v. Μια διαδρομή είναι απλή αν όλες οι κορυφές της είναι διακριτές (δεν επαναλαμβάνονται). Μια διαδρομή σχηματίζει κύκλο αν η αρχική και η τελική της κορυφή ταυτίζονται – δηλαδή, αν $v_0$ = $v_k$. Ένα γράφημα χωρίς κύκλους ονομάζεται ακυκλικό. Ένας κύκλος είναι απλός αν όλες οι ενδιάμεσες κορυφές του είναι διακριτές.
+
+
+Για παράδειγμα, στο Σχήμα ~\ref{fig:Σχήμα 1}(a), η ακολουθία <3, 6, 5, 4> είναι μια διαδρομή από την κορυφή 3 στην κορυφή 4. Στο Σχήμα ~\ref{fig:Σχήμα 1}(β), υπάρχει ένας κατευθυνόμενος απλός κύκλος <1, 5, 6, 4, 1>. Επίσης, στο Σχήμα ~\ref{fig:Σχήμα 1}(α), η ακολουθία <1, 2, 5, 3, 6, 5, 4, 1> είναι ένας μη κατευθυνόμενος κύκλος που δεν είναι απλός, γιατί περιέχει τον βρόχο <5, 3, 6, 5>.
+
+Ένα μη κατευθυνόμενο γράφημα είναι συνεκτικό αν κάθε ζεύγος κορυφών ενώνεται με μια διαδρομή. Λέμε ότι ένα γράφημα $G' = (V', E')$ είναι υπογράφημα του G = (V, E) αν $V'\subseteq V$ και $E'\subseteq E$. Για ένα δεδομένο σύνολο $V'\subseteq V$, το υπόγράφημα του G που προκύπτει από το $V'$ είναι το γράφημα $G' = (V', E')$, όπου $E' = \{ (u, v) \in E \mid u, v \in V' \}$. Ένα πλήρες γράφημα είναι ένα γράφημα στον οποίο κάθε ζεύγος κορυφών είναι γειτονικό. Ένα δάσος είναι ένα ακυκλικό γράφημα και ένα δέντρο είναι ένα συνεκτικό ακυκλικό γράφημα. Σημειώστε ότι αν G = (V, E) είναι ένα δέντρο, τότε |E| = |V| - 1.
+
+Μερικές φορές τα βάρη συσχετίζονται με κάθε ακμή στο Ε. Τα βάρη είναι συνήθως πραγματικοί αριθμοί που αντιπροσωπεύουν το κόστος ή το όφελος της διαδρομής κατά μήκος της συνδεδεμένης ακμής. Για παράδειγμα, σε ένα ηλεκτρονικό κύκλωμα, μια αντίσταση μπορεί να αναπαρασταθεί από μια ακμή της οποίας το βάρος είναι η τιμή της  αντίστασής της. Ένα γράφημα που έχει βάρη συσχετισμένα με κάθε ακμή ονομάζεται γράφημα με βάρη και συμβολίζεται ως G = (V, E, w), όπου τα V και E είναι όπως ορίσαμε προηγουμένως και η $w : E \to \mathbb{R}$ είναι μια πραγματική συνάρτηση που ορίζεται στο E. Το βάρος ενός γραφήματος ορίζεται ως το άθροισμα των βαρών των ακμών του. Το βάρος μιας διαδρομής είναι το άθροισμα των βαρών των ακμών της.
+
+Υπάρχουν δύο τυπικές μέθοδοι για την αναπαράσταση ενός γραφήματος σε ένα πρόγραμμα υπολογιστή. Η πρώτη μέθοδος είναι η χρήση πίνακα (μήτρας), και η δεύτερη μέθοδος είναι η χρήση συνδεδεμένης λίστας.
+
+Θεωρήστε ένα γράφημα G = (V, E) με n κορυφές αριθμημένες ως 1, 2, ..., n. Ο πίνακας γειτνίασης αυτού του γραφήματος είναι ένας n x n πίνακας A = ($a_{i,j}$), ο οποίος ορίζεται ως εξής: \[
+a_{i,j} =
+\begin{cases}
+1 & \text{εάν } (v_i, v_j) \in E\\[2mm]
+0 & \text{διαφορετικά}
+\end{cases}
+\]
+
+Η αναπαράσταση με πίνακα γειτνίασης μπορεί να τροποποιηθεί για να υποστηρίξει γραφήματα με βάρη. Σε αυτή την περίπτωση, ο A = ($a_{i,j}$) ορίζεται ως εξής:
+\[
+a_{i,j} =
+\begin{cases}
+w(v_i, v_j) & \text{εάν } (v_i, v_j) \in E\\[2mm]
+0 & \text{εάν } i = j\\[2mm]
+\infty & \text{διαφορετικά}
+\end{cases}
+\]
+Το Σχήμα ~\ref{fig:Σχήμα 2} απεικονίζει μια αναπαράσταση με πίνακα γειτνίασης για έναν μη κατευθυνόμενο γράφημα. Σημειώστε ότι ο πίνακας γειτνίασης ενός μη κατευθυνόμενου γραφήματος είναι συμμετρικός.
+
+
+
+Αναφερόμαστε σε αυτόν τον τροποποιημένο πίνακα γειτνίασης ως πίνακα γειτνίασης με βάρη. Ο χώρος που απαιτείται για την αποθήκευση του πίνακα γειτνίασης ενός γραφήματος με n κορυφές είναι $\Theta(n^2)$.
+
+Η αναπαράσταση με λίστα γειτνίασης ενός γραφήματος G = (V, E) αποτελείται από έναν πίνακα Adj[1..|V|] λιστών. Για κάθε $v \in V$, η Adj[v] είναι μια συνδεδεμένη λίστα όλων των κορυφών u για τις οποίες ο G περιέχει μια ακμή $(v, u) \in E$. Με άλλα λόγια, η Adj[v] είναι μια λίστα όλων των κορυφών που είναι γειτονικές προς την v. Το Σχήμα ~\ref{fig:Σχήμα 3} δείχνει ένα παράδειγμα αναπαράστασης με λίστα γειτνίασης. Η αναπαράσταση με λίστα γειτνίασης μπορεί να τροποποιηθεί για να φιλοξενήσει γραφήματα με βάρη,  αποθηκεύοντας το βάρος κάθε ακμής $(v, u) \in E$ στη λίστα γειτνίασης της κορυφής v. Ο χώρος που απαιτείται για την αποθήκευση της λίστας γειτνίασης είναι $\Theta(|E|)$.
+
+\begin{figure}[ht]
+\centering
+
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}[scale=1.0, every node/.style={transform shape}]
+    \node[vertex] (1) at (1,2) {1};
+    \node[vertex] (2) at (0,0) {2};
+    \node[vertex] (3) at (2,0) {3}; 
+    \node[vertex] (4) at (0,-2) {4};
+    \node[vertex] (5) at (2,-2) {5};
+
+    \draw (1) -- (2);
+    \draw (2) -- (3); 
+    \draw (2) -- (5); 
+    \draw (3) -- (5); 
+    \draw (5) -- (4); 
+
+ 
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}[node distance=0.8cm, every node/.style={minimum width=0.6cm, minimum height=0.6cm, draw, align=center}]
+    % Λίστα 1
+    \node (a1) {1};
+    \node (a2) [right=0cm of a1] {}; % δεξί κουτί χωρίς περιεχόμενο
+    \node (a3) [right=0.5cm of a2] {2};
+    \node (a4) [right=0cm of a3] {}; % δεξί κουτί χωρίς περιεχόμενο
+    \draw (a4.north east) -- (a4.south west);
+    \draw[->] (a2.center) -- (a3.west);
+    
+    % Λίστα 2
+    \node (b1) [below=0.8cm of a1] {2};
+    \node (b2) [right=0cm of b1] {};
+    \node (b3) [right=0.5cm of b2] {1};
+    \node (b4) [right=0cm of b3] {};
+    \draw[->] (b2.center) -- (b3.west);
+    \node (b5) [right=0.5cm of b4] {3};
+    \node (b6) [right=0cm of b5] {};
+    \draw[->] (b4.center) -- (b5.west);
+    \node (b7) [right=0.5cm of b6] {5};
+    \node (b8) [right=0cm of b7] {};
+    \draw[->] (b6.center) -- (b7.west);
+    \draw (b8.north east) -- (b8.south west);
+    % διαγώνιος επειδή δεν υπάρχει επόμενο στοιχείο της λίστας
+
+
+    % Λίστα 3
+    \node (c1) [below=0.8cm of b1] {3};
+    \node (c2) [right=0cm of c1] {};
+    \node (c3) [right=0.5cm of c2] {2};
+    \node (c4) [right=0cm of c3] {};
+    \draw[->] (c2.center) -- (c3.west);
+    \node (c5) [right=0.5cm of c4] {5};
+    \node (c6) [right=0cm of c5] {};
+    \draw[->] (c4.center) -- (c5.west);
+    \draw (c6.north east) -- (c6.south west);
+    
+ 
+
+    % Λίστα 4
+    \node (d1) [below=0.8cm of c1] {4};
+    \node (d2) [right=0cm of d1] {}; % δεξί κουτί χωρίς περιεχόμενο
+    \node (d3) [right=0.5cm of d2] {5};
+    \node (d4) [right=0cm of d3] {}; % δεξί κουτί χωρίς περιεχόμενο
+    \draw (d4.north east) -- (d4.south west);
+    \draw[->] (d2.center) -- (d3.west);
+
+    % Λίστα 5
+    \node (e1) [below=0.8cm of d1] {5};
+    \node (e2) [right=0cm of e1] {};
+    \node (e3) [right=0.5cm of e2] {2};
+    \node (e4) [right=0cm of e3] {};
+    \draw[->] (e2.center) -- (e3.west);
+    \node (e5) [right=0.5cm of e4] {3};
+    \node (e6) [right=0cm of e5] {};
+    \draw[->] (e4.center) -- (e5.west);
+    \node (e7) [right=0.5cm of e6] {4};
+    \node (e8) [right=0cm of e7] {};
+    \draw[->] (e6.center) -- (e7.west);
+    \draw (e8.north east) -- (e8.south west);
+\end{tikzpicture}
+
+\end{minipage}
+
+\vspace{0.3cm}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Ένα μη κατευθυνόμενο γράφημα και η αναπαράσταση του με λίστα γειτνίασης.}
+\label{fig:Σχήμα 3}
+\end{figure}
+\vspace{2cm}
+
+
+Η φύση του γραφήματος καθορίζει ποια αναπαράσταση πρέπει να χρησιμοποιηθεί. Ένα γράφημα G = (V, E) είναι αραιό αν το $|E|$ είναι πολύ μικρότερο από $O(|V|^2)$, διαφορετικά είναι πυκνό. Η αναπαράσταση με πίνακα γειτνίασης είναι χρήσιμη για πυκνά γραφήματα, ενώ η αναπαράσταση με λίστα γειτνίασης είναι συχνά πιο αποδοτική για αραιά γραφήματα. Να σημειωθεί ότι ο ακολουθιακός χρόνος εκτέλεσης ενός αλγορίθμου που χρησιμοποιεί πίνακα γειτνίασης και χρειάζεται να διατρέξει όλες τις ακμές του γραφήματος είναι κάτω φραγμένος από $\Omega(|V|^2)$, επειδή πρέπει να προσπελαστεί ολόκληρος ο πίνακας. Ωστόσο, αν χρησιμοποιείται αναπαράσταση με λίστα γειτνίασης, ο χρόνος εκτέλεσης είναι κάτω φραγμένος από $\Omega(|V| + |E|)$ για τον ίδιο λόγο. Επομένως, αν το γράφημα είναι αραιό (το $|E|$ είναι πολύ μικρότερο από $|V|^2$), η αναπαράσταση με λίστα γειτνίασης είναι καλύτερη από την αναπαράσταση με πίνακα γειτνίασης.
+
+Το υπόλοιπο αυτού του κεφαλαίου παρουσιάζει διάφορους αλγορίθμους γραφημάτων. Τα πρώτα τέσσερα εδάφια παρουσιάζουν αλγορίθμους για πυκνά γραφήματα, και το τελευταίο εδάφιο συζητά αλγορίθμους για αραιά γραφήματα. Υποθέτουμε ότι τα πυκνά γραφήματα αναπαρίστανται με έναν πίνακα γειτνίασης και αραιά γραφήματα με μια λίστα γειτνίασης. Σε όλο αυτό το κεφάλαιο, το n συμβολίζει τον αριθμό των κορυφών στο γράφημα.
+\vspace{1cm}
+
+\begin{figure}[ht]
+\centering
+
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}[scale=1.0, every node/.style={transform shape}]
+    \node[vertex] (5) at (0,2) {};
+    \node[vertex] (2) at (-1,-0.5) {};
+    \node[vertex] (1) at (1,-2.5) {};
+    \node[vertex] (3) at (3.5,-0.5) {};
+    \node[vertex] (4) at (2.5,2) {};
+
+    \draw (5) -- (2) node[midway, above left, edge weight] {4};
+    \draw (5) -- (3) node[midway, below left, edge weight] {2}; 
+    \draw (5) -- (4) node[midway, above left, edge weight] {2};
+    \draw (2) -- (1) node[midway, below left, edge weight] {8};
+    \draw (3) -- (1) node[midway, below right, edge weight] {2};
+    \draw (3) -- (4) node[midway, above right, edge weight] {5};
+    \draw (2) -- (4) node[pos=0.8, above=1mm] {3};
+    \draw (1) -- (4) node[pos=0.95, below=2mm] {3};
+    \draw (2) -- (3) node[pos=0.2, above=1mm] {4};
+    \draw (5) -- (1) node[midway, above right, edge weight] {1};
+
+
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}[scale=1.0, every node/.style={transform shape}]
+    \node[vertex] (5) at (0,2) {};
+    \node[vertex] (2) at (-1,-0.5) {};
+    \node[vertex] (1) at (1,-2.5) {};
+    \node[vertex] (3) at (3.5,-0.5) {};
+    \node[vertex] (4) at (2.5,2) {};
+
+    \draw (5) -- (4) node[midway, above left, edge weight] {2};
+    \draw (3) -- (1) node[midway, below right, edge weight] {2};
+    \draw (2) -- (4) node[pos=0.8, above=1mm] {3};
+    \draw (5) -- (1) node[midway, above right, edge weight] {1};
+
+\end{tikzpicture}
+\end{minipage}
+
+\vspace{0.3cm}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Ένα μη κατευθυνόμενο γράφημα και το ελάχιστο δέντρο επικάλυψης του.}
+\label{fig:Σχήμα 4}
+\end{figure}
+
+\section{Eλάχιστο δέντρο επικάλυψης: Ο αλγόριθμος του Prim}
+Ένα δέντρο επικάλυψης ενός μη κατευθυνόμενου γραφήματος G είναι ένα υπογράφημα του G που είναι ένα δέντρο που περιέχει όλες τις κορυφές του G. Σε ένα γράφημα με βάρη, το βάρος ενός υπογραφήματος είναι το άθροισμα των βαρών των ακμών στο υπογράφημα. Ένα ελάχιστο δέντρο επικάλυψης (MST) για ένα μη κατευθυνόμενο γράφημα με βάρη είναι ένα δέντρο επικάλυψης με ελάχιστο βάρος. Πολλά προβλήματα απαιτούν την εύρεση του MST ενός μη κατευθυνόμενου γραφήματος. Για παράδειγμα, το ελάχιστο μήκος καλωδίου που απαιτείται για τη σύνδεση ενός συνόλου υπολογιστών σε ένα δίκτυο μπορεί να προσδιοριστεί με την εύρεση του MST του μη κατευθυνόμενου γραφήματος που περιέχει όλες τις πιθανές συνδέσεις. Το Σχήμα ~\ref{fig:Σχήμα 4} απεικονίζει ένα MST ενός μη κατευθυνόμενου γραφήματος.
+
+Αν το G δεν είναι συνεκτικό, δεν μπορεί να έχει δέντρο επικάλυψης. Αντ’ αυτού, έχει δάσος επικάλυψης. Για λόγους απλότητας στην περιγραφή του αλγορίθμου ελάχιστου δέντρου επικάλυψης, υποθέτουμε ότι το G είναι συνεκτικό. Αν το G δεν είναι συνεκτικό, μπορούμε να βρούμε τις συνεκτικές συνιστώσες του (Ενότητα 7.6) και να εφαρμόσουμε τον αλγόριθμο ελάχιστου δέντρου επικάλυψης σε καθεμία από αυτές. Εναλλακτικά, μπορούμε να τροποποιήσουμε τον αλγόριθμο ελάχιστου δέντρου επικάλυψης έτσι ώστε να παράγει ένα ελάχιστο δάσος επικάλυψης.
+
+\begin{algorithm}[H]
+\begin{algorithmic}[1]
+\Procedure{PRIM\_MST}{$V, E, w, r$}
+    \State $V_T \gets \{r\}$
+    \State $d[r] \gets 0$
+    \ForAll{$v \in (V - V_T)$}
+        \If{edge $(r, v)$ exists}
+            \State $d[v] \gets w(r, v)$
+        \Else
+            \State $d[v] \gets \infty$
+        \EndIf
+    \EndFor
+    \While{$V_T \neq V$}
+        \State find vertex $u$ such that $d[u] = \min\{d[v] \mid v \in (V - V_T)\}$
+        \State $V_T \gets V_T \cup \{u\}$
+        \ForAll{$v \in (V - V_T)$}
+            \State $d[v] \gets \min\{d[v], w(u, v)\}$
+        \EndFor
+    \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+{\raggedright\refstepcounter{algorithm}\textbf{Αλγόριθμος \thealgorithm:} Ο σειριακός αλγόριθμος του Prim για το ελάχιστο δέντρο επικάλυψης.\label{alg:prim}\par}
+
+
+
+\vspace{1cm}
+Ο αλγόριθμος του Prim για την εύρεση ενός MST είναι ένας αλγόριθμος απληστίας. Ο αλγόριθμος ξεκινά με την επιλογή μιας τυχαίας αρχικής κορυφής. Στη συνέχεια, αναπτύσσει το ελάχιστο δέντρο επικάλυψης επιλέγοντας μια νέα κορυφή και ακμή που είναι εγγυημένα ότι βρίσκονται σε ένα δέντρο επικάλυψης ελάχιστου κόστους. Ο αλγόριθμος συνεχίζει μέχρι να επιλεγούν όλες οι κορυφές.
+
+Έστω G = (V, E, w) το μη κατευθυνόμενο γράφημα με βάρη για το οποίο πρέπει να βρεθεί το ελάχιστο δέντρο επικάλυψης και έστω A = ($a_{i, j}$) ο πίνακας γειτνίασης με βάρη. O αλγόριθμος του Prim απεικονίζεται στον Αλγόριθμο \ref{alg:prim}. Ο αλγόριθμος χρησιμοποιεί το σύνολο $V_T$ για να διατηρήσει τις κορυφές του ελάχιστου δέντρου επικάλυψης κατά τη διάρκεια της κατασκευής του. Χρησιμοποιεί επίσης έναν πίνακα d[1..n] στον οποίο, για κάθε κορυφή $v \in (V - V_T)$, το d [v] περιέχει το βάρος της ακμής με το ελάχιστο βάρος από οποιαδήποτε κορυφή στο $V_T$ προς την κορυφή v. Αρχικά, το $V_T$ περιέχει μια τυχαία κορυφή r που γίνεται η ρίζα του MST. Επιπλέον, d[r] = 0, και για όλα τα v τέτοια ώστε $v \in (V - V_T)$, d[v] = w(r, v) αν υπάρχει τέτοια ακμή, διαφορετικά d[v] = ∞. Κατά τη διάρκεια κάθε επανάληψης του αλγορίθμου, μια νέα κορυφή u προστίθεται στο $V_T$ έτσι ώστε d[u] = $\min\{d[v] \mid v \in (V - V_T)\}$. Μετά την προσθήκη αυτής της κορυφής, όλες οι τιμές του d[v] έτσι ώστε $v \in (V - V_T)$ ενημερώνονται, επειδή τώρα μπορεί να υπάρχει μια ακμή με μικρότερο βάρος μεταξύ της κορυφής v και της νέας κορυφής u. Ο αλγόριθμος τερματίζεται όταν $V_T = V$. Το Σχήμα ~\ref{fig:Σχήμα 5} απεικονίζει τον αλγόριθμο. Με την ολοκλήρωση του αλγορίθμου Prim, το κόστος του ελάχιστου δέντρου επικάλυψης είναι $\sum_{v \in V} d[v]$. Ο Αλγόριθμος \ref{alg:prim} μπορεί εύκολα να τροποποιηθεί για να αποθηκεύει τις ακμές που ανήκουν στο ελάχιστο δέντρο επικάλυψης.
+
+\vspace{0.3cm}
+
+
+
+Στον Αλγόριθμο \ref{alg:prim}, το σώμα του βρόχου while (γραμμές 10-13) εκτελείται n-1 φορές. Τόσο ο υπολογισμός του $\min \{ d[v] \mid v \in (V - V_T) \}$
+(γραμμή 10), όσο και ο βρόχος for (γραμμές 12 και 13) εκτελούνται σε O (n) βήματα. Έτσι, η συνολική πολυπλοκότητα του αλγορίθμου του Prim είναι Θ($n^2$). 
+
+\vspace{0.3cm}
+Παρακάτω παρουσιάζεται ο αλγόριθμος του Prim. To MST ξεκινάει από την κορυφή b. Κατά την διάρκεια κάθε επανάληψης, η ακμή με το ελάχιστο κόστος που συνδέει μια κορυφή του $V_T$ με μια κορυφή του $V - V_T$, επιλέγεται και η αντίστοιχη κορυφή προστίθεται στο $V_T$, (όπως φαίνεται με \textbf{έντονη} γραμμή στον πίνακα d). Κατόπιν, ανανεώνονται οι τιμές του πίνακα d[v] των κορυφών του $V - V_T$.
+
+\vspace{1cm}
+\hfill
+\begin{minipage}{0.45\textwidth}
+
+\begin{tikzpicture}[scale=1.1, every node/.style={transform shape}]
+    % Κορυφές
+    \node[vertex] (a) at (0,2) {a};
+    \node[vertex, fill=red!50] (b) at (-1,0.5) {b};
+    \node[vertex] (c) at (1,0) {c}; 
+    \node[vertex] (d) at (0,-2) {d};
+    \node[vertex] (e) at (3,-1.5) {e};
+    \node[vertex] (f) at (3,1.2) {f};
+
+    % Ακμές με βάρη
+    \draw (a) -- (b) node[midway, above left, edge weight] {1};
+    \draw (a) -- (c) node[midway, above right, edge weight] {3};
+    \draw (a) -- (f) node[midway, above, edge weight] {2};
+    \draw (b) -- (c) node[midway, above, edge weight] {5};
+    \draw (b) -- (d) node[midway, left, edge weight] {1};
+    \draw (c) -- (d) node[midway, right, edge weight] {2};
+    \draw (c) -- (e) node[midway, right, edge weight] {1};
+    \draw (e) -- (f) node[midway, below right, edge weight] {5};
+    \draw (d) -- (e) node[midway, below, edge weight] {4};
+
+    % Τίτλος γράφου
+    \node[draw=none, fill=none, above=0.4cm of a, font=\bfseries] {(a) Αρχικό γράφημα};
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+% Πίνακας d[] με κουτάκια μόνο στην κάτω γραμμή
+\begin{tabular}{ccccccc}
+  & a & b & c & d & e & f \\
+\cline{2-7}
+$d[]$ & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{0} & \multicolumn{1}{|c|}{5} & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{$\infty$} & \multicolumn{1}{|c|}{$\infty$} \\
+\cline{2-7}
+\end{tabular}
+
+\vspace{0.5em}
+
+% Πίνακας γειτνίασης
+\[
+\begin{array}{c}
+a \\ b \\ c \\ d \\ e \\ f
+\end{array}
+\;
+\left[
+\begin{array}{cccccc}
+0 & 1 & 3 & \infty & \infty & 2 \\
+\rowcolor{gray!25}
+1 & 0 & 5 & 1 & \infty & \infty \\
+3 & 5 & 0 & 2 & 1 & \infty \\
+\infty & 1 & 2 & 0 & 4 & \infty \\
+\infty & \infty & 1 & 4 & 0 & 5 \\
+2 & \infty & \infty & \infty & 5 & 0
+\end{array}
+\right]
+\]
+
+\end{minipage}
+\vspace{3cm}
+
+\hfill
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}[scale=1.1, every node/.style={transform shape}]
+    % Κορυφές
+    \node[vertex] (a) at (0,2) {a};
+    \node[vertex, fill=red!50] (b) at (-1,0.5) {b};
+    \node[vertex] (c) at (1,0) {c}; 
+    \node[vertex, fill=red!50] (d) at (0,-2) {d};
+    \node[vertex] (e) at (3,-1.5) {e};
+    \node[vertex] (f) at (3,1.2) {f};
+
+    % Ακμές με βάρη
+    \draw (a) -- (b) node[midway, above left, edge weight] {1};
+    \draw (a) -- (c) node[midway, above right, edge weight] {3};
+    \draw (a) -- (f) node[midway, above, edge weight] {2};
+    \draw (b) -- (c) node[midway, above, edge weight] {5};
+    % <-- ΕΔΩ κάνουμε τη γραμμή πιο έντονη -->
+    \draw [line width=3pt, color=black] (b) -- (d) node[midway, left, edge weight] {1};
+    \draw (c) -- (d) node[midway, right, edge weight] {2};
+    \draw (c) -- (e) node[midway, right, edge weight] {1};
+    \draw (e) -- (f) node[midway, below right, edge weight] {5};
+    \draw (d) -- (e) node[midway, below, edge weight] {4};
+
+    % Τίτλος γράφου
+ \node[draw=none, fill=none, above=0.4cm of a, font=\bfseries, align=center] 
+{(b) Μετά την επιλογή \\ της πρώτης ακμής};
+
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+% Πίνακας d[] με κουτάκια μόνο στην κάτω γραμμή
+\begin{tabular}{ccccccc}
+  & a & b & c & d & e & f \\
+\cline{2-7}
+$d[]$ & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{0} & \multicolumn{1}{|c|}{2} & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{4} & \multicolumn{1}{|c|}{$\infty$} \\
+\cline{2-7}
+\end{tabular}
+
+\vspace{0.5em}
+
+% Πίνακας γειτνίασης
+\[
+\begin{array}{c}
+a \\ b \\ c \\ d \\ e \\ f
+\end{array}
+\;
+\left[
+\begin{array}{cccccc}
+0 & 1 & 3 & \infty & \infty & 2 \\
+1 & 0 & 5 & 1 & \infty & \infty \\
+3 & 5 & 0 & 2 & 1 & \infty \\
+\rowcolor{gray!25}
+\infty & 1 & 2 & 0 & 4 & \infty \\
+\infty & \infty & 1 & 4 & 0 & 5 \\
+2 & \infty & \infty & \infty & 5 & 0
+\end{array}
+\right]
+\]
+\end{minipage}
+\vspace{3cm}
+
+
+\hfill
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}[scale=1.1, every node/.style={transform shape}]
+    % Κορυφές
+    \node[vertex, fill=red!50] (a) at (0,2) {a};
+    \node[vertex, fill=red!50] (b) at (-1,0.5) {b};
+    \node[vertex] (c) at (1,0) {c}; 
+    \node[vertex, fill=red!50] (d) at (0,-2) {d};
+    \node[vertex] (e) at (3,-1.5) {e};
+    \node[vertex] (f) at (3,1.2) {f};
+
+    % Ακμές με βάρη
+    \draw [line width=3pt, color=black] (a) -- (b) node[midway, above left, edge weight] {1};
+    \draw (a) -- (c) node[midway, above right, edge weight] {3};
+    \draw (a) -- (f) node[midway, above, edge weight] {2};
+    \draw (b) -- (c) node[midway, above, edge weight] {5};
+    % <-- ΕΔΩ κάνουμε τη γραμμή πιο έντονη -->
+    \draw [line width=3pt, color=black] (b) -- (d) node[midway, left, edge weight] {1};
+    \draw (c) -- (d) node[midway, right, edge weight] {2};
+    \draw (c) -- (e) node[midway, right, edge weight] {1};
+    \draw (e) -- (f) node[midway, below right, edge weight] {5};
+    \draw (d) -- (e) node[midway, below, edge weight] {4};
+
+    % Τίτλος γράφου
+ \node[draw=none, fill=none, above=0.4cm of a, font=\bfseries, align=center] 
+{(c) Μετά την επιλογή \\ της δεύτερης ακμής};
+
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+% Πίνακας d[] με κουτάκια μόνο στην κάτω γραμμή
+\begin{tabular}{ccccccc}
+  & a & b & c & d & e & f \\
+\cline{2-7}
+$d[]$ & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{0} & \multicolumn{1}{|c|}{2} & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{4} & \multicolumn{1}{|c|}{2} \\
+\cline{2-7}
+\end{tabular}
+
+\vspace{0.5em}
+
+
+% Πίνακας γειτνίασης
+\[
+\begin{array}{c}
+a \\ b \\ c \\ d \\ e \\ f
+\end{array}
+\;
+\left[
+\begin{array}{cccccc}
+\rowcolor{gray!25}
+0 & 1 & 3 & \infty & \infty & 2 \\
+1 & 0 & 5 & 1 & \infty & \infty \\
+3 & 5 & 0 & 2 & 1 & \infty \\
+\infty & 1 & 2 & 0 & 4 & \infty \\
+\infty & \infty & 1 & 4 & 0 & 5 \\
+2 & \infty & \infty & \infty & 5 & 0
+\end{array}
+\right]
+\]
+\end{minipage}
+\vspace{3cm}
+
+\begin{figure}[ht]
+\hfill
+\begin{minipage}{0.45\textwidth}
+\begin{tikzpicture}[scale=1.1, every node/.style={transform shape}]
+    % Κορυφές
+    \node[vertex, fill=red!50] (a) at (0,2) {a};
+    \node[vertex, fill=red!50] (b) at (-1,0.5) {b};
+    \node[vertex, fill=red!50] (c) at (1,0) {c}; 
+    \node[vertex, fill=red!50] (d) at (0,-2) {d};
+    \node[vertex, fill=red!50] (e) at (3,-1.5) {e};
+    \node[vertex, fill=red!50] (f) at (3,1.2) {f};
+
+    % Ακμές με βάρη
+    \draw [line width=3pt, color=black] (a) -- (b) node[midway, above left, edge weight] {1};
+    \draw (a) -- (c) node[midway, above right, edge weight] {3};
+    \draw [line width=3pt, color=black] (a) -- (f) node[midway, above, edge weight] {2};
+    \draw (b) -- (c) node[midway, above, edge weight] {5};
+    % <-- ΕΔΩ κάνουμε τη γραμμή πιο έντονη -->
+    \draw [line width=3pt, color=black] (b) -- (d) node[midway, left, edge weight] {1};
+    \draw [line width=3pt, color=black] (c) -- (d) node[midway, right, edge weight] {2};
+    \draw [line width=3pt, color=black] (c) -- (e) node[midway, right, edge weight] {1};
+    \draw (e) -- (f) node[midway, below right, edge weight] {5};
+    \draw (d) -- (e) node[midway, below, edge weight] {4};
+
+    % Τίτλος γράφου
+ \node[draw=none, fill=none, above=0.4cm of a, font=\bfseries, align=center] 
+{(d) Τελικό ελάχιστο \\ δέντρο επικάλυψης};
+
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\textwidth}
+\centering
+% Πίνακας d[] με κουτάκια μόνο στην κάτω γραμμή
+\begin{tabular}{ccccccc}
+  & a & b & c & d & e & f \\
+\cline{2-7}
+$d[]$ & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{0} & \multicolumn{1}{|c|}{2} & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{2} \\
+\cline{2-7}
+\end{tabular}
+
+\vspace{0.5em}
+
+% Πίνακας γειτνίασης
+\[
+\begin{array}{c}
+a \\ b \\ c \\ d \\ e \\ f
+\end{array}
+\;
+\left[
+\begin{array}{cccccc}
+0 & 1 & 3 & \infty & \infty & 2 \\
+1 & 0 & 5 & 1 & \infty & \infty \\
+3 & 5 & 0 & 2 & 1 & \infty \\
+\infty & 1 & 2 & 0 & 4 & \infty \\
+\infty & \infty & 1 & 4 & 0 & 5 \\
+2 & \infty & \infty & \infty & 5 & 0
+\end{array}
+\right]
+\]
+\vspace{1cm}
+\end{minipage}
+
+\vspace{0.3cm}
+\noindent\rule{\textwidth}{0.2pt}
+
+\caption{Ο αλγόριθμος του Prim για το ελάχιστο δέντρο επικάλυψης. Το MST έχει ρίζα την κορυφή b. Κατά τη διάρκεια κάθε επανάληψης, επιλέγεται η ακμή ελάχιστου κόστους που συνδέει μια κορυφή στο $V_T$ με μια κορυφή στο $V-V_T$ και η αντίστοιχη κορυφή προστίθεται στο $V_T$ (φαίνεται σκιασμένη στον πίνακα απόστασης d). Στη συνέχεια, οι τιμές d[v] των κορυφών στο $V-V_T$ ενημερώνονται.}
+\label{fig:Σχήμα 5}
+\end{figure}
+\vspace{0.5cm}
+
+\begin{figure}[ht]
+\hfill
+
+\centering
+\begin{tabular}{p{1.2cm}ccccccccc}
+    & & & & & & & & \makebox[0pt][c]{$\left|\frac{n}{p}\right|$} \\
+
+\cline{2-9}
+$d[1..n]$ 
+  & \multicolumn{1}{|c|}{} 
+  & \multicolumn{1}{|c|}{} 
+  & \multicolumn{2}{|c|}{...}      
+  & \multicolumn{1}{|c|}{} 
+  & \multicolumn{2}{|c|}{...}      
+  & \multicolumn{1}{|c|}{} \\      
+\cline{2-9}
+\end{tabular}
+\quad (a)
+
+\centering
+\begin{tabular}{p{1.9cm}cccccccc}
+  & & & & & & & & \\
+\cline{2-9}
+\raisebox{7\height}{\hspace{0.5cm}$A$}
+  & \multicolumn{1}{|c|}{%
+        \makebox[0pt][c]{\rotatebox{90}{==================}}%
+        \rule{0pt}{100pt}
+    }
+& \multicolumn{1}{|c|}{%
+        \makebox[0pt][c]{\rotatebox{90}{==================}}%
+        \rule{0pt}{100pt}
+    } 
+& \multicolumn{2}{|c|}{%
+    \raisebox{50pt}{\makebox[0pt][c]{...}}%
+}
+
+   
+& \multicolumn{1}{|c|}{%
+        \makebox[0pt][c]{\rotatebox{90}{==================}}%
+        \rule{0pt}{100pt}
+    } 
+& \multicolumn{2}{|c|}{%
+    \raisebox{50pt}{\makebox[0pt][c]{...}}%
+}
+    
+& \multicolumn{1}{|c|}{%
+        \makebox[0pt][c]{\rotatebox{90}{==================}}%
+        \rule{0pt}{100pt}
+    } \\
+\cline{2-9}
+\\[-2pt]
+\hspace{-1cm}Processors
+  & \makebox[0pt][c]{0} & \makebox[0pt][c]{1}& \multicolumn{2}{c}{} & \makebox[0pt][c]{i} & \multicolumn{2}{c}{} & \makebox[0pt][c]{p-1}  \\
+
+\end{tabular}
+\begin{tikzpicture}[baseline=-0.5ex, xshift=3cm, yshift=-2.15cm]
+  % Κάθετο διπλοβέλος, μετακινημένο προς τα πάνω
+  \draw[<->] (0,4.6) -- (0,0.2);
+  \node at (0.3,2.3) {$n$};
+\end{tikzpicture}
+\quad (b)
+
+
+
+
+
+\vspace{0.3cm}
+\noindent\rule{\textwidth}{0.2pt}
+
+\caption{Η διαμέριση του πίνακα απόστασης d και ο πίνακας γειτνίασης Α μεταξύ p επεξεργαστών.}
+\label{fig:Σχήμα 6}
+\end{figure}
+\vspace{0.5cm}
+
+\subsection{Παράλληλη Υλοποίηση}
+Ο αλγόριθμος του Prim είναι επαναληπτικός. Κάθε επανάληψη προσθέτει μια νέα κορυφή στο ελάχιστο δέντρο επικάλυψης. Δεδομένου ότι η τιμή του $d[v]$ για μια κορυφή v μπορεί να αλλάζει κάθε φορά που προστίθεται μια νέα κορυφή u στο $V_T$, είναι δύσκολο να επιλεγούν περισσότερες από μία κορυφές για να συμπεριληφθούν στο ελάχιστο δέντρο επικάλυψης. Για παράδειγμα, στο γράφημα του Σχήματος ~\ref{fig:Σχήμα 5}, έπειτα από την επιλογή της κορυφής b, εάν και οι δύο κορυφές d και c επιλεγούν, το MST δεν θα βρεθεί. Αυτό συμβαίνει γιατί, έπειτα από την επιλογή της κορυφής d, η τιμή της $d[c]$ ενημερώνεται από 5 σε 2. Επομένως, δεν είναι εύκολο να εκτελεστούν παράλληλα διαφορετικές επαναλήψεις του βρόχου while. Ωστόσο, κάθε επανάληψη μπορεί να εκτελεστεί παράλληλα ως εξής. 
+
+Έστω p ο αριθμός των επεξεργαστών και n ο αριθμός των κορυφών στο γράφημα. Το σύνολο V χωρίζεται σε p υποσύνολα χρησιμοποιώντας την block διαμέριση σε λωρίδες. Κάθε υποσύνολο έχει $\frac{n}{p}$ συνεχόμενες κορυφές και η εργασία που σχετίζεται με κάθε υποσύνολο ανατίθεται σε διαφορετικό επεξεργαστή. Έστω $V_i$ το υποσύνολο των κορυφών που έχουν ανατεθεί στον επεξεργαστή $P_i$ για $i = 0, 1, ..., p - 1$. Κάθε επεξεργαστής $P_i$ αποθηκεύει το τμήμα του πίνακα d που αντιστοιχεί στο $V_i$ (δηλαδή, ο επεξεργαστής $P_i$ αποθηκεύει το $d[v]$ έτσι ώστε $v \in V_i$). Το Σχήμα ~\ref{fig:Σχήμα 6}(a) απεικονίζει την διαμέριση. Κάθε επεξεργαστής $P_i$ υπολογίζει $d_i[u] = \min \{\, d_i[v] \mid v \in (V - V_T) \cap V_i \,\}$ κατά τη διάρκεια κάθε επανάληψης του βρόχου while. Το συνολικό ελάχιστο λαμβάνεται τότε για όλα τα $d_i[u]$ χρησιμοποιώντας την ένα-προς-όλους μετάδοση και αποθηκεύεται στον επεξεργαστή $P_0$. Ο επεξεργαστής $P_0$ διατηρεί τώρα τη νέα κορυφή u, η οποία θα εισαχθεί στο $V_T$. Ο επεξεργαστής $P_0$ μεταδίδει το u σε όλους τους επεξεργαστές χρησιμοποιώντας την ένα-προς-όλους μετάδοση. Ο επεξεργαστής $P_i$ που είναι υπεύθυνος για την κορυφή u σημειώνει το u ότι ανήκει στο σύνολο $V_T$. Τέλος, κάθε επεξεργαστής ενημερώνει τις τιμές του $d[v]$ για τις τοπικές κορυφές του. 
+
+Όταν μια νέα κορυφή u εισέρχεται στο $V_T$, οι τιμές του $d[v]$ για το $v \in (V - V_T)$ πρέπει να ενημερωθούν. Ο επεξεργαστής που είναι υπεύθυνος για το v πρέπει να γνωρίζει το βάρος της ακμής (u, v). Επομένως, κάθε επεξεργαστής $P_i$ πρέπει να αποθηκεύει τις στήλες του πίνακα γειτνίασης με βάρη που αντιστοιχούν στο σύνολο $V_i$ των κορυφών που έχουν εκχωρηθεί σε αυτόν. Ο χώρος για την αποθήκευση του απαιτούμενου τμήματος του πίνακα γειτνίασης με βάρη σε κάθε επεξεργαστή είναι $\Theta\!\left(\frac{n^2}{p}\right)$.Το Σχήμα ~\ref{fig:Σχήμα 6}(b) απεικονίζει τον διαμερισμό του πίνακα γειτνίασης με βάρη. Ο υπολογισμός που εκτελείται από έναν επεξεργαστή για την ελαχιστοποίηση και την ενημέρωση των τιμών του $d[v]$ κατά τη διάρκεια κάθε επανάληψης είναι $\Theta\!\left(\frac{n}{p}\right)$. Η επικοινωνία που εκτελείται σε κάθε επανάληψη οφείλεται στη μονού κόμβου συσσώρευση και στη μετάδοση ενός προς όλους.
+\vspace{0.3cm}
+
+\subsubsection*{Υπερκύβος}
+Για έναν υπερκύβο με p-επεξεργαστές, η μια-προς-όλους μετάδοση μιας λέξης από έναν προς όλους απαιτεί χρόνο
+$(t_s + t_w)$ log p (Ενότητα 3.2). Η εύρεση του συνολικού ελάχιστου μιας λέξης σε κάθε
+επεξεργαστή απαιτεί τον ίδιο χρόνο. Έτσι, το συνολικό κόστος επικοινωνίας
+κάθε επανάληψης είναι Θ(log p). Ο παράλληλος χρόνος εκτέλεσης αυτής της διατύπωσης δίνεται από 
+\[
+T_p =
+\overbrace{\Theta\!\left(\frac{n^2}{p}\right)}^{\text{υπολογισμός}}
++
+\overbrace{\Theta(n \log p)}^{\text{επικοινωνία}}
+\]
+Δεδομένου ότι ο ακολουθιακός χρόνος εκτέλεσης είναι W = $\Theta(n^2)$, η επιτάχυνση και η αποδοτικότητα είναι οι εξής:
+\[ S = \frac{\Theta(n^2)}{\Theta\!\left(\frac{n^2}{p}\right) + \Theta(n \log p)} \]
+\begin{equation}
+E = \frac{1}{1 + \Theta\!\left(\frac{p \log p}{n}\right)}
+\label{eq:relation1}
+\end{equation}
+Από την Εξίσωση ~(\ref{eq:relation1}) βλέπουμε ότι για μια βέλτιστη ως προς το κόστος παράλληλη υλοποίηση, χρειαζόμαστε χρόνο \(\frac{p \log p}{n} = O(1)\). Έτσι, η υλοποίηση σε υπερκύβο του αλγορίθμου του Prim μπορεί να χρησιμοποιήσει μόνο \( p = O(n / \log n) \) επεξεργαστές. Επιπλέον, από την Εξίσωση ~(\ref{eq:relation1}), η συνάρτηση ισο-αποδοτικότητας λόγω
+επικοινωνίας είναι $\Theta(p^2 log^2 p)$. Δεδομένου ότι το n πρέπει να αυξάνεται τουλάχιστον τόσο γρήγορα όσο το p σε αυτή τη
+υλοποίηση, η συνάρτηση ισο-αποδοτικότητας λόγω ταυτόχρονης εκτέλεσης είναι Θ($p^2$). Έτσι, η συνολική
+ισοαποδοτικότητα αυτής της υλοποίησης είναι $\Theta(p^2 log^2 p)$.
+
+\vspace{0.3cm}
+\subsubsection*{Πλέγμα}
+Για ένα πλέγμα επεξεργαστών p, η εύρεση ενός ολικού ελάχιστου και η εκτέλεση μιας μετάδοσης ενός προς όλους απαιτούν χρόνο $\Theta(\sqrt{p})$. Επομένως, ο παράλληλος χρόνος εκτέλεσης του αλγορίθμου Prim είναι 
+\begin{equation}
+T_p = \overbrace{\Theta\!\left(\frac{n^2}{p}\right)}^{\text{υπολογισμός}}
++ \overbrace{\Theta(n \sqrt{p})}^{\text{επικοινωνία}}
+\label{eq:relation2}
+\end{equation}
+
+Δεδομένου ότι ο ακολουθιακός χρόνος εκτέλεσης είναι W = Θ($n^2$), η επιτάχυνση και η αποδοτικότητα είναι οι εξής:
+\[
+S = \frac{\Theta(n^2)}{\Theta\!\left(\frac{n^2}{p}\right) + \Theta(n\sqrt{p})}
+\]
+\begin{equation}
+E = \frac{1}{1 + \Theta\!\left(\frac{p^{1.5}}{n}\right)}
+\label{eq:relation3}
+\end{equation}
+Στη Εξίσωση ~(\ref{eq:relation3}) βλέπουμε ότι για έναν αλγόριθμο βέλτιστου κόστους, $p^{1.5}/n$ = O(1). Επομένως, μόνο $O(n^{0.66})$ επεξεργαστές μπορούν να χρησιμοποιηθούν αποτελεσματικά. Επίσης από την Εξίσωση ~(\ref{eq:relation3}), η συνάρτηση ισοαποδοτικότητας λόγω επικοινωνίας είναι $\Theta(p^3)$. Αυτή είναι και η συνολική συνάρτηση ισοαποδοτικότητας. 
+
+\clearpage
+\printbibliography[
+  title={Βιβλιογραφία}
+]
+\addcontentsline{toc}{section}{Βιβλιογραφία}
+
+\end{document}
