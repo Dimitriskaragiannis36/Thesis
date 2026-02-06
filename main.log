@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.1) (preloaded format=xelatex 2026.2.6)  6 FEB 2026 20:55
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.1) (preloaded format=xelatex 2026.2.6)  6 FEB 2026 21:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1133,13 +1133,8 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ] [4
 
 ] [5] [6] [7] [8] [9] [10] [11] [12] [13]
-Underfull \hbox (badness 5119) in paragraph at lines 892--892
-[]|\TU/TimesNewRoman(1)/b/n/10 Μέγιστος αριθμός επεξεργα-
- []
-
-
-Overfull \hbox (55.90924pt too wide) in paragraph at lines 890--900
- [][] 
+Overfull \hbox (3.1154pt too wide) in paragraph at lines 892--892
+ []|[]| 
  []
 
 [14] [15
@@ -1156,12 +1151,12 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 34828 strings out of 402982
- 689655 string characters out of 5452821
+ 34829 strings out of 402982
+ 689659 string characters out of 5452821
  1600091 words of memory out of 5000000
- 63052 multiletter control sequences out of 15000+600000
+ 63053 multiletter control sequences out of 15000+600000
  634913 words of font info for 128 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 84i,16n,94p,1553b,4761s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,17n,94p,1553b,4761s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.xdv (15 pages, 339960 bytes).
+Output written on main.xdv (15 pages, 340048 bytes).

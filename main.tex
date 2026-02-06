@@ -885,11 +885,11 @@ E = \frac{1}{1 + \Theta\!\left(\frac{p^{1.5}}{n}\right)}
 \caption{Επιδόσεις των αλγορίθμων Prim και Dijkstra σε διαφορετικές αρχιτεκτονικές.}
 \label{tab:prim_dijkstra_performance}
 \begingroup
-\setlength{\tabcolsep}{6pt}% reduce column separation
+\setlength{\tabcolsep}{4pt}% slightly larger column separation
 \footnotesize
-\begin{tabular}{lp{4.6cm}cc}
+\begin{tabular}{>{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}p{5.2cm} >{\centering\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{4.0cm}}
 \toprule
-\textbf{Αρχιτεκτονική} & \textbf{Μέγιστος αριθμός επεξεργαστών για $E=\Theta(1)$} & \textbf{Αντίστοιχος παράλληλος χρόνος} & \textbf{Συνάρτηση ισοαποδοτικότητας} \\
+\textbf{Αρχιτεκτονική} & \textbf{\shortstack{Μέγιστος αριθμός \\ επεξεργαστών για $E=\Theta(1)$}} & \textbf{\shortstack{Αντίστοιχος \\ παράλληλος χρόνος}} & \textbf{\shortstack{Συνάρτηση \\ ισοαποδοτικότητας}} \\
 \midrule
 Δακτύλιος & $\Theta(\sqrt{n})$ & $\Theta(n^{1.5})$ & $\Theta(p^{4})$ \\
 Πλέγμα & $\Theta(n^{0.66})$ & $\Theta(n^{1.33})$ & $\Theta(p^{3})$ \\
