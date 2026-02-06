@@ -879,17 +879,19 @@ E = \frac{1}{1 + \Theta\!\left(\frac{p^{1.5}}{n}\right)}
 \subsection{Παράλληλη Υλοποίηση}
 
 Η παράλληλη υλοποίηση του αλγορίθμου του Dijkstra για τις συντομότερες διαδρομές από μία πηγή είναι πολύ παρόμοια με την παράλληλη υλοποίηση του αλγορίθμου του Prim για τα ελάχιστα δέντρα επικάλυψης (Ενότητα 2). Ο πίνακας γειτνίασης με βάρη διαιρείται χρησιμοποιώντας τη χαρτογράφηση τμημάτων μνήμης (Ενότητα 5.1.1). Κάθε ένας από τους $p$ επεξεργαστές ανατίθεται σε $n/p$ διαδοχικές στήλες του πίνακα γειτνίασης με βάρη και υπολογίζει $n/p$ τιμές του πίνακα $l$. Κατά τη διάρκεια κάθε επανάληψης, όλοι οι επεξεργαστές εκτελούν υπολογισμούς και επικοινωνία ανάλογη με εκείνη που εκτελείται στην παράλληλη υλοποίηση του αλγορίθμου του Prim. 
-
+\noindent
+Ο Πίνακας~\ref{tab:prim_dijkstra_performance} παρουσιάζει τις μετρικές απόδοσης για τους αλγορίθμους του Prim και του Dijkstra σε συστήματα συνδεδεμένα ως δακτύλιος, πλέγμα και υπερκύβος. Σε όλες τις περιπτώσεις, ο παράλληλος χρόνος εκτέλεσης για μια βέλτιστη υλοποίηση ως προς το κόστος είναι επίσης ο ελάχιστος παράλληλος χρόνος εκτέλεσης που μπορεί να επιτευχθεί σε κάθε αρχιτεκτονική σε ασυμπτωτικούς όρους (Πρόβλημα 7.1).
+\medskip
 \begin{table}[ht]
 \centering
 \caption{Επιδόσεις των αλγορίθμων Prim και Dijkstra σε διαφορετικές αρχιτεκτονικές.}
 \label{tab:prim_dijkstra_performance}
 \begingroup
-\setlength{\tabcolsep}{4pt}% slightly larger column separation
+\setlength{\tabcolsep}{2.5pt}% slightly tighter column separation to avoid overfull
 \footnotesize
 \begin{tabular}{>{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}p{5.2cm} >{\centering\arraybackslash}p{2.8cm} >{\raggedright\arraybackslash}p{4.0cm}}
 \toprule
-\textbf{Αρχιτεκτονική} & \textbf{\shortstack{Μέγιστος αριθμός \\ επεξεργαστών για $E=\Theta(1)$}} & \textbf{\shortstack{Αντίστοιχος \\ παράλληλος χρόνος}} & \textbf{\shortstack{Συνάρτηση \\ ισοαποδοτικότητας}} \\
+{\scriptsize\textbf{Αρχιτεκτονική}} & {\scriptsize\textbf{\shortstack{Μέγιστος αριθμός \\ επεξεργαστών για $E=\Theta(1)$}}} & {\scriptsize\textbf{\shortstack{Αντίστοιχος \\ παράλληλος χρόνος}}} & {\scriptsize\textbf{\shortstack{Συνάρτηση \\ ισοαποδοτικότητας}}} \\
 \midrule
 Δακτύλιος & $\Theta(\sqrt{n})$ & $\Theta(n^{1.5})$ & $\Theta(p^{4})$ \\
 Πλέγμα & $\Theta(n^{0.66})$ & $\Theta(n^{1.33})$ & $\Theta(p^{3})$ \\
