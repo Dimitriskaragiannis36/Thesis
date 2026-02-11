@@ -10,6 +10,15 @@ INPUT C:\Program Files\MiKTeX\tex\latex\base\size12.clo
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cm\cmr12.tfm
 INPUT C:\Program Files\MiKTeX\tex\latex\base\fontenc.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\base\fontenc.sty
+INPUT C:\Program Files\MiKTeX\tex\latex\greek-fontenc\lgrenc.def
+INPUT C:\Program Files\MiKTeX\tex\latex\greek-fontenc\lgrenc.def
+INPUT C:\Program Files\MiKTeX\tex\latex\greek-fontenc\lgrenc.def
+INPUT C:\Program Files\MiKTeX\tex\latex\greek-inputenc\lgrenc.dfu
+INPUT C:\Program Files\MiKTeX\tex\latex\greek-inputenc\lgrenc.dfu
+INPUT C:\Program Files\MiKTeX\tex\latex\greek-inputenc\lgrenc.dfu
+INPUT C:\Program Files\MiKTeX\tex\latex\greek-fontenc\greek-fontenc.def
+INPUT C:\Program Files\MiKTeX\tex\latex\greek-fontenc\greek-fontenc.def
+INPUT C:\Program Files\MiKTeX\tex\latex\greek-fontenc\greek-fontenc.def
 INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ecrm1200.tfm
 INPUT C:\Program Files\MiKTeX\tex\latex\base\inputenc.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\base\inputenc.sty
@@ -33,15 +42,6 @@ INPUT C:\Program Files\MiKTeX\tex\generic\babel\locale\el\babel-el.ini
 INPUT C:\Program Files\MiKTeX\tex\latex\babel-greek\greek.ldf
 INPUT C:\Program Files\MiKTeX\tex\latex\babel-greek\greek.ldf
 INPUT C:\Program Files\MiKTeX\tex\latex\babel-greek\greek.ldf
-INPUT C:\Program Files\MiKTeX\tex\latex\greek-fontenc\lgrenc.def
-INPUT C:\Program Files\MiKTeX\tex\latex\greek-fontenc\lgrenc.def
-INPUT C:\Program Files\MiKTeX\tex\latex\greek-fontenc\lgrenc.def
-INPUT C:\Program Files\MiKTeX\tex\latex\greek-inputenc\lgrenc.dfu
-INPUT C:\Program Files\MiKTeX\tex\latex\greek-inputenc\lgrenc.dfu
-INPUT C:\Program Files\MiKTeX\tex\latex\greek-inputenc\lgrenc.dfu
-INPUT C:\Program Files\MiKTeX\tex\latex\greek-fontenc\greek-fontenc.def
-INPUT C:\Program Files\MiKTeX\tex\latex\greek-fontenc\greek-fontenc.def
-INPUT C:\Program Files\MiKTeX\tex\latex\greek-fontenc\greek-fontenc.def
 INPUT C:\Program Files\MiKTeX\tex\latex\graphics\graphicx.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\graphics\graphicx.sty
 INPUT C:\Program Files\MiKTeX\tex\latex\graphics\keyval.sty
@@ -399,6 +399,7 @@ INPUT C:\Program Files\MiKTeX\tex\latex\cbfonts-fd\lgrcmtt.fd
 INPUT C:\Program Files\MiKTeX\tex\latex\cbfonts-fd\lgrcmtt.fd
 INPUT C:\Program Files\MiKTeX\tex\latex\cbfonts-fd\lgrcmtt.fd
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cbgreek\gttn1200.tfm
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ectt1200.tfm
 INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT .\main.toc
 INPUT .\main.toc
@@ -427,6 +428,7 @@ INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
 OUTPUT main.toc
+INPUT C:\Program Files\MiKTeX\fonts\tfm\jknappen\ec\ecbx1200.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cbgreek\grmn1095.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cbgreek\grmn0800.tfm
 INPUT C:\Program Files\MiKTeX\fonts\tfm\public\cbgreek\grmn0600.tfm
@@ -457,12 +459,16 @@ INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\public\cbgreek\dpi600\
 INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\public\cbgreek\dpi600\grmc1200.pk
 INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\public\cbgreek\dpi600\grmn1000.pk
 INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\public\cbgreek\dpi600\grmn1000.pk
+INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk
+INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecrm1200.pk
 INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\public\cbgreek\dpi600\grmn1095.pk
 INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\public\cbgreek\dpi600\grmn1095.pk
+INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk
+INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ecbx1200.pk
 INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\public\cbgreek\dpi600\grmn1440.pk
 INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\public\cbgreek\dpi600\grmn1440.pk
-INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\public\cbgreek\dpi600\gttn1200.pk
-INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\public\cbgreek\dpi600\gttn1200.pk
+INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1200.pk
+INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\jknappen\ec\dpi600\ectt1200.pk
 INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\public\cbgreek\dpi600\grmn1200.pk
 INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\public\cbgreek\dpi600\grmn1200.pk
 INPUT C:\Users\dimit\AppData\Local\MiKTeX\fonts\pk\ljfour\public\cbgreek\dpi600\grxn1200.pk

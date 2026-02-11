@@ -1,3 +1,13 @@
 Get-ChildItem -Path . -Recurse |
 Where-Object { $_.FullName -notmatch "\\.git\\" } |
 Compress-Archive -DestinationPath ΠΤΥΧΙΑΚΗ.zip
+
+
+
+\selectlanguage{english}
+English text here...
+\selectlanguage{greek}
+
+
+
+Ελληνικό κείμενο και \foreignlanguage{english}{some English words} και πάλι ελληνικά.
