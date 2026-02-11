@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1770841304.1717 "main.bcf" "main.bbl" "main" 1770843689.08825 0
-  "main.bcf" 1770843688 107907 f02fb1d5b04f01aea5d6cf01a7d340e5 "pdflatex"
+["biber main"] 0 "main.bcf" "main.bbl" "main" 1770847219.11555 -1
+  "main.bcf" 1770847218 107907 f02fb1d5b04f01aea5d6cf01a7d340e5 "pdflatex"
   "references.bib" 1770334400 461 5e2094e9923312d596ada7ffdfda9f6c ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1770843682.11863 "c:/Users/dimit/Desktop/ΕΚΠΑ/Η ΕΞΑΜΗΝΟ/ΠΤΥΧΙΑΚΗ/Πτυχιακή/main.tex" "main.pdf" "main" 1770843689.08941 0
+["pdflatex"] 1770847216.32125 "c:/Users/dimit/Desktop/ΕΚΠΑ/Η ΕΞΑΜΗΝΟ/ΠΤΥΧΙΑΚΗ/Πτυχιακή/main.tex" "main.pdf" "main" 1770847219.1167 0
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/ecbx1200.tfm" 993061958 3200 b8d69bc738e5ef3e08cefeef3109ff56 ""
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/ecbx1728.tfm" 993061962 3204 d35cb76836b6cb4ed404dd64a550530d ""
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/ecrm1200.tfm" 993062126 3152 4850ff0163852b7fab34bd55e1197f28 ""
@@ -254,14 +254,14 @@
   "C:/Users/dimit/AppData/Local/MiKTeX/fonts/pk/ljfour/public/cbgreek/dpi600/grxn1440.pk" 1770835583 44868 23549f8b255e59e7125b80a64f1879eb ""
   "C:/Users/dimit/AppData/Local/MiKTeX/fonts/pk/ljfour/public/cbgreek/dpi600/grxn1728.pk" 1770835585 56204 59420fbf0106773dfa9fa90462674b79 ""
   "C:/Users/dimit/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1770835406 13323795 595272eb98361fadde58cd8ce45db46e ""
-  "c:/Users/dimit/Desktop/ΕΚΠΑ/Η ΕΞΑΜΗΝΟ/ΠΤΥΧΙΑΚΗ/Πτυχιακή/main.tex" 1770843675 59135 b833f3ba31fd2c56d6243b31971fc7ee ""
+  "c:/Users/dimit/Desktop/ΕΚΠΑ/Η ΕΞΑΜΗΝΟ/ΠΤΥΧΙΑΚΗ/Πτυχιακή/main.tex" 1770847215 60001 aef8b2df3ead13b3d4279a7b1a86f1d6 ""
   "ekpa_logo.jpg" 1766678535 211681 d619ce14f1a16c63b11266871b0a098a ""
-  "main.aux" 1770843688 6591 2a4e9f5d8c68f161f645d9ca3c099d93 "pdflatex"
+  "main.aux" 1770847218 6713 53ed82cd3a728c1b9e0732928393943c "pdflatex"
   "main.bbl" 1770841306 4089 3100d5e827882c1e6f16634e52b55dda "biber main"
-  "main.out" 1770843688 2056 31a0c38de4d42aa13bfc702eae29f045 "pdflatex"
-  "main.run.xml" 1770843688 2334 48b8f95b26d1ccc68e3889082bb965fe "pdflatex"
-  "main.tex" 1770843675 59135 b833f3ba31fd2c56d6243b31971fc7ee ""
-  "main.toc" 1770843688 933 ec4d87a737ffaa998b27879a5f95c706 "pdflatex"
+  "main.out" 1770847218 2056 31a0c38de4d42aa13bfc702eae29f045 "pdflatex"
+  "main.run.xml" 1770847218 2334 48b8f95b26d1ccc68e3889082bb965fe "pdflatex"
+  "main.tex" 1770847215 60001 aef8b2df3ead13b3d4279a7b1a86f1d6 ""
+  "main.toc" 1770847218 933 ec4d87a737ffaa998b27879a5f95c706 "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"
