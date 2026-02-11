@@ -3,7 +3,27 @@
 \contentsline {section}{\numberline {1}Αλγόριθμοι Γραφημάτων}{4}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Ορισμοί και Αναπαράσταση}{4}{subsection.1.1}%
 \contentsline {section}{\numberline {2}Eλάχιστο δέντρο επικάλυψης: Ο αλγόριθμος του \foreignlanguage {english}{Prim}}{7}{section.2}%
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
 \contentsline {subsection}{\numberline {2.1}Παράλληλη Υλοποίηση}{10}{subsection.2.1}%
 \contentsline {section}{\numberline {3}Συντομότερες Διαδρομές από Μία Πηγή: Ο αλγόριθμος του \foreignlanguage {english}{Dijkstra}}{13}{section.3}%
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
 \contentsline {subsection}{\numberline {3.1}Παράλληλη Υλοποίηση}{14}{subsection.3.1}%
 \contentsline {section}{Βιβλιογραφία}{15}{section*.12}%

@@ -148,7 +148,7 @@
 
     \draw (5) -- (2);
     \draw (5) -- (3); 
-    \draw (5) -- (4) node[midway, above left, edge weight] {e};
+    \draw (5) -- (4) node[midway, above left, edge weight] {$e$};
     \draw (2) -- (1); 
     \draw (3) -- (1); 
     \draw (3) -- (6); 
@@ -175,7 +175,7 @@
     \draw[->] (4) -- (1);
     \draw[bend right=20, ->] (1) to (5);
     \draw[->] (5) -- (6);
-    \draw[->] (5) -- (2) node[midway, right, xshift=4pt, edge weight] {f};
+    \draw[->] (5) -- (2) node[midway, right, xshift=4pt, edge weight] {$f$};
     \draw[->] (2) -- (1);
 
 \end{tikzpicture}
@@ -236,7 +236,7 @@ A =
 Μια διαδρομή (ή μονοπάτι) από μια κορυφή $v$ σε μια κορυφή $u$ είναι μια ακολουθία <$v_0$, $v_1$, $v_2$, ..., $v_k$> κορυφών, όπου $v_0$ = $v$, $v_k$ = $u$, και $(v_i, v_{i+1}) \in E$ για $i = 0, 1, ..., k-1$. Το μήκος μιας διαδρομής ορίζεται ως το πλήθος των ακμών της. Αν υπάρχει διαδρομή από το $v$ στο $u$, τότε το $u$ είναι προσπελάσιμο (\textbf{\foreignlanguage{english}{reachable}}) από το $v$. Μια διαδρομή είναι απλή αν όλες οι κορυφές της είναι διακριτές (δεν επαναλαμβάνονται). Μια διαδρομή σχηματίζει κύκλο αν η αρχική και η τελική της κορυφή ταυτίζονται – δηλαδή, αν $v_0$ = $v_k$. Ένα γράφημα χωρίς κύκλους ονομάζεται ακυκλικό. Ένας κύκλος είναι απλός αν όλες οι ενδιάμεσες κορυφές του είναι διακριτές.
 
 
-Για παράδειγμα, στο Σχήμα ~\ref{fig:graph1}(a), η ακολουθία <3, 6, 5, 4> είναι μια διαδρομή από την κορυφή 3 στην κορυφή 4. Στο Σχήμα ~\ref{fig:graph1}(β), υπάρχει ένας κατευθυνόμενος απλός κύκλος <1, 5, 6, 4, 1>. Επίσης, στο Σχήμα ~\ref{fig:graph1}(α), η ακολουθία <1, 2, 5, 3, 6, 5, 4, 1> είναι ένας μη κατευθυνόμενος κύκλος που δεν είναι απλός, γιατί περιέχει τον βρόχο <5, 3, 6, 5>.
+Για παράδειγμα, στο Σχήμα ~\ref{fig:graph1}(a), η ακολουθία $<3, 6, 5, 4>$ είναι μια διαδρομή από την κορυφή 3 στην κορυφή 4. Στο Σχήμα ~\ref{fig:graph1}(β), υπάρχει ένας κατευθυνόμενος απλός κύκλος $<1, 5, 6, 4, 1>$. Επίσης, στο Σχήμα ~\ref{fig:graph1}(α), η ακολουθία $<1, 2, 5, 3, 6, 5, 4, 1>$ είναι ένας μη κατευθυνόμενος κύκλος που δεν είναι απλός, γιατί περιέχει τον βρόχο $<5, 3, 6, 5>$.
 
 Ένα μη κατευθυνόμενο γράφημα είναι συνεκτικό αν κάθε ζεύγος κορυφών ενώνεται με μια διαδρομή. Λέμε ότι ένα γράφημα $G' = (V', E')$ είναι υπογράφημα του $G = (V, E)$ αν $V'\subseteq V$ και $E'\subseteq E$. Για ένα δεδομένο σύνολο $V'\subseteq V$, το υπόγράφημα του $G$ που προκύπτει από το $V'$ είναι το γράφημα $G' = (V', E')$, όπου $E' = \{ (u, v) \in E \mid u, v \in V' \}$. Ένα πλήρες γράφημα είναι ένα γράφημα στον οποίο κάθε ζεύγος κορυφών είναι γειτονικό. Ένα δάσος είναι ένα ακυκλικό γράφημα και ένα δέντρο είναι ένα συνεκτικό ακυκλικό γράφημα. Σημειώστε ότι αν $G = (V, E)$ είναι ένα δέντρο, τότε $|E| = |V| - 1$.
 
@@ -423,6 +423,8 @@ w(v_i, v_j) & \text{εάν } (v_i, v_j) \in E\\[2mm]
 
 Αν το $G$ δεν είναι συνεκτικό, δεν μπορεί να έχει δέντρο επικάλυψης. Αντ’ αυτού, έχει δάσος επικάλυψης. Για λόγους απλότητας στην περιγραφή του αλγορίθμου ελάχιστου δέντρου επικάλυψης, υποθέτουμε ότι το $G$ είναι συνεκτικό. Αν το $G$ δεν είναι συνεκτικό, μπορούμε να βρούμε τις συνεκτικές συνιστώσες του (Ενότητα 7.6) και να εφαρμόσουμε τον αλγόριθμο ελάχιστου δέντρου επικάλυψης σε καθεμία από αυτές. Εναλλακτικά, μπορούμε να τροποποιήσουμε τον αλγόριθμο ελάχιστου δέντρου επικάλυψης έτσι ώστε να παράγει ένα ελάχιστο δάσος επικάλυψης.
 
+\selectlanguage{english}
+
 \begin{algorithm}[H]
 \begin{algorithmic}[1]
 \Procedure{PRIM\_MST}{$V, E, w, r$}
@@ -445,6 +447,8 @@ w(v_i, v_j) & \text{εάν } (v_i, v_j) \in E\\[2mm]
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
+
+\selectlanguage{greek}
 
 {\raggedright\refstepcounter{algorithm}\textbf{Αλγόριθμος \thealgorithm:} Ο σειριακός αλγόριθμος του \foreignlanguage{english}{Prim} για το ελάχιστο δέντρο επικάλυψης.\label{alg:prim}\par}
 
@@ -490,19 +494,24 @@ w(v_i, v_j) & \text{εάν } (v_i, v_j) \in E\\[2mm]
     \draw (d) -- (e) node[midway, below, edge weight] {4};
 
     % Τίτλος γράφου
-    \node[draw=none, fill=none, above=0.4cm of a, font=\bfseries] {(a) Αρχικό γράφημα};
+    \node[draw=none, fill=none, above=0.4cm of a, font=\bfseries] {($a$) Αρχικό γράφημα};
+    
 \end{tikzpicture}
 \end{minipage}
 \hfill
 \begin{minipage}{0.45\textwidth}
 \centering
 % Πίνακας d[] με κουτάκια μόνο στην κάτω γραμμή
+\selectlanguage{english}
+
 \begin{tabular}{ccccccc}
   & a & b & c & d & e & f \\
 \cline{2-7}
 $d[]$ & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{0} & \multicolumn{1}{|c|}{5} & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{$\infty$} & \multicolumn{1}{|c|}{$\infty$} \\
 \cline{2-7}
 \end{tabular}
+
+\selectlanguage{greek}
 
 \vspace{0.5em}
 
@@ -553,7 +562,7 @@ a \\ b \\ c \\ d \\ e \\ f
 
     % Τίτλος γράφου
  \node[draw=none, fill=none, above=0.4cm of a, font=\bfseries, align=center] 
-{(b) Μετά την επιλογή \\ της πρώτης ακμής};
+{($b$) Μετά την επιλογή \\ της πρώτης ακμής};
 
 \end{tikzpicture}
 \end{minipage}
@@ -561,12 +570,16 @@ a \\ b \\ c \\ d \\ e \\ f
 \begin{minipage}{0.45\textwidth}
 \centering
 % Πίνακας d[] με κουτάκια μόνο στην κάτω γραμμή
+\selectlanguage{english}
+
 \begin{tabular}{ccccccc}
   & a & b & c & d & e & f \\
 \cline{2-7}
 $d[]$ & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{0} & \multicolumn{1}{|c|}{2} & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{4} & \multicolumn{1}{|c|}{$\infty$} \\
 \cline{2-7}
 \end{tabular}
+
+\selectlanguage{greek}
 
 \vspace{0.5em}
 
@@ -617,7 +630,7 @@ a \\ b \\ c \\ d \\ e \\ f
 
     % Τίτλος γράφου
  \node[draw=none, fill=none, above=0.4cm of a, font=\bfseries, align=center] 
-{(c) Μετά την επιλογή \\ της δεύτερης ακμής};
+{($c$) Μετά την επιλογή \\ της δεύτερης ακμής};
 
 \end{tikzpicture}
 \end{minipage}
@@ -625,12 +638,16 @@ a \\ b \\ c \\ d \\ e \\ f
 \begin{minipage}{0.45\textwidth}
 \centering
 % Πίνακας d[] με κουτάκια μόνο στην κάτω γραμμή
+\selectlanguage{english}
+
 \begin{tabular}{ccccccc}
   & a & b & c & d & e & f \\
 \cline{2-7}
 $d[]$ & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{0} & \multicolumn{1}{|c|}{2} & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{4} & \multicolumn{1}{|c|}{2} \\
 \cline{2-7}
 \end{tabular}
+
+\selectlanguage{greek}
 
 \vspace{0.5em}
 
@@ -682,7 +699,7 @@ a \\ b \\ c \\ d \\ e \\ f
 
     % Τίτλος γράφου
  \node[draw=none, fill=none, above=0.4cm of a, font=\bfseries, align=center] 
-{(d) Τελικό ελάχιστο \\ δέντρο επικάλυψης};
+{($d$) Τελικό ελάχιστο \\ δέντρο επικάλυψης};
 
 \end{tikzpicture}
 \end{minipage}
@@ -690,12 +707,16 @@ a \\ b \\ c \\ d \\ e \\ f
 \begin{minipage}{0.45\textwidth}
 \centering
 % Πίνακας d[] με κουτάκια μόνο στην κάτω γραμμή
+\selectlanguage{english}
+
 \begin{tabular}{ccccccc}
   & a & b & c & d & e & f \\
 \cline{2-7}
 $d[]$ & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{0} & \multicolumn{1}{|c|}{2} & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{1} & \multicolumn{1}{|c|}{2} \\
 \cline{2-7}
 \end{tabular}
+
+\selectlanguage{greek}
 
 \vspace{0.5em}
 
@@ -744,7 +765,7 @@ $d[1..n]$
   & \multicolumn{1}{|c|}{} \\      
 \cline{2-9}
 \end{tabular}
-\quad (a)
+\quad ($a$)
 
 \centering
 \begin{tabular}{p{1.9cm}cccccccc}
@@ -778,8 +799,8 @@ $d[1..n]$
     } \\
 \cline{2-9}
 \\[-2pt]
-\hspace{-1cm}Processors
-  & \makebox[0pt][c]{0} & \makebox[0pt][c]{1}& \multicolumn{2}{c}{} & \makebox[0pt][c]{i} & \multicolumn{2}{c}{} & \makebox[0pt][c]{p-1}  \\
+\hspace{-1cm}\foreignlanguage{english}{Processors}
+  & \makebox[0pt][c]{0} & \makebox[0pt][c]{1}& \multicolumn{2}{c}{} & \makebox[0pt][c]{$i$} & \multicolumn{2}{c}{} & \makebox[0pt][c]{$p-1$}  \\
 
 \end{tabular}
 \begin{tikzpicture}[baseline=-0.5ex, xshift=3cm, yshift=-2.15cm]
@@ -787,10 +808,7 @@ $d[1..n]$
   \draw[<->] (0,4.6) -- (0,0.2);
   \node at (0.3,2.3) {$n$};
 \end{tikzpicture}
-\quad (b)
-
-
-
+\quad ($b$)
 
 
 \vspace{0.3cm}
@@ -856,6 +874,8 @@ E = \frac{1}{1 + \Theta\!\left(\frac{p^{1.5}}{n}\right)}
 
 Ο αλγόριθμος του \foreignlanguage{english}{Dijkstra}, που βρίσκει τις συντομότερες διαδρομές από μία κορυφή $s$, είναι παρόμοιος με τον αλγόριθμο του \foreignlanguage{english}{Prim} για το ελάχιστο δέντρο επικάλυψης. Όπως και ο αλγόριθμος του \foreignlanguage{english}{Prim}, βρίσκει σταδιακά τις συντομότερες διαδρομές από το $s$ προς τις υπόλοιπες κορυφές του $G$. Είναι επίσης άπληστος. Δηλαδή, σε κάθε βήμα επιλέγει μια κορυφή που φαίνεται ότι βρίσκεται πλησιέστερα προς την πηγή. Ο Αλγόριθμος \ref{alg:dijkstra} δείχνει τον αλγόριθμο του \foreignlanguage{english}{Dijkstra}. Συγκρίνοντας αυτόν τον αλγόριθμο με τον αλγόριθμο του \foreignlanguage{english}{Prim} για το ελάχιστο δέντρο επικάλυψης, παρατηρούμε ότι οι δύο είναι σχεδόν ταυτόσημοι. Η βασική διαφορά είναι ότι, για κάθε κορυφή $u \in (V - V_T)$, ο αλγόριθμος του \foreignlanguage{english}{Dijkstra} αποθηκεύει $l[u]$, το ελάχιστο κόστος για να φτάσει στην κορυφή $u$ από την κορυφή $s$ χρησιμοποιώντας κορυφές στο $V_T$. O αλγόριθμος του \foreignlanguage{english}{Prim} αποθηκεύει $d[u]$, το κόστος της ακμής ελάχιστου κόστους που συνδέει μια κορυφή στο $V_T$ με την $u$. Ο χρόνος εκτέλεσης του αλγορίθμου του \foreignlanguage{english}{Dijkstra} είναι $\Theta(n^2)$.
 
+\selectlanguage{english}
+
 \begin{algorithm}[H]
 \begin{algorithmic}[1]
 \Procedure{DIJKSTRA\_SINGLE\_SOURCE\_SP}{$V, E, w, s$}
@@ -878,6 +898,8 @@ E = \frac{1}{1 + \Theta\!\left(\frac{p^{1.5}}{n}\right)}
 \EndProcedure
 \end{algorithmic}
 \end{algorithm}
+
+\selectlanguage{greek}
 
 {\raggedright\refstepcounter{algorithm}\textbf{Αλγόριθμος \thealgorithm:} Ο σειριακός αλγόριθμος του \foreignlanguage{english}{Dijkstra} για τις συντομότερες διαδρομές από μία πηγή.\label{alg:dijkstra}\par}
  
