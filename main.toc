@@ -1,4 +1,4 @@
-\xpg@aux {}{greek}
+\babel@toc {greek}{}\relax 
 \contentsline {section}{Εισαγωγή}{3}{section*.2}%
 \contentsline {section}{\numberline {1}Αλγόριθμοι Γραφημάτων}{4}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Ορισμοί και Αναπαράσταση}{4}{subsection.1.1}%
