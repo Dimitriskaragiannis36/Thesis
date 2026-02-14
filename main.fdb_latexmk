@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber main"] 1770849871.18049 "main.bcf" "main.bbl" "main" 1770849878.45064 0
-  "main.bcf" 1770849878 107907 f02fb1d5b04f01aea5d6cf01a7d340e5 "pdflatex"
+["biber main"] 1771086420.4114 "main.bcf" "main.bbl" "main" 1771086429.33395 0
+  "main.bcf" 1771086428 107907 f02fb1d5b04f01aea5d6cf01a7d340e5 "pdflatex"
   "references.bib" 1770334400 461 5e2094e9923312d596ada7ffdfda9f6c ""
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1770849875.60378 "c:/Users/dimit/Desktop/ΕΚΠΑ/Η ΕΞΑΜΗΝΟ/ΠΤΥΧΙΑΚΗ/Πτυχιακή/main.tex" "main.pdf" "main" 1770849878.45133 0
+["pdflatex"] 1771086426.05213 "c:/Users/dimit/Desktop/ΕΚΠΑ/Η ΕΞΑΜΗΝΟ/ΠΤΥΧΙΑΚΗ/Πτυχιακή/main.tex" "main.pdf" "main" 1771086429.33483 0
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/ecbx1200.tfm" 993061958 3200 b8d69bc738e5ef3e08cefeef3109ff56 ""
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/ecbx1728.tfm" 993061962 3204 d35cb76836b6cb4ed404dd64a550530d ""
   "C:/Program Files/MiKTeX/fonts/tfm/jknappen/ec/eccc1200.tfm" 993061984 2796 601f0e3324021d7edb90718e24047a6a ""
@@ -258,14 +258,14 @@
   "C:/Users/dimit/AppData/Local/MiKTeX/fonts/pk/ljfour/public/cbgreek/dpi600/grxn1440.pk" 1770835583 44868 23549f8b255e59e7125b80a64f1879eb ""
   "C:/Users/dimit/AppData/Local/MiKTeX/fonts/pk/ljfour/public/cbgreek/dpi600/grxn1728.pk" 1770835585 56204 59420fbf0106773dfa9fa90462674b79 ""
   "C:/Users/dimit/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1770835406 13323795 595272eb98361fadde58cd8ce45db46e ""
-  "c:/Users/dimit/Desktop/ΕΚΠΑ/Η ΕΞΑΜΗΝΟ/ΠΤΥΧΙΑΚΗ/Πτυχιακή/main.tex" 1770849833 60358 8dfea8296fe4a1d853757b6944ed37e2 ""
+  "c:/Users/dimit/Desktop/ΕΚΠΑ/Η ΕΞΑΜΗΝΟ/ΠΤΥΧΙΑΚΗ/Πτυχιακή/main.tex" 1771086412 60419 41d30e7cc9c0a2302e463b7c68b4a342 ""
   "ekpa_logo.jpg" 1766678535 211681 d619ce14f1a16c63b11266871b0a098a ""
-  "main.aux" 1770849877 7133 0991e7d108a8631f320432dd5d4785e1 "pdflatex"
-  "main.bbl" 1770849872 4089 3100d5e827882c1e6f16634e52b55dda "biber main"
-  "main.out" 1770849878 2056 31a0c38de4d42aa13bfc702eae29f045 "pdflatex"
-  "main.run.xml" 1770849878 2334 48b8f95b26d1ccc68e3889082bb965fe "pdflatex"
-  "main.tex" 1770849833 60358 8dfea8296fe4a1d853757b6944ed37e2 ""
-  "main.toc" 1770849878 1513 1a46b709df2fa72ccc32bb92fc437e51 "pdflatex"
+  "main.aux" 1771086428 7133 0991e7d108a8631f320432dd5d4785e1 "pdflatex"
+  "main.bbl" 1771086422 4089 3100d5e827882c1e6f16634e52b55dda "biber main"
+  "main.out" 1771086428 2056 31a0c38de4d42aa13bfc702eae29f045 "pdflatex"
+  "main.run.xml" 1771086428 2334 48b8f95b26d1ccc68e3889082bb965fe "pdflatex"
+  "main.tex" 1771086412 60419 41d30e7cc9c0a2302e463b7c68b4a342 ""
+  "main.toc" 1771086428 1513 1a46b709df2fa72ccc32bb92fc437e51 "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"
