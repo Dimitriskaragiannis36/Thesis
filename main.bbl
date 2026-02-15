@@ -103,6 +103,41 @@
       \field{year}{2009}
       \true{nocite}
     \endentry
+    \entry{ref3}{thesis}{}{}
+      \name{author}{1}{}{%
+        {{hash=46e4e8f3bc449b583d1e7176de6689ff}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Mengqing},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {St. Cloud State University}%
+      }
+      \strng{namehash}{46e4e8f3bc449b583d1e7176de6689ff}
+      \strng{fullhash}{46e4e8f3bc449b583d1e7176de6689ff}
+      \strng{fullhashraw}{46e4e8f3bc449b583d1e7176de6689ff}
+      \strng{bibnamehash}{46e4e8f3bc449b583d1e7176de6689ff}
+      \strng{authorbibnamehash}{46e4e8f3bc449b583d1e7176de6689ff}
+      \strng{authornamehash}{46e4e8f3bc449b583d1e7176de6689ff}
+      \strng{authorfullhash}{46e4e8f3bc449b583d1e7176de6689ff}
+      \strng{authorfullhashraw}{46e4e8f3bc449b583d1e7176de6689ff}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{12}
+      \field{title}{Parallelizing Dijkstra's Algorithm}
+      \field{type}{Master's thesis}
+      \field{year}{2020}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://repository.stcloudstate.edu/csit_etds/35
+      \endverb
+      \verb{url}
+      \verb https://repository.stcloudstate.edu/csit_etds/35
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput
