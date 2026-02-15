@@ -26,4 +26,15 @@
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \contentsline {subsection}{\numberline {3.1}Παράλληλη Υλοποίηση}{14}{subsection.3.1}%
-\contentsline {section}{Βιβλιογραφία}{15}{section*.12}%
+\contentsline {subsubsection}{\numberline {3.1.1}\foreignlanguage {english}{API}/Σύστημα μεταβίβασης μηνυμάτων}{15}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}\foreignlanguage {english}{API}/Σύστημα κοινής διεύθυνσης}{15}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Γλώσσα}{15}{subsubsection.3.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.4}Περιβάλλον συστήματος}{15}{subsubsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.2}Δεδομένα δοκιμών}{15}{subsection.3.2}%
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\contentsline {section}{Βιβλιογραφία}{16}{section*.12}%
