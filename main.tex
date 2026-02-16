@@ -1035,6 +1035,7 @@ $G$ ένας δισδιάστατος πίνακας, όπου $G[i][j]$ αντ�
 \selectlanguage{greek}
 
 {\raggedright\refstepcounter{algorithm}\textbf{Αλγόριθμος \thealgorithm:} Ο αλγόριθμος του \foreignlanguage{english}{Dijkstra} με \foreignlanguage{english}{MPI} για τις συντομότερες διαδρομές από μία πηγή.\label{alg:dijkstra2}\par}
+\vspace{0.3cm}
 
 Ο βασικός υπολογιστικός βρόχος του παράλληλου αλγορίθμου του \foreignlanguage{english}{Dijkstra} για τις συντομότερες διαδρομές από μία πηγή εκτελεί τρία βήματα. Πρώτον, κάθε διεργασία εντοπίζει την τοπικά αποθηκευμένη κορυφή στο $V_o$ με τη μικρότερη απόσταση από την πηγή. Έπειτα, οι διεργασίες καθορίζουν την κορυφή με τη μικρότερη απόσταση και την προσθέτουν στο $V_c$. Τρίτον, κάθε διεργασία ενημερώνει τον πίνακα αποστάσεων ώστε να ληφθεί υπόψη ότι στο $V_c$ έχουν προστεθεί νέες κορυφές.
 
@@ -1049,6 +1050,42 @@ $G$ ένας δισδιάστατος πίνακας, όπου $G[i][j]$ αντ�
 \subsubsection{Υλοποίηση του αλγορίθμου του \foreignlanguage{english}{Dijkstra} με \foreignlanguage{english}{OpenMP}}
 
 Οι περισσότερες δομές του \foreignlanguage{english}{OpenMP} εφαρμόζονται σε ένα δομημένο μπλοκ, δηλαδή σε ένα μπλοκ μιας ή περισσότερων εντολών με ένα σημείο εισόδου στην κορυφή και ένα σημείο εξόδου στο κάτω μέρος. Καθίσταται εφικτός ο εντοπισμός των υπολογιστικά εντατικών βρόχων στον σειριακό αλγόριθμο του \foreignlanguage{english}{Dijkstra} και οι επαναλήψεις του βρόχου γίνονται ανεξάρτητες, ενώ στη συνέχεια μπορεί να γίνει η τοποθέτηση των κατάλληλων οδηγιών του \foreignlanguage{english}{OpenMP} και να γίνουν δοκιμές.
+
+\selectlanguage{english}
+\begin{algorithm}[H]
+\begin{algorithmic}[1]
+\Procedure{DIJKSTRA\_SP\_OMP}{$V, E, w, distances, s$}
+    \State begin
+    \While{not all vertices processed}
+        \State $\#\text{pragma omp parallel private}$
+        \State $\text{shared}()$
+        \State \texttt{omp\_get\_thread\_num()}
+        \State \texttt{omp\_get\_num\_threads()}
+        \State Each thread finds the min distance $u$ unconnected vertex inner
+        \State $\#\text{pragma omp critical}$ \quad // update overall min
+        \State $\#\text{pragma omp barrier}$
+        \State $\#\text{pragma omp single}$ \quad // mark new vertex as done
+        \ForAll{$v$ in each thread}
+            \State $distances[v] \gets \min\{distances[v], distances[u] + w[u][v]\}$
+        \EndFor
+    \EndWhile
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\selectlanguage{greek}
+
+{\raggedright\refstepcounter{algorithm}\textbf{Αλγόριθμος \thealgorithm:} Ο αλγόριθμος του \foreignlanguage{english}{Dijkstra} με \foreignlanguage{english}{OpenMP} για τις συντομότερες διαδρομές από μία πηγή.\label{alg:dijkstra3}\par}
+\vspace{0.3cm}
+
+Όπως δείχνει ο ψευδοκώδικας, η υλοποίηση του αλγορίθμου  \foreignlanguage{english}{Dijkstra} με \foreignlanguage{english}{OpenMP} είναι πολύ παρόμοια με τη σειριακή. 
+Σε σύγκριση με την υλοποίηση με \foreignlanguage{english}{MPI}, η υλοποίηση με \foreignlanguage{english}{OpenMP} απαιτεί λιγότερες γραμμές κώδικα.
+Η συνάρτηση \texttt{$omp\_set\_num\_threads$} ορίζει τον προεπιλεγμένο αριθμό νημάτων που θα δημιουργηθούν όταν συναντηθεί η επόμενη οδηγία \texttt{$parallel$}. Χρησιμοποιούμε αυτή τη συνάρτηση στη συνάρτηση \texttt{$main$}.
+Η \texttt{$omp\_get\_num\_threads$} επιστρέφει τον αριθμό των νημάτων που συμμετέχουν σε μια ομάδα. Η \texttt{$omp\_get\_thread\_num$} επιστρέφει ένα μοναδικό αναγνωριστικό για κάθε νήμα στην ομάδα. Αυτός ο ακέραιος παίρνει τιμές από $0$ έως \texttt{$omp\_get\_num\_threads()-1$}.
+Η οδηγία \texttt{$critical$} διασφαλίζει ότι, σε κάθε χρονική στιγμή κατά την εκτέλεση, μόνο ένα νήμα βρίσκεται μέσα σε μια κρίσιμη ενότητα προσδιορισμένη με ένα συγκεκριμένο όνομα.
+Η \foreignlanguage{english}{OpenMP} παρέχει την οδηγία \texttt{$critical$} για την υλοποίηση κρίσιμων περιοχών. Μια κρίσιμη περιοχή επιτρέπει σε διαφορετικά νήματα να εκτελούν διαφορετικό κώδικα ενώ είναι προστατευμένα μεταξύ τους.
+Το \texttt{$barrier$} είναι μία από τις πιο συχνά χρησιμοποιούμενες πρωτόγονες λειτουργίες συγχρονισμού. Η \foreignlanguage{english}{OpenMP} παρέχει την οδηγία \texttt{$barrier$}. Όταν η εκτέλεση συναντήσει αυτή την οδηγία, όλα τα νήματα της ομάδας περιμένουν μέχρι να φτάσουν τα υπόλοιπα και στη συνέχεια συνεχίζουν.
+Η οδηγία \texttt{$single$} προσδιορίζει ένα δομημένο μπλοκ που εκτελείται από ένα μόνο νήμα. Κατά την είσοδο στο μπλοκ \texttt{$single$}, το πρώτο νήμα εισέρχεται και όλα τα υπόλοιπα νήματα προχωρούν μέχρι το τέλος του μπλοκ [2].
 
 % Τέλος προσθήκης
 \clearpage

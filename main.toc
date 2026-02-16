@@ -42,4 +42,6 @@
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {section}{Βιβλιογραφία}{19}{section*.12}%
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\contentsline {section}{Βιβλιογραφία}{20}{section*.12}%
