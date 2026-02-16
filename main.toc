@@ -35,10 +35,11 @@
 \contentsline {subsubsection}{\numberline {3.3.1}Υλοποίηση του αλγορίθμου του \foreignlanguage {english}{Dijkstra} με \foreignlanguage {english}{MPI}}{16}{subsubsection.3.3.1}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
+\contentsline {subsubsection}{\numberline {3.3.2}Υλοποίηση του αλγορίθμου του \foreignlanguage {english}{Dijkstra} με \foreignlanguage {english}{OpenMP}}{18}{subsubsection.3.3.2}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {section}{Βιβλιογραφία}{18}{section*.12}%
+\contentsline {section}{Βιβλιογραφία}{19}{section*.12}%
