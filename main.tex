@@ -47,6 +47,10 @@
 \usepackage{array}
 \usepackage[table]{xcolor}
 
+% PLOTS
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.17}
+
 % BIBLIOGRAPHY
 \usepackage{csquotes}
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
@@ -1147,6 +1151,74 @@ MPI512 & & & & 488.7678 & 1733.9085 & 2399.9986 \\
 }
 \end{table}
 
+\vspace{0.3cm}
+
+\begin{table}[H]
+\centering
+\caption{Ο καλύτερος χρόνος εκτέλεσης σε δευτερόλεπτα και των τριών υλοποιήσεων (οι αριθμοί στις παρενθέσεις δείχνουν το πλήθος των νημάτων/επεξεργαστών}
+\label{tab:best_dijkstra_performance}
+
+\selectlanguage{english}
+\resizebox{0.95\textwidth}{!}{%
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+ & 8 vertices & 64 vertices & 256 vertices & 512 vertices & 1024 vertices & 2048 vertices \\
+\hline
+Seq & 0.0035 & 0.0029 & 0.0099 & 0.1162 & 0.3568 & 0.9965 \\
+\hline
+OpenMP & 0.0003(2) & 0.0015(2) & 0.0093(2) & 0.0635(4) & 0.2488(4) & 0.7933(4) \\
+\hline
+MPI & 0.0144(8) & 0.0164(8) & 0.0218(4) & 0.0413(4) & 0.1281(4) & 0.4723(4) \\
+\hline
+\end{tabular}%
+}
+\end{table}
+\vspace{0.3cm}
+
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=12cm,
+    height=12cm,
+    xlabel=Πλήθος κορυφών,
+    ylabel=Δευτερόλεπτα,
+    ybar,
+    legend columns=3,
+    legend style={at={(0.5,-0.15)}, anchor=north, column sep=0.4cm},
+    bar width=10pt,
+    x tick label style={rotate=0},
+    xtick={1,2,3,4,5,6},
+    xticklabels={8, 64, 256, 512, 1024, 2048},
+    ytick={0, 0.08, 0.16, 0.24, 0.32, 0.40, 0.48, 0.56, 0.64, 0.72, 0.81, 0.90, 1},
+    yticklabels={0.0002441, 0.0004883, 0.0009766, 0.0019531, 0.0039063, 0.0078125, 0.015625, 0.03125, 0.0625, 0.125, 0.25, 0.5, 1},
+    grid=major,
+    grid style={gray!30},
+    ymin=0,
+    ymax=1.05
+]
+
+\addplot[fill=blue!60, draw=black] coordinates {
+    (1, 0.0035) (2, 0.0029) (3, 0.0099) (4, 0.1162) (5, 0.3568) (6, 0.9965)
+};
+\addlegendentry{$seq$}
+
+\addplot[fill=orange!60, draw=black] coordinates {
+    (1, 0.0003) (2, 0.0015) (3, 0.0093) (4, 0.0635) (5, 0.2488) (6, 0.7933)
+};
+\addlegendentry{$OpenMP$}
+
+\addplot[fill=gray!60, draw=black] coordinates {
+    (1, 0.0144) (2, 0.0164) (3, 0.0218) (4, 0.0413) (5, 0.1281) (6, 0.4723)
+};
+\addlegendentry{$MPI$}
+
+\end{axis}
+\end{tikzpicture}
+\caption{Ο καλύτερος χρόνος εκτέλεσης για κάθε υλοποίηση σε διαφορετικά σύνολα δεδομένων}
+\label{fig:execution_times}
+\end{figure}
 
 % Τέλος προσθήκης
 \clearpage
