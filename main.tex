@@ -1263,37 +1263,79 @@ $MPI$ & 0.0144(8) & 0.0164(8) & 0.0218(4) & 0.0413(4) & 0.1281(4) & 0.4723(4) \\
 \begin{axis}[
     width=12cm,
     height=10cm,
-    xlabel=Number of Threads/Processors,
-    ylabel=Seconds,
+    xlabel=Πλήθος νημάτων / επεξεργαστών,
+    ylabel=Δευτερόλπετα,
     ybar,
     legend columns=2,
-    legend style={at={(0.5,-0.12)}, anchor=north},
-    bar width=8pt,
+    legend style={at={(0.5,-0.20)}, anchor=north, column sep=0.4cm},
+    bar width=10pt,
     x tick label style={rotate=0},
     xtick={1,2,3,4,5,6,7},
     xticklabels={2, 4, 8, 16, 32, 64, 128},
-    ytick={0, 2, 4, 6, 8, 10, 12, 14, 16},
-    yticklabels={0, 0.125, 0.5, 1, 2, 4, 8, 16, 32},
+    ytick={0, 2, 4, 6, 8, 10, 12, 14, 16, 18},
+    yticklabels={0, 0.125, 0.25, 0.5, 1, 2, 4, 8, 16, 32},
     grid=major,
     grid style={gray!30},
     ymin=0,
-    ymax=16.05
+    ymax=18.05
 ]
 
 \addplot[fill=blue!60, draw=black] coordinates {
-    (1, 3.998) (2, 3.998) (3, 4.2807) (4, 5) (5, 6.5) (6, 7.5) (7, 9)
+    (1, 3.998) (2, 3.998) (3, 4.2807) (4, 7) (5, 9) (6, 9.7) (7, 11)
 };
-\addlegendentry{OpenMP}
+\addlegendentry{$OpenMP$}
 
 \addplot[fill=orange!60, draw=black] coordinates {
-    (1, 2.100) (2,  2.050) (3, 2.300) (4, 3.400) (5, 9.995) (6, 7.1446) (7, 17.9661)
+    (1, 2.100) (2,  2.050) (3, 2.300) (4, 3.400) (5, 11.995) (6, 13.7) (7, 16.3)
 };
-\addlegendentry{MPI}
+\addlegendentry{$MPI$}
 
 \end{axis}
 \end{tikzpicture}
-\caption{Χρόνος εκτέλεσης για 1024 κορυφές με διαφορετικό αριθμό νημάτων/επεξεργαστών}
+\caption{Διαφορετικά νήματα/επεξεργαστές για την υλοποίηση $OpenMP$ και $MPI$ σε γράφημα με 1024 κορυφές}
 \label{fig:thread_scaling}
+\end{figure}
+
+\vspace{0.3cm}
+
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=12cm,
+    height=10cm,
+    xlabel=Πλήθος νημάτων / επεξεργαστών,
+    ylabel=Δευτερόλπετα,
+    ybar,
+    legend columns=2,
+    legend style={at={(0.5,-0.20)}, anchor=north, column sep=0.4cm},
+    bar width=10pt,
+    x tick label style={rotate=0},
+    xtick={1,2,3,4,5,6,7},
+    xticklabels={2, 4, 8, 16, 32, 64, 128},
+    ytick={0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20},
+    yticklabels={0, 0.25, 0.5, 1, 2, 4, 8, 16, 32, 64, 128},
+    grid=major,
+    grid style={gray!30},
+    ymin=0,
+    ymax=20.05
+]
+
+\addplot[fill=blue!60, draw=black] coordinates {
+    (1, 5.5) (2, 5.35) (3, 5.7) (4, 7.5) (5, 9) (6, 9.7) (7, 11)
+};
+\addlegendentry{$OpenMP$}
+
+\addplot[fill=orange!60, draw=black] coordinates {
+    (1, 4) (2, 3.7) (3, 7) (4, 9.5) (5, 11.995) (6, 13.7) (7, 16.3)
+};
+\addlegendentry{$MPI2048$}
+
+\end{axis}
+\end{tikzpicture}
+\caption{Διαφορετικά νήματα/επεξεργαστές για την υλοποίηση $OpenMP$ και $MPI$ σε γράφημα με 2048 κορυφές}
+\label{fig:thread_scaling2}
 \end{figure}
 
 
