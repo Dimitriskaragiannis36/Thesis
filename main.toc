@@ -39,10 +39,11 @@
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \contentsline {section}{\numberline {4}Αποτελέσματα Υλοποίησης και Ανάλυση}{19}{section.4}%
+\contentsline {section}{\numberline {5}Συμπεράσματα και Περαιτέρω Έρευνα}{25}{section.5}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {section}{Βιβλιογραφία}{26}{section*.20}%
+\contentsline {section}{Βιβλιογραφία}{27}{section*.20}%
