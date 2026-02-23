@@ -458,7 +458,7 @@ w(v_i, v_j) & \text{εάν } (v_i, v_j) \in E\\[2mm]
 
 \selectlanguage{greek}
 
-{\raggedright\refstepcounter{algorithm}\textbf{Αλγόριθμος \thealgorithm:} Ο σειριακός αλγόριθμος του \foreignlanguage{english}{Prim} για το ελάχιστο δέντρο επικάλυψης.\label{alg:prim}\par}
+{\raggedright\refstepcounter{algorithm}{Αλγόριθμος \thealgorithm:} Ο σειριακός αλγόριθμος του \foreignlanguage{english}{Prim} για το ελάχιστο δέντρο επικάλυψης.\label{alg:prim}\par}
 
 
 
@@ -910,7 +910,7 @@ E = \frac{1}{1 + \Theta\!\left(\frac{p^{1.5}}{n}\right)}
 
 \selectlanguage{greek}
 
-{\raggedright\refstepcounter{algorithm}\textbf{Αλγόριθμος \thealgorithm:} Ο σειριακός αλγόριθμος του \foreignlanguage{english}{Dijkstra} για τις συντομότερες διαδρομές από μία πηγή.\label{alg:dijkstra}\par}
+{\raggedright\refstepcounter{algorithm}{Αλγόριθμος \thealgorithm:} Ο σειριακός αλγόριθμος του \foreignlanguage{english}{Dijkstra} για τις συντομότερες διαδρομές από μία πηγή.\label{alg:dijkstra}\par}
 \vspace{0.3cm}
  
 \subsection{Παράλληλη Υλοποίηση}
@@ -1039,7 +1039,7 @@ $G$ ένας δισδιάστατος πίνακας, όπου $G[i][j]$ αντ�
 
 \selectlanguage{greek}
 
-{\raggedright\refstepcounter{algorithm}\textbf{Αλγόριθμος \thealgorithm:} Ο αλγόριθμος του \foreignlanguage{english}{Dijkstra} με \foreignlanguage{english}{MPI} για τις συντομότερες διαδρομές από μία πηγή.\label{alg:dijkstra2}\par}
+{\raggedright\refstepcounter{algorithm}{Αλγόριθμος \thealgorithm:} Ο αλγόριθμος του \foreignlanguage{english}{Dijkstra} με \foreignlanguage{english}{MPI} για τις συντομότερες διαδρομές από μία πηγή.\label{alg:dijkstra2}\par}
 \vspace{0.3cm}
 
 Ο βασικός υπολογιστικός βρόχος του παράλληλου αλγορίθμου του \foreignlanguage{english}{Dijkstra} για τις συντομότερες διαδρομές από μία πηγή εκτελεί τρία βήματα. Πρώτον, κάθε διεργασία εντοπίζει την τοπικά αποθηκευμένη κορυφή στο $V_o$ με τη μικρότερη απόσταση από την πηγή. Έπειτα, οι διεργασίες καθορίζουν την κορυφή με τη μικρότερη απόσταση και την προσθέτουν στο $V_c$. Τρίτον, κάθε διεργασία ενημερώνει τον πίνακα αποστάσεων ώστε να ληφθεί υπόψη ότι στο $V_c$ έχουν προστεθεί νέες κορυφές.
@@ -1080,7 +1080,7 @@ $G$ ένας δισδιάστατος πίνακας, όπου $G[i][j]$ αντ�
 
 \selectlanguage{greek}
 
-{\raggedright\refstepcounter{algorithm}\textbf{Αλγόριθμος \thealgorithm:} Ο αλγόριθμος του \foreignlanguage{english}{Dijkstra} με \foreignlanguage{english}{OpenMP} για τις συντομότερες διαδρομές από μία πηγή.\label{alg:dijkstra3}\par}
+{\raggedright\refstepcounter{algorithm}{Αλγόριθμος \thealgorithm:} Ο αλγόριθμος του \foreignlanguage{english}{Dijkstra} με \foreignlanguage{english}{OpenMP} για τις συντομότερες διαδρομές από μία πηγή.\label{alg:dijkstra3}\par}
 \vspace{0.3cm}
 
 Όπως δείχνει ο ψευδοκώδικας, η υλοποίηση του αλγορίθμου  \foreignlanguage{english}{Dijkstra} με \foreignlanguage{english}{OpenMP} είναι πολύ παρόμοια με τη σειριακή. 
@@ -1342,6 +1342,74 @@ $MPI$ & 0.0144(8) & 0.0164(8) & 0.0218(4) & 0.0413(4) & 0.1281(4) & 0.4723(4) \\
 Το Σχήμα ~\ref{fig:thread_scaling} και το Σχήμα ~\ref{fig:thread_scaling2} παρουσιάζουν την απόδοση του αλγορίθμου του \foreignlanguage{english}{Dijkstra} σε διαφορετικούς σχηματισμούς επεξεργαστών/νημάτων. Σύμφωνα με τον Πίνακα ~\ref{tab:dijkstra_performance}, είναι γνωστό ότι οι υλοποιήσεις με \foreignlanguage{english}{OpenMP} και \foreignlanguage{english}{MPI} αποδίδουν καλύτερα από τις σειριακές υλοποιήσεις για τον αλγόριθμο του \foreignlanguage{english}{Dijkstra}. Ωστόσο, από τα Σχήματα ~\ref{fig:thread_scaling} και ~\ref{fig:thread_scaling2} γίνεται αντιληπτό ότι ο μικρότερος αριθμός επεξεργαστών/νημάτων δίνει το ταχύτερο αποτέλεσμα. Για παράδειγμα, αν χρησιμοποιηθούν 1024 κορυφές, ο βέλτιστος αριθμός επεξεργαστών για την υλοποίηση \foreignlanguage{english}{MPI} είναι 2, 4, 8. Για την  \foreignlanguage{english}{OpenMP} ο αριθμός είναι ο ίδιος. Όταν ο αριθμός των κορυφών είναι 2048, καταλήγουμε σε παρόμοιο συμπέρασμα. Αυτό πιθανώς οφείλεται στο ότι κάθε πρόσθετη διεργασία/νήμα στον κώδικα προκαλεί επιπλέον κόστη επικοινωνίας κατά την ενημέρωσή τους. Καθώς ο αριθμός των επεξεργαστών/ νημάτων αυξάνεται εμφανώς, αυτά τα κόστη επικοινωνίας αποκτoύν σημαντική επίπτωση. Ειδικότερα για την \foreignlanguage{english}{MPI} υλοποίηση του αλγορίθμου του \foreignlanguage{english}{Dijkstra}, η απόδοση είναι πολύ κακή σε σύγκριση με την αντίστοιχη του \foreignlanguage{english}{OpenMP}, και η αύξηση του αριθμού των επεξεργαστών εντείνει την επιβράδυνση. Η παράλληλη απόδοση πιθανόν είναι πολύ κακή, διότι κυριαρχείται από τον χρόνο επικοινωνίας, δηλαδή τον χρόνο που απαιτείται για την εκτέλεση του $MPI\_Allreduce$ σε κάθε επανάληψη.
 
 Σύμφωνα με την παράλληλη υλοποίηση του αλγορίθμου του \foreignlanguage{english}{Dijkstra}, είναι δυνατόν να υπολογιστεί η επιτάχυνση σε κάθε συνθήκη. Ο ακόλουθος πίνακας συγκρίνει την θεωρητική επιτάχυνση με την πειραματική επιτάχυνση στην \foreignlanguage{english}{MPI} υλοποίηση για είσοδο σε γράφο με 1024 κορυφές.
+
+\begin{table}[H]
+\centering
+\caption{Η σύγκριση της θεωρητικής επιτάχυνσης με την πειραματική επιτάχυνση για την υλοποίηση \foreignlanguage{english}{MPI} για γράφημα 1024 κορυφών και διαφορετικό αριθμό επεξεργαστών}
+\label{tab:dijkstra_performance3}
+
+\begin{tabular}{|>{\centering\arraybackslash}p{3.5cm}|>{\centering\arraybackslash}p{3.5cm}|>{\centering\arraybackslash}p{3.5cm}|}
+\hline
+Πλήθος επεξεργαστών & Θεωρητική επιτάχυνση για 1024 κορυφές & Πειραματική επιτάχυνση για 1024 κορυφές \\
+\hline
+2 & 1.9961 & 2.7112 \\
+\hline
+4 & 3.9690 & 2.7853 \\
+\hline
+8 & 7.8168 & 2.6947 \\
+\hline
+16 & 15.0588 & 1.7363 \\
+\hline
+32 & 27.6757 & 0.0901 \\
+\hline
+64 & 46.5455 & 0.0499 \\
+\hline
+128 & 68.2667 & 0.0199 \\
+\hline
+\end{tabular}
+\end{table}
+
+\vspace{0.3cm}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=12cm,
+    height=10cm,
+    xlabel=Πλήθος επεξεργαστών,
+    ylabel=Επιτάχυνση,
+    ybar,
+    legend columns=2,
+    legend style={at={(0.5,-0.20)}, anchor=north, column sep=0.4cm},
+    bar width=10pt,
+    x tick label style={rotate=0},
+    xtick={1,2,3,4,5,6,7},
+    xticklabels={2, 4, 8, 16, 32, 64, 128},
+    ytick={0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28},
+    yticklabels={0, 0.015625, 0.03125, 0.0625, 0.125, 0.25, 0.5, 1, 
+    2, 4, 8, 16, 32, 64, 128},
+    grid=major,
+    grid style={gray!30},
+    ymin=0,
+    ymax=28.05
+]
+
+\addplot[fill=blue!60, draw=black] coordinates {
+    (1, 16) (2, 18) (3, 19.85) (4, 21.8) (5, 23.7) (6, 25) (7, 26.3)
+};
+\addlegendentry{Θεωρητική επιτάχυνση}
+
+\addplot[fill=orange!60, draw=black] coordinates {
+    (1, 17) (2, 17.15) (3, 16.95) (4, 15.6) (5, 7) (6, 5.2) (7, 2.6)
+};
+\addlegendentry{Πειραματική επιτάχυνση}
+
+\end{axis}
+\end{tikzpicture}
+\caption{Η σύγκριση της θεωρητικής επιτάχυνσης με την πειραματική επιτάχυνση για την υλοποίηση \foreignlanguage{english}{MPI} για γράφημα 1024 κορυφών σε διαφορετικούς επεξεργαστές}
+\label{fig:speedup_processors}
+\end{figure}
 
 % Τέλος προσθήκης
 \clearpage
