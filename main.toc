@@ -38,8 +38,9 @@
 \contentsline {subsubsection}{\numberline {3.3.2}Υλοποίηση του αλγορίθμου του \foreignlanguage {english}{Dijkstra} με \foreignlanguage {english}{OpenMP}}{18}{subsubsection.3.3.2}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {section}{\numberline {4}Αποτελέσματα Υλοποίησης και Ανάλυση}{19}{section.4}%
-\contentsline {section}{\numberline {5}Συμπεράσματα και Περαιτέρω Έρευνα}{25}{section.5}%
+\contentsline {subsection}{\numberline {3.4}Αποτελέσματα Υλοποίησης και Ανάλυση}{19}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Συμπεράσματα και Περαιτέρω Έρευνα}{25}{subsection.3.5}%
+\contentsline {section}{\numberline {4}Συντομότερες Διαδρομές για Όλα τα Ζεύγη}{26}{section.4}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
