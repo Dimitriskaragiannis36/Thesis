@@ -46,10 +46,11 @@
 \babel@toc {greek}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {greek}{}\relax 
+\contentsline {subsection}{\numberline {4.2}Ο αλγόριθμος του \foreignlanguage {english}{Dijkstra}}{29}{subsection.4.2}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {section}{Βιβλιογραφία}{29}{section*.24}%
+\contentsline {section}{Βιβλιογραφία}{30}{section*.24}%
