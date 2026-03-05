@@ -44,7 +44,7 @@
 \contentsline {subsection}{\numberline {4.1}Αλγόριθμος βασισμένος στον Πολλαπλασιασμό Πίνακα}{26}{subsection.4.1}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
@@ -52,4 +52,4 @@
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {section}{Βιβλιογραφία}{29}{section*.22}%
+\contentsline {section}{Βιβλιογραφία}{29}{section*.24}%
