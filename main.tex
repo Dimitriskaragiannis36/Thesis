@@ -1617,14 +1617,12 @@ E = \Theta(1)
 Το κύριο πρόβλημα της παράλληλης υλοποίησης με διαμέριση κατά πηγή είναι ότι μπορεί να κρατήσει απασχολημένους σε ωφέλιμο έργο το πολύ $n$ επεξεργαστές. Η απόδοση μπορεί να βελτιωθεί εάν χρησιμοποιηθεί η παράλληλη υλοποίηση του αλγορίθμου μονής πηγής του \foreignlanguage{english}{Dijkstra} (Ενότητα 7.3) για την επίλυση του προβλήματος για κάθε κορυφή $v$. Η παράλληλη υλοποίηση πηγής είναι παρόμοια με την υλοποίηση με διαμέριση κατά πηγή, εκτός του ότι ο αλγόριθμος μονής πηγής εκτελείται σε ξένα υποσύνολα επεξεργαστών.
 
 Συγκεκριμένα, οι $p$ επεξεργαστές χωρίζονται σε $n$ διαμερίσεις, κάθε μια με $p/n$ επεξεργαστές (αυτή η υλοποίηση έχει ενδιαφέρον μόνο αν $p>n$). Κάθε ένα από τα $n$ προβλήματα των ελαχίστων διαδρομών μονής πηγής επιλύεται από μία από τις $n$ διαμερίσεις. Με άλλα λόγια, πρώτα παραλληλοποιούμε 
-
+\vspace{0.3cm}
 \selectlanguage{english}
 \begin{figure}[ht]
 \centering
-
-\begin{minipage}[c]{0.42\textwidth}
-\centering
-\begin{tikzpicture}[baseline=(current bounding box.center), scale=1.2,
+\begin{tabular}{c @{\hspace{1.5cm}} c}
+\begin{tikzpicture}[scale=1.2,
     node/.style={circle, draw, minimum size=8mm},
     line/.style={thick}
 ]
@@ -1658,12 +1656,8 @@ E = \Theta(1)
 \node at (2.5,2.5) {\large D};
 
 \end{tikzpicture}
-\end{minipage}
-\hfill
-
-\begin{minipage}[c]{0.42\textwidth}
-\centering
-\begin{tikzpicture}[baseline=(current bounding box.center), scale=1.0, every node/.style={transform shape}]
+&
+\raisebox{0.8cm}{\begin{tikzpicture}[scale=1.0, every node/.style={transform shape}]
     \node[vertex] (1) at (0,2.5) {A};
     \node[vertex] (2) at (0,0) {B};
     \node[vertex] (3) at (2.5,2.5) {D}; 
@@ -1674,10 +1668,15 @@ E = \Theta(1)
     \draw (3) -- (4) node [midway, right] {2};
     \draw (1) -- (4) node [midway, above] {3};   
 
-\end{tikzpicture}
-\end{minipage}
-\end{figure}
+\end{tikzpicture}}
+\\
+\end{tabular}
 \selectlanguage{greek}
+\vspace{0.3cm}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Ένα παράδειγμα του αλγορίθμου για τις συντομότερες διαδρομές μεταξύ όλων των ζευγών.}
+\label{fig:graph8}
+\end{figure}
 
 
 
