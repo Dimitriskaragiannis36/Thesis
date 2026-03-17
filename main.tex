@@ -1742,7 +1742,95 @@ w(v_i,v_j), & \text{εάν } k = 0, \\
 Μια γενική παράλληλη υλοποίηση του αλγορίθμου του \foreignlanguage{english}{Floyd} αναθέτει το έργο του υπολογισμού του πίνακα $D^{(k)}$ για κάθε τιμή του $k$ σε ένα σύνολο επεξεργαστών. Έστω $p$ ο αριθμός των διαθέσιμων επεξεργαστών. Ο πίνακας $D^{(k)}$ διαμερίζεται σε $p$ μέρη, και κάθε μέρος ανατίθεται σε έναν επεξεργαστή.
 Κάθε επεξεργαστής υπολογίζει τις τιμές $D^{(k)}$ της διαμέρισής του. Για να το επιτύχει αυτό, ένας επεξεργαστής πρέπει να έχει πρόσβαση στα αντίστοιχα τμήματα της $k$-οστής γραμμής και της $k$-οστής στήλης του πίνακα $D^{(k-1)}$. Η ακόλουθη ενότητα περιγράφει μία τεχνική για τη διαμέριση του πίνακα $D^{(k)}$.
 
-% Τέλος προσθήκης
+\subsection*{Αντιστοίχιση Μπλοκ Σκακιέρας} 
+Μια μέθοδος για τη διαμέριση του πίνακα $D^{(k)}$ είναι η χρήση της αντιστοίχισης μπλοκ σκακιέρας. Συγκεκριμένα, ο πίνακας $D^{(k)}$ διαιρείται σε $p$ τετράγωνα μεγέθους $(n/\sqrt{p})\times(n/\sqrt{p})$, και κάθε τετράγωνο ανατίθεται σε έναν από τους $p$ επεξεργαστές. Είναι χρήσιμο να θεωρήσουμε τους $p$ επεξεργαστές διατεταγμένους σε ένα λογικό πλέγμα μεγέθους $\sqrt{p}\times\sqrt{p}$. Σημειώστε ότι πρόκειται μόνο για εννοιολογική διάταξη και δεν αντανακλά απαραίτητα το πραγματικό δίκτυο διασύνδεσης των επεξεργαστών. Αναφερόμαστε στον επεξεργαστή που βρίσκεται στην $i$-οστή γραμμή και $j$-οστή στήλη ως $P_{i,j}$. Στον επεξεργαστή $P_{i,j}$ ανατίθεται ένα τετράγωνο υπομπλοκ του $D^{(k)}$ του οποίου η επάνω αριστερή γωνία είναι.
+
+\selectlanguage{english}
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=0.35]
+
+% --- PARAMETERS ---
+\pgfmathtruncatemacro{\n}{24}
+\pgfmathtruncatemacro{\sqrtp}{7}
+\pgfmathtruncatemacro{\b}{\n/\sqrtp}
+
+% --- MAIN GRID ---
+\draw (0,0) rectangle (\n,\n);
+
+% Block boundaries (thick)
+\foreach \i in {0,\b,...,\n} {
+    \draw[thick] (\i,0) -- (\i,\n);
+    \draw[thick] (0,\i) -- (\n,\i);
+}
+
+% Internal dotted grid
+\foreach \i in {1,...,\n} {
+    \pgfmathtruncatemacro{\isblock}{\i/\b}
+    \pgfmathtruncatemacro{\check}{\isblock*\b}
+    \ifnum\check=\i\relax
+    \else
+        \draw[dotted] (\i,0) -- (\i,\n);
+        \draw[dotted] (0,\i) -- (\n,\i);
+    \fi
+}
+
+% Label blocks (1,1), (1,2), (2,1)
+\node[font=\small] at (0.5*\b, \n-0.5*\b) {(1,1)};
+\node[font=\small] at (1.5*\b, \n-0.5*\b) {(1,2)};
+\node[font=\small] at (0.5*\b, \n-1.5*\b) {(2,1)};
+
+% Highlight block (i,j)
+\pgfmathtruncatemacro{\bi}{2}
+\pgfmathtruncatemacro{\bj}{1}
+\draw[very thick] (\bi*\b, \bj*\b) rectangle (\bi*\b+\b, \bj*\b+\b);
+\node at (\bi*\b+0.5*\b, \bj*\b+0.5*\b) {$(i,j)$};
+
+% --- ZOOM BOX ---
+% κεντραρισμένο στο y=12 (μέση του 1ου σχήματος), μεγαλύτερο
+\def\zx{28}
+\def\zw{8}
+\def\zh{8}
+\pgfmathsetmacro{\zy}{12-\zh/2}   % = 8, ώστε κέντρο στο y=12
+
+\draw[thick] (\zx,\zy) rectangle (\zx+\zw, \zy+\zh);
+
+% Dots στο zoom box
+\foreach \x in {28.2,28.5,...,35.8} {
+    \foreach \y in {8.2,8.5,...,15.8} {
+        \fill (\x,\y) circle (0.05);
+    }
+}
+
+% --- 4 DASHED LINES ---
+\draw[dashed] (\bi*\b,    \bj*\b+\b) -- (\zx,      \zy+\zh); % πάνω-αριστερά
+\draw[dashed] (\bi*\b+\b, \bj*\b+\b) -- (\zx+\zw,  \zy+\zh); % πάνω-δεξιά
+\draw[dashed] (\bi*\b,    \bj*\b)    -- (\zx,       \zy);     % κάτω-αριστερά
+\draw[dashed] (\bi*\b+\b, \bj*\b)    -- (\zx+\zw,  \zy);     % κάτω-δεξιά
+
+% --- COORDINATE LABELS ---
+\node[font=\small] at (\zx+\zw/2, \zy+\zh+1.5)
+    {$(i-1)\frac{n}{\sqrt{p}}+1,\ (j-1)\frac{n}{\sqrt{p}}+1$};
+\node[font=\small] at (\zx+1\zw/2, \zy-2)
+    {$i\frac{n}{\sqrt{p}},\ j\frac{n}{\sqrt{p}}$};
+
+% --- AXIS LABELS ---
+\node at (\b/2, \n+0.9)  {$\frac{n}{\sqrt{p}}$};
+\node at (-1.4, \n-\b/2) {$\frac{n}{\sqrt{p}}$};
+
+% --- SUBFIGURE LABELS ---
+\node at (\n/2, -1.5) {(a)};
+\node at (\zx+\zw/2, \zy-9.4) {(b)};
+
+\end{tikzpicture}
+\selectlanguage{greek}
+\vspace{0.3cm}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{(a) Ο πίνακας $D^{(k)}$ διαμερισμένος με αντιστοίχιση σε μπλοκ 
+σκακιέρας σε $\sqrt{p} \times \sqrt{p}$ υπομπλοκ, και (b) το τετραγωνικό
+υπομπλοκ του $D^{(k)}$ που ανατίθεται στον επεξεργαστή $P_{i,j}$.}
+\label{fig:graph9}
+\end{figure}
 
 % Τέλος προσθήκης
 \clearpage
