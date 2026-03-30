@@ -86,6 +86,7 @@
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \contentsline {subsection}{\numberline {4.4}Συγκρίσεις Απόδοσης}{37}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Μεταβατική Κλειστότητα}{38}{section.5}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
