@@ -1,18 +1,18 @@
 [0] Config.pm:328> INFO - This is Biber 2.21
 [0] Config.pm:331> INFO - Logfile is 'c:/Users/dimit/Desktop/ΕΚΠΑ/Η ΕΞΑΜΗΝΟ/ΠΤΥΧΙΑΚΗ/Πτυχιακή/main.blg'
-[76] biber-MSWIN64:342> INFO - === 
-[108] Biber.pm:421> INFO - Reading 'c:/Users/dimit/Desktop/ΕΚΠΑ/Η ΕΞΑΜΗΝΟ/ΠΤΥΧΙΑΚΗ/Πτυχιακή/main.bcf'
-[188] Biber.pm:999> INFO - Using all citekeys in bib section 0
-[197] Biber.pm:4487> INFO - Processing section 0
-[204] Biber.pm:4678> INFO - Looking for bibtex file 'references.bib' for section 0
-[247] bibtex.pm:1713> INFO - LaTeX decoding ...
-[253] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
-[285] UCollate.pm:68> INFO - Overriding locale 'el-GR' defaults 'variable = shifted' with 'variable = non-ignorable'
-[285] UCollate.pm:68> INFO - Overriding locale 'el-GR' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[285] Biber.pm:4307> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'el-GR'
-[286] Biber.pm:4313> INFO - No sort tailoring available for locale 'el-GR'
-[293] bbl.pm:676> INFO - Writing 'c:/Users/dimit/Desktop/ΕΚΠΑ/Η ΕΞΑΜΗΝΟ/ΠΤΥΧΙΑΚΗ/Πτυχιακή/main.bbl' with encoding 'UTF-8'
-[295] bbl.pm:779> INFO - Output to c:/Users/dimit/Desktop/ΕΚΠΑ/Η ΕΞΑΜΗΝΟ/ΠΤΥΧΙΑΚΗ/Πτυχιακή/main.bbl
-[296] Biber.pm:132> WARN - Duplicate entry key: 'ref1' in file 'references.bib', skipping ...
-[296] Biber.pm:132> WARN - Duplicate entry key: 'ref2' in file 'references.bib', skipping ...
-[296] Biber.pm:134> INFO - WARNINGS: 2
+[98] biber-MSWIN64:342> INFO - === 
+[136] Biber.pm:421> INFO - Reading 'c:/Users/dimit/Desktop/ΕΚΠΑ/Η ΕΞΑΜΗΝΟ/ΠΤΥΧΙΑΚΗ/Πτυχιακή/main.bcf'
+[228] Biber.pm:999> INFO - Using all citekeys in bib section 0
+[238] Biber.pm:4487> INFO - Processing section 0
+[246] Biber.pm:4678> INFO - Looking for bibtex file 'references.bib' for section 0
+[291] bibtex.pm:1713> INFO - LaTeX decoding ...
+[296] bibtex.pm:1519> INFO - Found BibTeX data source 'references.bib'
+[326] UCollate.pm:68> INFO - Overriding locale 'el-GR' defaults 'variable = shifted' with 'variable = non-ignorable'
+[327] UCollate.pm:68> INFO - Overriding locale 'el-GR' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[327] Biber.pm:4307> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'el-GR'
+[327] Biber.pm:4313> INFO - No sort tailoring available for locale 'el-GR'
+[331] bbl.pm:676> INFO - Writing 'c:/Users/dimit/Desktop/ΕΚΠΑ/Η ΕΞΑΜΗΝΟ/ΠΤΥΧΙΑΚΗ/Πτυχιακή/main.bbl' with encoding 'UTF-8'
+[333] bbl.pm:779> INFO - Output to c:/Users/dimit/Desktop/ΕΚΠΑ/Η ΕΞΑΜΗΝΟ/ΠΤΥΧΙΑΚΗ/Πτυχιακή/main.bbl
+[333] Biber.pm:132> WARN - Duplicate entry key: 'ref1' in file 'references.bib', skipping ...
+[333] Biber.pm:132> WARN - Duplicate entry key: 'ref2' in file 'references.bib', skipping ...
+[333] Biber.pm:134> INFO - WARNINGS: 2
