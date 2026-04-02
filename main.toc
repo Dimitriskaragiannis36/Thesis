@@ -88,10 +88,11 @@
 \contentsline {subsection}{\numberline {4.4}Συγκρίσεις Απόδοσης}{37}{subsection.4.4}%
 \contentsline {section}{\numberline {5}Μεταβατική Κλειστότητα}{38}{section.5}%
 \contentsline {section}{\numberline {6}Συνεκτικές Συνιστώσες}{38}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Αλγόριθμος Βασισμένος στην Αναζήτηση Πρώτα Κατά Βάθος}{39}{subsection.6.1}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {section}{Βιβλιογραφία}{39}{section*.36}%
+\contentsline {section}{Βιβλιογραφία}{40}{section*.37}%
