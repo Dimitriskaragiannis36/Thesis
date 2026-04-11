@@ -92,8 +92,11 @@
 \contentsline {section}{\numberline {7}Αλγόριθμοι για Αραιά Γραφήματα}{42}{section.7}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
+\contentsline {subsection}{\numberline {7.1}Συντομότερα Μονοπάτια Μονής Πηγής}{45}{subsection.7.1}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {section}{Βιβλιογραφία}{45}{section*.42}%
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\contentsline {section}{Βιβλιογραφία}{46}{section*.42}%
