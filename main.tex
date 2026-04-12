@@ -3678,8 +3678,94 @@ E = \frac{1}{2}
 \]
 
 
+\vspace{0.3cm}
+\begin{figure}[H]
+\centering
+\begin{tabular}{cc}
 
+% ============ (a): Grid graph 16x16 ============
+\begin{tikzpicture}[scale=0.38]
 
+% Οριζόντιες ακμές
+\foreach \row in {0,...,15}{
+  \foreach \col in {0,...,14}{
+    \draw[gray, line width=0.3pt]
+      (\col+0.5, \row+0.5)--(\col+1.5, \row+0.5);
+  }
+}
+
+% Κατακόρυφες ακμές
+\foreach \col in {0,...,15}{
+  \foreach \row in {0,...,14}{
+    \draw[gray, line width=0.3pt]
+      (\col+0.5, \row+0.5)--(\col+0.5, \row+1.5);
+  }
+}
+
+% Κόμβοι
+\foreach \row in {0,...,15}{
+  \foreach \col in {0,...,15}{
+    \node[circle, draw, fill=white, minimum size=0.22cm,
+          inner sep=0pt] at (\col+0.5, \row+0.5) {};
+  }
+}
+
+% Χοντρές γραμμές διαχωρισμού
+\foreach \x in {0,4,8,12,16}{
+  \draw[black, line width=1.2pt] (\x,0)--(\x,16);
+}
+\foreach \y in {0,16}{
+  \draw[black, line width=1.2pt] (0,\y)--(16,\y);
+}
+
+% Διαγώνιες γραμμές (κύμα) με βελάκια
+\begin{scope}
+\clip (-2,-2) rectangle (18,18);
+\foreach \offset in {-15, -12, -8, -4, 0, 4, 8, 12, 15}{
+  \draw[>=stealth, dashed, line width=0.6pt]
+    ({\offset-2}, 18) -- ({\offset+18}, -2);
+}
+\end{scope}
+
+% Διπλά βελάκια αριστερά (μεταξύ διαγωνίων στο x=0)
+\foreach \y in {4, 8, 12}{
+  \pgfmathtruncatemacro{\nexty}{\y+4}
+  \draw[<->, >=stealth, line width=0.6pt] (-2, \y+1.9) -- (-2, \nexty+1.9);
+}
+% y=0 με +3
+\draw[<->, >=stealth, line width=0.6pt] (-2, 0+2.9) -- (-2, 3+2.9);
+
+% Διπλά βελάκια δεξιά (μεταξύ διαγωνίων στο x=16)
+\foreach \y in {0, 4, 8}{
+  \pgfmathtruncatemacro{\nexty}{\y+4}
+  \draw[<->, >=stealth, line width=0.6pt] (18, \y-1.9) -- (18, \nexty-1.9);
+}
+% y=12 με +3
+\draw[<->, >=stealth, line width=0.6pt] (18, 12-1.9) -- (18, 15-1.9);
+
+% Labels αριστερά (4,3,2,1 από πάνω)
+\node[draw=none] at (-1.0, 13) {\small 4};
+\node[draw=none] at (-1.0,  9) {\small 3};
+\node[draw=none] at (-1.0,  5) {\small 2};
+\node[draw=none] at (-1.0,  1) {\small 1};
+
+% Labels δεξιά (1,2,3,4 από πάνω)
+\node[draw=none] at (17.0, 13) {\small 1};
+\node[draw=none] at (17.0,  9) {\small 2};
+\node[draw=none] at (17.0,  5) {\small 3};
+\node[draw=none] at (17.0,  1) {\small 4};
+
+\end{tikzpicture}
+\end{tabular}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Ο αριθμός των απασχολημένων επεξεργαστών αυξάνεται καθώς το κύμα διαδίδεται μέσα από το γράφημα πλέγματος.}
+\label{fig:graph22}
+\end{figure}
+
+\noindent Επομένως, η απόδοση αυτής της απεικόνισης είναι το πολύ 50 τοις εκατό.
+Η απεικόνιση σε λωρίδες μπλοκ είναι σημαντικά καλύτερη από την
+απεικόνιση μπλοκ σκακιέρας, αλλά δεν μπορεί να χρησιμοποιήσει
+περισσότερους από $O(n)$ επεξεργαστές.
 
 % Τέλος προσθήκης
 \clearpage
