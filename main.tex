@@ -3285,7 +3285,265 @@ E = \frac{1}{\sqrt{p}}
 \subsection*{Κυκλική Απεικόνιση Σκακιέρας (\foreignlanguage{english}{Cyclic checkerboard mapping})} Το κύριο μειονέκτημα
 της απεικόνισης μπλοκ σκακιέρας είναι ότι κάθε επεξεργαστής είναι
 υπεύθυνος για μόνο μια μικρή, περιορισμένη περιοχή του πλέγματος.
+\vspace{0.3cm}
+\begin{figure}[H]
+\centering
+\begin{tabular}{cc}
 
+% ============ (a): Grid graph 16x16 ============
+\begin{tikzpicture}[scale=0.38]
+
+% Ορισμός coordinates και ακμές
+\foreach \row in {0,...,15}{
+  \foreach \col in {0,...,15}{
+    \coordinate (g\row\col) at (\col+0.5, \row+0.5);
+  }
+}
+
+% Οριζόντιες ακμές
+\foreach \row in {0,...,15}{
+  \foreach \col in {0,...,14}{
+    \draw[gray, line width=0.3pt]
+      (\col+0.5, \row+0.5)--(\col+1.5, \row+0.5);
+  }
+}
+
+% Κατακόρυφες ακμές
+\foreach \col in {0,...,15}{
+  \foreach \row in {0,...,14}{
+    \draw[gray, line width=0.3pt]
+      (\col+0.5, \row+0.5)--(\col+0.5, \row+1.5);
+  }
+}
+
+% Κόμβοι
+\foreach \row in {0,...,15}{
+  \foreach \col in {0,...,15}{
+    \node[circle, draw, fill=white, minimum size=0.22cm,
+          inner sep=0pt] at (\col+0.5, \row+0.5) {};
+    }
+}
+
+
+% Χοντρές γραμμές διαχωρισμού μπλοκ
+\foreach \x in {0,4,8,12,16}{
+  \draw[black, line width=1.2pt] (\x,0)--(\x,16);
+}
+\foreach \y in {0,4,8,12,16}{
+  \draw[black, line width=1.2pt] (0,\y)--(16,\y);
+}
+
+\node[draw=none] at (7.5, -1.2) {(α)};
+\end{tikzpicture}
+
+&
+\hspace{0.5cm}
+
+% ============ (b): 4x4 Mesh επεξεργαστών ============
+\begin{tikzpicture}[scale=1.1,
+  every node/.style={circle, draw, fill=white,
+                     minimum size=0.85cm, inner sep=0pt,
+                     line width=0.8pt}
+]
+
+% Ορισμός coordinates
+\foreach \row in {0,1,2,3}{
+  \foreach \col in {0,1,2,3}{
+    \coordinate (m\row\col) at (\col*1.3, \row*1.3);
+  }
+}
+
+% Ακμές πρώτα
+\foreach \row in {0,1,2,3}{
+  \foreach \col in {0,1,2}{
+    \pgfmathtruncatemacro{\nextcol}{\col+1}
+    \draw[line width=1.2pt] (m\row\col)--(m\row\nextcol);
+  }
+}
+\foreach \col in {0,1,2,3}{
+  \foreach \row in {0,1,2}{
+    \pgfmathtruncatemacro{\nextrow}{\row+1}
+    \draw[line width=1.2pt] (m\row\col)--(m\nextrow\col);
+  }
+}
+
+% Κόμβοι μετά
+\foreach \row in {0,1,2,3}{
+  \foreach \col in {0,1,2,3}{
+    \ifnum\row=1
+      \ifnum\col=2
+        \node at (m\row\col) {};
+        %\node[fill=gray!50] at (m\row\col) {};
+      \else
+        \node at (m\row\col) {};
+      \fi
+    \else
+      \node at (m\row\col) {};
+    \fi
+  }
+}
+
+\node[draw=none, fill=none] at (1.95, -1.0) {(β)};
+\end{tikzpicture}
+
+\end{tabular}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Απεικόνιση του γραφήματος πλέγματος (α) σε ένα πλέγμα (β)
+χρησιμοποιώντας την απεικόνιση μπλοκ σκακιέρας. Σε αυτό το
+παράδειγμα, $n = 16$ και $\sqrt{p} = 4$. Οι σκιασμένες κορυφές
+απεικονίζονται στον σκιασμένο επεξεργαστή.}
+\label{fig:graph19}
+\end{figure} 
+Εναλλακτικά, μπορούμε να κάνουμε κάθε επεξεργαστή υπεύθυνο για
+διασκορπισμένες περιοχές του πλέγματος χρησιμοποιώντας την κυκλική
+απεικόνιση σκακιέρας. Αυτό αυξάνει τον χρόνο κατά
+τον οποίο ένας επεξεργαστής παραμένει απασχολημένος. Στην κυκλική
+απεικόνιση σκακιέρας, το γράφημα πλέγματος $n \times n$ χωρίζεται σε
+$n^2/p$ μπλοκ, καθένα από μέγεθος $\sqrt{p} \times \sqrt{p}$. Κάθε
+μπλοκ απεικονίζεται στο πλέγμα επεξεργαστών $\sqrt{p} \times \sqrt{p}$.
+Το Σχήμα \ref{fig:graph20} απεικονίζει αυτή την απεικόνιση. Κάθε επεξεργαστής
+περιέχει ένα μπλοκ $n^2/p$ κορυφών. Αυτές οι κορυφές ανήκουν σε
+διαγωνίους του γραφήματος που απέχουν $\sqrt{p}$ κορυφές μεταξύ τους.
+Σε κάθε επεξεργαστή ανατίθενται περίπου $2n/\sqrt{p}$ τέτοιες διαγώνιοι.
+
+\vspace{0.3cm}
+\begin{figure}[H]
+\centering
+\begin{tabular}{cc}
+
+% ============ (a): Grid graph 16x16 ============
+\begin{tikzpicture}[scale=0.38]
+
+% Ορισμός coordinates και ακμές
+\foreach \row in {0,...,15}{
+  \foreach \col in {0,...,15}{
+    \coordinate (g\row\col) at (\col+0.5, \row+0.5);
+  }
+}
+
+% Οριζόντιες ακμές
+\foreach \row in {0,...,15}{
+  \foreach \col in {0,...,14}{
+    \draw[gray, line width=0.3pt]
+      (\col+0.5, \row+0.5)--(\col+1.5, \row+0.5);
+  }
+}
+
+% Κατακόρυφες ακμές
+\foreach \col in {0,...,15}{
+  \foreach \row in {0,...,14}{
+    \draw[gray, line width=0.3pt]
+      (\col+0.5, \row+0.5)--(\col+0.5, \row+1.5);
+  }
+}
+
+% Κόμβοι
+\foreach \row in {0,...,15}{
+  \foreach \col in {0,...,15}{
+    \pgfmathtruncatemacro{\modrow}{mod(\row,4)}
+    \pgfmathtruncatemacro{\modcol}{mod(\col,4)}
+    \ifnum\modrow=0
+      \ifnum\modcol=0
+        \node[circle, draw, fill=gray!50, minimum size=0.22cm,
+              inner sep=0pt] at (\col+0.5, \row+0.5) {};
+      \else
+        \node[circle, draw, fill=white, minimum size=0.22cm,
+              inner sep=0pt] at (\col+0.5, \row+0.5) {};
+      \fi
+    \else
+      \ifnum\modrow=2
+        \ifnum\modcol=1
+          \node[circle, draw, fill=gray!50, minimum size=0.22cm,
+                inner sep=0pt] at (\col+0.5, \row+0.5) {};
+        \else
+          \node[circle, draw, fill=white, minimum size=0.22cm,
+                inner sep=0pt] at (\col+0.5, \row+0.5) {};
+        \fi
+      \else
+        \node[circle, draw, fill=white, minimum size=0.22cm,
+              inner sep=0pt] at (\col+0.5, \row+0.5) {};
+      \fi
+    \fi
+  }
+}
+
+
+% Χοντρές γραμμές διαχωρισμού μπλοκ
+\foreach \x in {0,4,8,12,16}{
+  \draw[black, line width=1.2pt] (\x,0)--(\x,16);
+}
+\foreach \y in {0,4,8,12,16}{
+  \draw[black, line width=1.2pt] (0,\y)--(16,\y);
+}
+
+\node[draw=none] at (7.5, -1.2) {(α)};
+\end{tikzpicture}
+
+&
+\hspace{0.5cm}
+
+% ============ (b): 4x4 Mesh επεξεργαστών ============
+\begin{tikzpicture}[scale=1.1,
+  every node/.style={circle, draw, fill=white,
+                     minimum size=0.85cm, inner sep=0pt,
+                     line width=0.8pt}
+]
+
+% Ορισμός coordinates
+\foreach \row in {0,1,2,3}{
+  \foreach \col in {0,1,2,3}{
+    \coordinate (m\row\col) at (\col*1.3, \row*1.3);
+  }
+}
+
+% Ακμές πρώτα
+\foreach \row in {0,1,2,3}{
+  \foreach \col in {0,1,2}{
+    \pgfmathtruncatemacro{\nextcol}{\col+1}
+    \draw[line width=1.2pt] (m\row\col)--(m\row\nextcol);
+  }
+}
+\foreach \col in {0,1,2,3}{
+  \foreach \row in {0,1,2}{
+    \pgfmathtruncatemacro{\nextrow}{\row+1}
+    \draw[line width=1.2pt] (m\row\col)--(m\nextrow\col);
+  }
+}
+
+% Κόμβοι μετά
+\foreach \row in {0,1,2,3}{
+  \foreach \col in {0,1,2,3}{
+    \ifnum\row=0
+      \ifnum\col=0
+        \node[fill=gray!50] at (m\row\col) {};
+      \else
+        \node at (m\row\col) {};
+      \fi
+    \else
+      \ifnum\row=2
+        \ifnum\col=1
+          \node[fill=gray!50] at (m\row\col) {};
+        \else
+          \node at (m\row\col) {};
+        \fi
+      \else
+        \node at (m\row\col) {};
+      \fi
+    \fi
+  }
+}
+
+\node[draw=none, fill=none] at (1.95, -1.0) {(β)};
+\end{tikzpicture}
+
+\end{tabular}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Απεικόνιση του γραφήματος πλέγματος (α) σε ένα πλέγμα (β)
+χρησιμοποιώντας την απεικόνιση μπλοκ σκακιέρας. Σε αυτό το
+παράδειγμα, $n = 16$ και $\sqrt{p} = 4$. Οι σκιασμένες κορυφές
+απεικονίζονται στους αντίστοιχους σκιασμένους επεξεργαστές πλέγματος.}
+\label{fig:graph20}
+\end{figure} 
 
 % Τέλος προσθήκης
 \clearpage
