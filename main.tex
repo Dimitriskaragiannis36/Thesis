@@ -3889,6 +3889,123 @@ DP, η συνάρτηση κόστους μπορεί να περιέχει πο
 υποπροβλήματος που αναπαρίσταται από τον κόμβο $j$. Αν το γράφημα είναι άκυκλο, τότε οι κόμβοι του γραφήματος μπορούν να 
 οργανωθούν σε επίπεδα έτσι ώστε τα υποπροβλήματα σε ένα συγκεκριμένο επίπεδο \ldots
 
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  every node/.style={circle, draw, fill=white,
+                     minimum size=0.5cm, inner sep=0pt},
+  scale=1.0
+]
+
+% Κόμβος πηγής S
+\node (S) at (0, 0) {};
+\node[draw=none, left=0.1cm of S] {$S$};
+
+% Επίπεδο 1
+\node (v10) at (2.5,  2.5) {};
+\node (v11) at (2.5,  1.0) {};
+\node (v12) at (2.5, -0.5) {};
+\node (v13) at (2.5, -4.5) {};
+
+\node[draw=none] at (2.5,  3.1) {$v_0^1$};
+\node[draw=none] at (2.5,  1.6) {$v_1^1$};
+\node[draw=none] at (2.5,  0.1) {$v_2^1$};
+\node[draw=none] at (2.5, -5.3) {$v_{n-1}^1$};
+\node[draw=none] at (2.5, -1.2) {$\vdots$};
+
+% Επίπεδο 2
+\node (v20) at (5.0,  2.5) {};
+\node (v21) at (5.0,  1.0) {};
+\node (v22) at (5.0, -0.5) {};
+\node (v23) at (5.0, -4.5) {};
+
+\node[draw=none] at (5.0,  3.1) {$v_0^2$};
+\node[draw=none] at (5.0, -5.3) {$v_{n-1}^2$};
+\node[draw=none] at (5.0, -1.2) {$\vdots$};
+
+% Επίπεδο 3
+\node (v30) at (7.5,  2.5) {};
+\node (v31) at (7.5,  1.0) {};
+\node (v32) at (7.5, -0.5) {};
+\node (v33) at (7.5, -4.5) {};
+
+\node[draw=none] at (7.5,  3.1) {$v_0^3$};
+\node[draw=none] at (7.5, -5.3) {$v_{n-1}^3$};
+\node[draw=none] at (7.5, -1.2) {$\vdots$};
+
+% Τελευταίο επίπεδο r-1
+\node (vr0) at (11.0,  2.5) {};
+\node (vr1) at (11.0,  1.0) {};
+\node (vr2) at (11.0, -0.5) {};
+\node (vr3) at (11.0, -4.5) {};
+
+\node[draw=none] at (11.0,  3.2) {$v_0^{r-1}$};
+\node[draw=none] at (11.0, -5.3) {$v_{n-1}^{r-1}$};
+
+
+% Κόμβος προορισμού k
+\node (R) at (13.5, 0) {};
+\node[draw=none, right=0.1cm of R] {$R$};
+
+% Ακμές S -> Επίπεδο 1
+\draw (S) -- (v10) node[draw=none, midway, above, sloped] {$c_{s,0}^0$};
+\draw (S) -- (v11);
+\draw (S) -- (v12) node[draw=none, midway, below, sloped] {$c_{s,2}^0$};
+\draw (S) -- (v13) node[draw=none, midway, below, sloped] {$c_{s,n-1}^0$};
+
+% Ακμές Επίπεδο 1 -> Επίπεδο 2 (πλήρης διμερής)
+\foreach \a in {v10, v11, v12, v13}{
+  \foreach \b in {v20, v21, v22, v23}{
+    \draw (\a) -- (\b);
+  }
+}
+
+% Ετικέτες c_{0,0}^1 και c_{0,0}^2
+\node[draw=none] at (3.75, 2.9) {$c_{0,0}^1$};
+\node[draw=none] at (6.25, 2.9) {$c_{0,0}^2$};
+
+% Ακμές Επίπεδο 2 -> Επίπεδο 3 (πλήρης διμερής)
+\foreach \a in {v20, v21, v22, v23}{
+  \foreach \b in {v30, v31, v32, v33}{
+    \draw (\a) -- (\b);
+  }
+}
+
+% Τελείες μεταξύ επιπέδου 3 και r-1
+\node[draw=none] at (9.0, 0) {$\cdots\cdots\cdots\cdots$};
+
+% Κατακόρυφες τελείες
+\node[draw=none] at (2.5, -1.75) {$\vdots$};
+\node[draw=none] at (2.5, -2.3) {$\vdots$};
+\node[draw=none] at (2.5, -2.85) {$\vdots$};
+\node[draw=none] at (2.5, -3.4) {$\vdots$};
+\node[draw=none] at (5.0, -1.75) {$\vdots$};
+\node[draw=none] at (5.0, -2.3) {$\vdots$};
+\node[draw=none] at (5.0, -2.85) {$\vdots$};
+\node[draw=none] at (5.0, -3.4) {$\vdots$};
+\node[draw=none] at (7.5, -1.75) {$\vdots$};
+\node[draw=none] at (7.5, -2.3) {$\vdots$};
+\node[draw=none] at (7.5, -2.85) {$\vdots$};
+\node[draw=none] at (7.5, -3.4) {$\vdots$};
+
+% Ακμές τελευταίο επίπεδο -> k
+\draw (vr0) -- (R) node[draw=none, midway, above, sloped] {$c_{0,R}^{r-1}$};
+\draw (vr1) -- (R);
+\draw (vr2) -- (R);
+\draw (vr3) -- (R) node[draw=none, midway, below, sloped] {$c_{n-1,R}^{r-1}$};
+
+% Ετικέτες c_{n-1,n-1} κάτω
+\node[draw=none, font=\small] at (3.75, -5.25) {$c_{n-1,n-1}^1$};
+\node[draw=none, font=\small] at (6.25, -5.25) {$c_{n-1,n-1}^2$};
+
+\end{tikzpicture}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Ένα παράδειγμα σειριακής μοναδικής υλοποίησης ΔΠ για την
+εύρεση του συντομότερου μονοπατιού σε ένα γράφημα του οποίου οι κόμβοι
+μπορούν να οργανωθούν σε επίπεδα.}
+\label{fig:graph25}
+\end{figure}
+
 % Τέλος προσθήκης
 \clearpage
 \selectlanguage{english}
