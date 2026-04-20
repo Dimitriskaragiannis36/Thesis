@@ -94,10 +94,11 @@
 \contentsline {section}{\numberline {8}Δυναμικός Προγραμματισμός}{52}{section.8}%
 \contentsline {subsection}{\numberline {8.1}Σειριακές Μοναδικές Υλοποιήσεις ΔΠ}{54}{subsection.8.1}%
 \contentsline {subsubsection}{\numberline {8.1.1}Το Πρόβλημα του Συντομότερου Μονοπατιού}{54}{subsubsection.8.1.1}%
+\contentsline {subsubsection}{\numberline {8.1.2}Το Πρόβλημα του Σακιδίου 0/1 (\foreignlanguage {english}{The 0/1 Knapsack Problem})}{57}{subsubsection.8.1.2}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {section}{Βιβλιογραφία}{57}{section*.57}%
+\contentsline {section}{Βιβλιογραφία}{58}{section*.57}%
