@@ -96,10 +96,11 @@
 \contentsline {subsubsection}{\numberline {8.1.1}Το Πρόβλημα του Συντομότερου Μονοπατιού}{54}{subsubsection.8.1.1}%
 \contentsline {subsubsection}{\numberline {8.1.2}Το Πρόβλημα του Σακιδίου 0/1 (\foreignlanguage {english}{The 0/1 Knapsack Problem})}{57}{subsubsection.8.1.2}%
 \contentsline {subsection}{\numberline {8.2}Μη Σειριακές Μοναδικές Διατυπώσεις ΔΠ}{59}{subsection.8.2}%
+\contentsline {subsubsection}{\numberline {8.2.1}Το Πρόβλημα της Μεγαλύτερης Κοινής Υπακολουθίας}{60}{subsubsection.8.2.1}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {section}{Βιβλιογραφία}{60}{section*.58}%
+\contentsline {section}{Βιβλιογραφία}{61}{section*.58}%
