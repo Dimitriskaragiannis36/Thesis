@@ -4510,15 +4510,50 @@ F[i-1, j-1] + 1 & \text{αν } i, j > 0 \text{ και } x_i = y_j \\[4pt]
 Parallel Random Access Machine}) με $n$ επεξεργαστές.
 Κάθε επεξεργαστής $P_i$ υπολογίζει την $i$-οστή στήλη του πίνακα $F$.
 Οι καταχωρίσεις του πίνακα υπολογίζονται διαγώνια από την πάνω αριστερά
-γωνία προς την κάτω δεξιά γωνία. Εφόσον υπάρχουν
+γωνία προς την κάτω δεξιά γωνία. Εφόσον υπάρχουν $n$ επεξεργαστές και 
+κάθε επεξεργαστής μπορεί να έχει πρόσβαση σε οποιαδήποτε καταχώριση του 
+πίνακα $F$, τα στοιχεία κάθε διαγωνίου υπολογίζονται σε σταθερό χρόνο 
+(η διαγώνιος μπορεί να περιέχει το πολύ $n$ στοιχεία). Εφόσον υπάρχουν 
+$2n - 1$ τέτοιες διαγώνιοι, ο αλγόριθμος απαιτεί $\Theta(n)$ επαναλήψεις. 
+Συνεπώς, ο παράλληλος χρόνος εκτέλεσης είναι $\Theta(n)$. Ο αλγόριθμος 
+είναι βέλτιστος ως προς το κόστος, καθώς το γινόμενο 
+επεξεργαστών-χρόνου $\Theta(n^2)$ ισούται με τη σειριακή πολυπλοκότητα.
 
+Αυτός ο αλγόριθμος μπορεί να προσαρμοστεί ώστε να εκτελείται σε μια 
+γραμμική διάταξη $n$ επεξεργαστών, κατανέμοντας τον πίνακα $F$ σε 
+διαφορετικούς επεξεργαστές. Ο επεξεργαστής $P_i$ αποθηκεύει την 
+$(i + 1)$-οστή στήλη του πίνακα. Οι καταχωρίσεις στον πίνακα $F$ 
+ανατίθενται στους επεξεργαστές όπως απεικονίζεται στο Σχήμα \ref{fig:graph27}(b). 
+Κατά τον υπολογισμό της τιμής $F[i, j]$, ο επεξεργαστής $P_{j-1}$ 
+μπορεί να χρειαστεί είτε την τιμή $F[i - 1, j - 1]$ είτε την τιμή 
+$F[i, j - 1]$ από τον επεξεργαστή στα αριστερά του. Απαιτείται χρόνος 
+$t_s + t_w$ για να επικοινωνηθεί μια λέξη από έναν γειτονικό επεξεργαστή.
+Για τον υπολογισμό κάθε καταχώρισης στον πίνακα, ένας επεξεργαστής 
+χρειάζεται μια μεμονωμένη τιμή από τον άμεσο γείτονά του, ακολουθούμενη 
+από τον πραγματικό υπολογισμό, ο οποίος διαρκεί χρόνο $t_c$. Εφόσον 
+κάθε επεξεργαστής υπολογίζει μια μεμονωμένη καταχώριση στη διαγώνιο, 
+κάθε επανάληψη διαρκεί χρόνο $(t_s + t_w + t_c)$. Ο αλγόριθμος εκτελεί 
+$(2n - 1)$ διαγώνιες σαρώσεις (επαναλήψεις) στον πίνακα. Συνεπώς, ο 
+συνολικός παράλληλος χρόνος εκτέλεσης είναι:
+
+\[
+T_p = (2n - 1)(t_s + t_w + t_c).
+\]
+\vspace{0.2cm}
+\noindent
+Εφόσον ο σειριακός χρόνος εκτέλεσης είναι $n^2 t_c$, η αποδοτικότητα αυτού του αλγορίθμου είναι:
+
+\[
+E = \frac{n^2 t_c}{n(2n - 1)(t_s + t_w + t_c)}.
+\]
+\vspace{0.3cm}
 \begin{figure}[H]
 \centering
 \begin{tabular}{cc}
 
 % ============ (a) ============
 \begin{tikzpicture}[
-  scale=1,
+  scale= 1.1,
   every node/.style={circle, draw, fill=white,
                      minimum size=0.45cm, inner sep=0pt},
   arr/.style={->, >=stealth, shorten >=2pt, shorten <=2pt, line width=0.5pt}
@@ -4621,22 +4656,29 @@ Parallel Random Access Machine}) με $n$ επεξεργαστές.
 \end{tikzpicture}
 
 &
-\hspace{0.3cm}
+\hspace{0.4cm}
 
 % ============ (b) ============
 \begin{tikzpicture}[
-  scale=0.85,
+  scale= 1,
   every node/.style={circle, draw, fill=white,
                      minimum size=0.45cm, inner sep=0pt},
-  arr/.style={->, >=stealth, line width=0.5pt}
+  arr/.style={->, >=stealth, shorten >=2pt, shorten <=2pt, line width=0.5pt}
 ]
 
 % Κόμβοι σε 4 γραμμές x 4 στήλες
-\foreach \row in {0,1,2,3}{
-  \pgfmathsetmacro{\y}{3 - \row}
+% --- Γραμμές 0, 1 και 2 ---
+\foreach \row in {0,1,2}{
+  \pgfmathsetmacro{\y}{4 - \row}
   \foreach \col in {0,1,2,4}{
     \node (b\row c\col) at (\col, \y) {};
   }
+}
+
+% --- Γραμμή 0 (Ξεχωριστά) ---
+\pgfmathsetmacro{\yZero}{0.0} 
+\foreach \col in {0,1,2,4}{
+  \node (b3c\col) at (\col, \yZero) {};
 }
 
 % Οριζόντια βέλη
@@ -4644,33 +4686,34 @@ Parallel Random Access Machine}) με $n$ επεξεργαστές.
   \pgfmathsetmacro{\y}{3-\row}
   \draw[arr] (b\row c0) -- (b\row c1);
   \draw[arr] (b\row c1) -- (b\row c2);
-  \draw[dotted, arr] (b\row c2) -- (b\row c4);
+  \draw[dotted, thick] (b\row c2) -- (b\row c4);
 }
 
 % Κατακόρυφα βέλη
 \foreach \col in {0,1,2,4}{
   \draw[arr] (b0c\col) -- (b1c\col);
   \draw[arr] (b1c\col) -- (b2c\col);
-  \draw[dotted, arr] (b2c\col) -- (b3c\col);
+  \draw[dotted, thick] (b2c\col) -- (b3c\col);
 }
 
 % Διαγώνια βέλη
 \foreach \row/\nextrow in {0/1, 1/2}{
   \foreach \col/\nextcol in {0/1, 1/2}{
-    \draw[arr] (b\row c\col) -- (b\nextrow c\nextcol);
+    \draw[arr, shorten >=4pt, shorten <=6pt,] (b\row c\col) -- (b\nextrow c\nextcol);
   }
 }
 
 % Dashed πλαίσια γύρω από στήλες (επεξεργαστές)
-\draw[dashed, line width=0.8pt] (-0.35, -0.35) rectangle (0.35, 3.35);
-\draw[dashed, line width=0.8pt] (0.65, -0.35) rectangle (1.35, 3.35);
-\draw[dashed, line width=0.8pt] (3.65, -0.35) rectangle (4.35, 3.35);
+\draw[dashed, line width=0.8pt] (-0.35, -0.35) rectangle (0.35, 4.35);
+\draw[dashed, line width=0.8pt] (0.65, -0.35) rectangle (1.35, 4.35);
+\draw[dashed, line width=0.8pt] (1.65, -0.35) rectangle (2.35, 4.35);
+\draw[dashed, line width=0.8pt] (3.65, -0.35) rectangle (4.35, 4.35);
 
 % Ετικέτες επεξεργαστών
 \node[draw=none] at (0,   -0.9) {\small $P_0$};
 \node[draw=none] at (1,   -0.9) {\small $P_1$};
 \node[draw=none] at (4,   -0.9) {\small $P_{n-1}$};
-\node[draw=none] at (2.5, -0.9) {\small $\cdots$};
+
 
 \node[draw=none] at (2, -1.5) {(β)};
 \end{tikzpicture}
