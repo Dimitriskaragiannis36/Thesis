@@ -4512,6 +4512,178 @@ Parallel Random Access Machine}) με $n$ επεξεργαστές.
 Οι καταχωρίσεις του πίνακα υπολογίζονται διαγώνια από την πάνω αριστερά
 γωνία προς την κάτω δεξιά γωνία. Εφόσον υπάρχουν
 
+\begin{figure}[H]
+\centering
+\begin{tabular}{cc}
+
+% ============ (a) ============
+\begin{tikzpicture}[
+  scale=1,
+  every node/.style={circle, draw, fill=white,
+                     minimum size=0.45cm, inner sep=0pt},
+  arr/.style={->, >=stealth, shorten >=2pt, shorten <=2pt, line width=0.5pt}
+]
+
+% Ετικέτες στηλών
+\foreach \col/\x in {0/1, 1/2, 2/3, m/6}{
+  \node[draw=none] at (\x, 6) {$\col$};
+}
+\draw[dotted, thick] (3.5, 6) -- (5.5, 6);
+
+% Ετικέτες γραμμών
+\foreach \row/\y in {0/5, 1/3.5, 2/2.5, n/0}{
+  \node[draw=none] at (0, \y) {$\row$};
+}
+\draw[dotted, thick] (0, 0.5) -- (0, 2.0);
+
+% Κόμβοι - γραμμή 0
+\foreach \x in {1,2,3,4,6}{
+  \node[draw=none] (r0c\x) at (\x, 5) {0};
+}
+
+% Κόμβοι - γραμμή 1
+\node[draw=none] (r1c1) at (1, 3.5) {0};
+\node (r1c2) at (2, 3.5) {};
+\node (r1c3) at (3, 3.5) {};
+\node (r1c4) at (4, 3.5) {};
+\node (r1c6) at (6, 3.5) {};
+
+% Κόμβοι - γραμμή 2
+\node[draw=none] (r2c1) at (1, 2.5) {0};
+\node (r2c2) at (2, 2.5) {};
+\node (r2c3) at (3, 2.5) {};
+\node (r2c4) at (4, 2.5) {};
+\node (r2c6) at (6, 2.5) {};
+
+% Κόμβοι - γραμμή 3
+\node[draw=none] (r3c1) at (1, 1.5) {0};
+\node (r3c2) at (2, 1.5) {};
+\node (r3c3) at (3, 1.5) {};
+\node (r3c4) at (4, 1.5) {};
+\node (r3c6) at (6, 1.5) {};
+
+% Κόμβοι - γραμμή n
+\node[draw=none] (rnc1) at (1, 0) {0};
+\node (rnc2) at (2, 0) {};
+\node (rnc3) at (3, 0) {};
+\node (rnc4) at (4, 0) {};
+\node (rnc6) at (6, 0) {};
+
+% Οριζόντια βέλη
+\foreach \row in {1,2,3}{
+  \pgfmathsetmacro{\y}{3.5 - (\row-1)}
+  \draw[arr] (r\row c1) -- (r\row c2);
+  \draw[arr] (r\row c2) -- (r\row c3);
+  \draw[arr] (r\row c3) -- (r\row c4);
+  \draw[dotted, thick] (r\row c4) -- (r\row c6);
+}
+\draw[arr] (rnc1) -- (rnc2);
+\draw[arr] (rnc2) -- (rnc3);
+\draw[arr] (rnc3) -- (rnc4);
+\draw[dotted, thick] (rnc4) -- (rnc6);
+
+% Κατακόρυφα βέλη
+\foreach \col in {2,3,4,6}{
+  \draw[arr, shorten >=2pt, shorten <=14pt] (r0c\col) -- (r1c\col);
+  \draw[arr] (r1c\col) -- (r2c\col);
+  \draw[arr] (r2c\col) -- (r3c\col);
+  \draw[dotted, thick] (r3c\col) -- (rnc\col);
+}
+
+% Διαγώνια βέλη
+\draw[arr] (1.4, 4.1) -- (r1c2);
+\draw[arr] (2.4, 4.1) -- (r1c3);
+\draw[arr] (3.4, 4.1) -- (r1c4);
+\draw[arr] (1.4, 3.1) -- (r2c2);
+\draw[arr] (2.4, 3.1) -- (r2c3);
+\draw[arr] (3.4, 3.1) -- (r2c4);
+\draw[arr] (1.4, 2.1) -- (r3c2);
+\draw[arr] (2.4, 2.1) -- (r3c3);
+\draw[arr] (3.4, 2.1) -- (r3c4);
+
+
+% Διαγώνιες διακεκομμένες γραμμές (Wavefronts)
+% Κλίση 45 μοίρες (διαφορά x-y σταθερή)
+
+% 1η γραμμή (Μικρή - Πάνω Αριστερά)
+\draw[dotted, line width=0.8pt] (4, 5.5) -- (0.5, 2.0);
+
+% 2η γραμμή (Μεσαία - Μεγαλύτερη)
+\draw[dotted, line width=0.8pt] (5, 5.5) -- (0.5, 1.0);
+
+% 3η γραμμή (Μεγάλη - Κεντρική)
+\draw[dotted, line width=0.8pt] (6, 5.5) -- (0.5, 0.0);
+
+% 4η γραμμή (Προς τα κάτω δεξιά - πάλι μικραίνει αν θες)
+\draw[dotted, line width=0.8pt] (7, 1) -- (5, -1);
+
+\node[draw=none] at (3, -1.0) {(α)};
+\end{tikzpicture}
+
+&
+\hspace{0.3cm}
+
+% ============ (b) ============
+\begin{tikzpicture}[
+  scale=0.85,
+  every node/.style={circle, draw, fill=white,
+                     minimum size=0.45cm, inner sep=0pt},
+  arr/.style={->, >=stealth, line width=0.5pt}
+]
+
+% Κόμβοι σε 4 γραμμές x 4 στήλες
+\foreach \row in {0,1,2,3}{
+  \pgfmathsetmacro{\y}{3 - \row}
+  \foreach \col in {0,1,2,4}{
+    \node (b\row c\col) at (\col, \y) {};
+  }
+}
+
+% Οριζόντια βέλη
+\foreach \row in {0,1,2,3}{
+  \pgfmathsetmacro{\y}{3-\row}
+  \draw[arr] (b\row c0) -- (b\row c1);
+  \draw[arr] (b\row c1) -- (b\row c2);
+  \draw[dotted, arr] (b\row c2) -- (b\row c4);
+}
+
+% Κατακόρυφα βέλη
+\foreach \col in {0,1,2,4}{
+  \draw[arr] (b0c\col) -- (b1c\col);
+  \draw[arr] (b1c\col) -- (b2c\col);
+  \draw[dotted, arr] (b2c\col) -- (b3c\col);
+}
+
+% Διαγώνια βέλη
+\foreach \row/\nextrow in {0/1, 1/2}{
+  \foreach \col/\nextcol in {0/1, 1/2}{
+    \draw[arr] (b\row c\col) -- (b\nextrow c\nextcol);
+  }
+}
+
+% Dashed πλαίσια γύρω από στήλες (επεξεργαστές)
+\draw[dashed, line width=0.8pt] (-0.35, -0.35) rectangle (0.35, 3.35);
+\draw[dashed, line width=0.8pt] (0.65, -0.35) rectangle (1.35, 3.35);
+\draw[dashed, line width=0.8pt] (3.65, -0.35) rectangle (4.35, 3.35);
+
+% Ετικέτες επεξεργαστών
+\node[draw=none] at (0,   -0.9) {\small $P_0$};
+\node[draw=none] at (1,   -0.9) {\small $P_1$};
+\node[draw=none] at (4,   -0.9) {\small $P_{n-1}$};
+\node[draw=none] at (2.5, -0.9) {\small $\cdots$};
+
+\node[draw=none] at (2, -1.5) {(β)};
+\end{tikzpicture}
+
+\end{tabular}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{(α) Υπολογισμός καταχωρίσεων του πίνακα $F$ για το πρόβλημα
+μεγαλύτερης κοινής υπακολουθίας. Ο υπολογισμός προχωρά κατά μήκος
+των διακεκομμένων διαγώνιων γραμμών. (β) Αντιστοίχιση στοιχείων
+του πίνακα σε επεξεργαστές.}
+\label{fig:graph27}
+\end{figure}
+
 % Τέλος προσθήκης
 \clearpage
 \selectlanguage{english}
