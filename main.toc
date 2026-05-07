@@ -97,7 +97,7 @@
 \contentsline {subsubsection}{\numberline {9.1.1}Το Πρόβλημα του Συντομότερου Μονοπατιού}{53}{subsubsection.9.1.1}%
 \contentsline {subsubsection}{\numberline {9.1.2}Το Πρόβλημα του Σακιδίου 0/1 (\foreignlanguage {english}{The 0/1 Knapsack Problem})}{56}{subsubsection.9.1.2}%
 \contentsline {subsection}{\numberline {9.2}Μη Σειριακές Μοναδικές Διατυπώσεις ΔΠ}{58}{subsection.9.2}%
-\contentsline {subsubsection}{\numberline {9.2.1}Το Πρόβλημα της Μεγαλύτερης Κοινής Υπακολουθίας}{59}{subsubsection.9.2.1}%
+\contentsline {subsubsection}{\numberline {9.2.1}Το Πρόβλημα της Μέγιστης Κοινής Υπακολουθίας}{59}{subsubsection.9.2.1}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
