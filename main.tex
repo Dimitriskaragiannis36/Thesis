@@ -226,13 +226,13 @@ persecond}), κύρια μνήμη τουλάχιστον της τάξης το
 μνήμης και ΚΜΕ. Ο δεύτερος παράγοντας μπορεί να βελτιωθεί αυξάνοντας τον αριθμό
 των καναλιών μέσω των οποίων μπορούν να προσπελαστούν δεδομένα ταυτόχρονα.
 Αυτό επιτυγχάνεται διαιρώντας τη μνήμη σε ένα πλήθος τμημάτων, καθένα από τα
-οποία προσπελαύνεται ανεξάρτητα (Σχήμα \ref{fig:graph28}(β)). Η τεχνική αυτή ονομάζεται
+οποία προσπελαύνεται ανεξάρτητα \nobreak(Σχήμα \ref{fig:graph28}(β)\nobreak). Η τεχνική αυτή ονομάζεται
 \textbf{διαφύλλωση μνήμης} (\foreignlanguage{english}{memory interleaving}).
 
 Ένας άλλος τρόπος για την αύξηση του ρυθμού ανταλλαγής πληροφοριών μεταξύ
 ΚΜΕ και μνήμης είναι η χρήση μιας σχετικά μικρής και ταχύτατης μνήμης ως
 ενδιάμεσης μνήμης για τη μεγαλύτερη και πιο αργή κύρια μνήμη. Αυτή η γρήγορη
-μνήμη ονομάζεται \textbf{μνήμη \foreignlanguage{english}{cache}} ή προσωρινή μνήμη (\foreignlanguage{english}{memory cache}) (Σχήμα \ref{fig:graph28}(γ)). Είναι δυνατή η ανάκτηση
+μνήμη ονομάζεται \textbf{μνήμη \foreignlanguage{english}{cache}} ή προσωρινή μνήμη (\foreignlanguage{english}{memory cache}) \nobreak(Σχήμα \ref{fig:graph28}(γ)\nobreak). Είναι δυνατή η ανάκτηση
 ενός μπλοκ δεδομένων από την κύρια μνήμη στη μνήμη \foreignlanguage{english}{cache}, από την οποία τα
 δεδομένα μπορούν να ανταλλαχθούν με την ΚΜΕ με πολύ υψηλότερους ρυθμούς
 μεταφοράς. Η μνήμη \foreignlanguage{english}{cache} χρησιμοποιεί την αρχή ότι, εάν γίνει προσπέλαση σε μια
@@ -245,7 +245,112 @@ persecond}), κύρια μνήμη τουλάχιστον της τάξης το
 στην ουρά εντολών. Η τεχνική αυτή ονομάζεται \textbf{διοχέτευση εντολών} (\foreignlanguage{english}{instruction pipelining}).
 Σε μια σχετική τεχνική που ονομάζεται \textbf{διοχέτευση εκτέλεσης} (\foreignlanguage{english}{execution pipelining}), επιτρέπεται
 σε πολλές εντολές να βρίσκονται σε διάφορα στάδια εκτέλεσης σε λειτουργικές
-μονάδες όπως πολλαπλασιαστές και αθροιστές (Σχήμα \ref{fig:graph28}(δ)).
+μονάδες όπως πολλαπλασιαστές και αθροιστές \nobreak(Σχήμα \ref{fig:graph28}(δ)\nobreak).
+\vspace{0.3cm}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    scale=0.9,
+    transform shape,
+    box/.style={
+        draw,
+        rectangle,
+        minimum width=1.5cm,
+        minimum height=0.55cm,
+        align=center
+    },
+    arr/.style={-{Stealth}, thick},
+    font=\scriptsize
+]
+
+%--- (a) ---
+\node[box] (procA) at (0,0) {Επεξεργαστής};
+\node[box, right=0.8cm of procA] (memA) {Μνήμη};
+\draw[] (procA) -- (memA);
+\node at (1,-2.0) {(α)};
+
+%--- (b) ---
+\node[box] (procB) at (6,0) {Επεξεργαστής};
+\node[box, right=0.8cm of procB, yshift=1cm]  (memB1) {Μνήμη};
+\node[box, right=0.8cm of procB]              (memB2) {Μνήμη};
+\node[box, right=0.8cm of procB, yshift=-1cm] (memB3) {Μνήμη};
+\draw[] ([yshift=0.2cm]procB.east) -- ++(0.4,0) |- (memB1.west);
+\draw[] (procB) -- (memB2);
+\draw[] ([yshift=-0.2cm]procB.east) -- ++(0.4,0) |- (memB3.west);
+\node at (7,-2.0) {(β)};
+
+%--- (c) ---
+\node[box] (cacheC) at (12,0) {$Cache$};
+\node[box, below=0.5cm of cacheC] (procC) {Επεξεργαστής};
+\node[box, right=0.8cm of cacheC, yshift=1cm]  (memC1) {Μνήμη};
+\node[box, right=0.8cm of cacheC]              (memC2) {Μνήμη};
+\node[box, right=0.8cm of cacheC, yshift=-1cm] (memC3) {Μνήμη};
+\draw[] (procC)  -- (cacheC);
+\draw[] ([yshift=0.2cm]cacheC.east) -- ++(0.5,0) |- (memC1.west);
+\draw[] (cacheC) -- (memC2);
+\draw[] ([yshift=-0.2cm]cacheC.east) -- ++(0.5,0) |- (memC3.west);
+\node at (13,-2.0) {(γ)};
+
+%--- (d) ---
+\node[box] (cacheD) at (9,-4) {$Cache$};
+\node[box, right=0.8cm of cacheD, yshift=1cm]  (memD1) {Μνήμη};
+\node[box, right=0.8cm of cacheD]              (memD2) {Μνήμη};
+\node[box, right=0.8cm of cacheD, yshift=-1cm] (memD3) {Μνήμη};
+\draw[] ([yshift=0.2cm]cacheD.east) -- ++(0.5,0) |- (memD1.west);
+\draw[] (cacheD) -- (memD2);
+\draw[] ([yshift=-0.2cm]cacheD.east) -- ++(0.5,0) |- (memD3.west);
+
+% Pipeline boxes
+\node[box] (f0)    at (9,-5.2)  {$f_0$};
+\node[box, left=0.6cm of f0] (f1)    {$f_1$};
+\node[left=0.6cm of f1] (dots) {$\cdots$};
+\node[box, left=0.6cm of dots] (fdots) {$f_{d-1}$};
+
+\draw[arr] (f0)    -- (f1);
+\draw[arr] (f1)    -- (dots);
+\draw[arr] (dots)  -- (fdots);
+
+
+% Dashed rectangle around pipeline
+\node[draw, dashed, thick, fit=(fdots)(f0), inner sep=6pt] (pipeline) {};
+
+% Line from cache to middle of dashed rectangle
+\draw (pipeline) |- (cacheD.west);
+
+\node at (6,-6.2) {(δ)};
+
+\end{tikzpicture}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Η εξέλιξη ενός τυπικού ακολουθιακού υπολογιστή:
+(α) ένας απλός ακολουθιακός υπολογιστής, (β) ένας ακολουθιακός υπολογιστής με
+διαφύλλωση μνήμης, (γ) ένας ακολουθιακός υπολογιστής με διαφύλλωση μνήμης και
+\foreignlanguage{english}{cache} και (δ) ένας επεξεργαστής με διοχέτευση $d$ σταδίων.}
+\label{fig:graph28}
+\end{figure}
+\vspace{0.3cm}
+
+Η διαφύλλωση μνήμης, η μνήμη \foreignlanguage{english}{cache} και η
+διοχέτευση χρησιμοποιούνται πλέον ευρέως σε υπολογιστές \foreignlanguage{english}{SISD} υψηλής
+απόδοσης. Ωστόσο, έχουν όλες περιορισμούς. Η διαφύλλωση μνήμης και, σε κάποιο
+βαθμό, η διοχέτευση είναι χρήσιμες μόνο όταν εκτελείται ένα μικρό σύνολο πράξεων σε
+μεγάλους πίνακες δεδομένων. Οι κρυφές μνήμες αυξάνουν το εύρος ζώνης
+επεξεργαστή--μνήμης, αλλά η ταχύτητά τους εξακολουθεί να περιορίζεται από την
+τεχνολογία υλικού. Εναλλακτικός τρόπος για την επιτάχυνση του ρυθμού εκτέλεσης
+εντολών είναι η χρήση πολλαπλών ΚΜΕ και μονάδων μνήμης, διασυνδεδεμένων με
+κατάλληλο τρόπο. Ο ρυθμός επεξεργασίας ενός τέτοιου συστήματος αυξάνεται καθώς
+αυξάνεται ο αριθμός των ΚΜΕ και των μονάδων μνήμης.
+
+\subsection{Μια Ταξινόμηση Παράλληλων Αρχιτεκτονικών}
+
+Υπάρχουν πολλοί τρόποι κατασκευής παράλληλων υπολογιστών. Οι υπολογιστές αυτοί
+διαφέρουν ως προς διάφορες διαστάσεις, όπως ο μηχανισμός ελέγχου, η οργάνωση του
+χώρου διευθύνσεων, το δίκτυο διασύνδεσης και η κοκκομετρία των επεξεργαστών.
+
+\subsubsection{Μηχανισμός Ελέγχου}
+
+Οι μονάδες επεξεργασίας σε παράλληλους υπολογιστές λειτουργούν είτε υπό τον
+κεντρικό έλεγχο μιας ενιαίας μονάδας ελέγχου, είτε ανεξάρτητα. Στις αρχιτεκτονικές
+που αναφέρονται ως \foreignlanguage{english}{single instruction} \ldots
 
 \section{Αλγόριθμοι Γραφημάτων}
 Η θεωρία γραφημάτων διαδραματίζει σημαντικό ρόλο στην επιστήμη των υπολογιστών, επειδή παρέχει έναν εύκολο και συστηματικό τρόπο για τη μοντελοποίηση πολλών προβλημάτων. Πολλά προβλήματα μπορούν να εκφραστούν με όρους γραφημάτων και να επιλυθούν με τη χρήση τυπικών αλγορίθμων γραφημάτων. Το παρόν κεφάλαιο παρουσιάζει παράλληλες υλοποιήσεις κάποιων σημαντικών και θεμελιωδών αλγορίθμων γραφημάτων.
@@ -614,12 +719,12 @@ w(v_i, v_j) & \text{εάν } (v_i, v_j) \in E\\[2mm]
 
 \begin{tikzpicture}[scale=1.1, every node/.style={transform shape}]
     % Κορυφές
-    \node[vertex] (a) at (0,2) {a};
-    \node[vertex, fill=red!50] (b) at (-1,0.5) {b};
-    \node[vertex] (c) at (1,0) {c}; 
-    \node[vertex] (d) at (0,-2) {d};
-    \node[vertex] (e) at (3,-1.5) {e};
-    \node[vertex] (f) at (3,1.2) {f};
+    \node[vertex] (a) at (0,2) {$a$};
+    \node[vertex, fill=red!50] (b) at (-1,0.5) {$b$};
+    \node[vertex] (c) at (1,0) {$c$}; 
+    \node[vertex] (d) at (0,-2) {$d$};
+    \node[vertex] (e) at (3,-1.5) {$e$};
+    \node[vertex] (f) at (3,1.2) {$f$};
 
     % Ακμές με βάρη
     \draw (a) -- (b) node[midway, above left, edge weight] {1};
@@ -680,12 +785,12 @@ a \\ b \\ c \\ d \\ e \\ f
 \begin{minipage}{0.45\textwidth}
 \begin{tikzpicture}[scale=1.1, every node/.style={transform shape}]
     % Κορυφές
-    \node[vertex] (a) at (0,2) {a};
-    \node[vertex, fill=red!50] (b) at (-1,0.5) {b};
-    \node[vertex] (c) at (1,0) {c}; 
-    \node[vertex, fill=red!50] (d) at (0,-2) {d};
-    \node[vertex] (e) at (3,-1.5) {e};
-    \node[vertex] (f) at (3,1.2) {f};
+    \node[vertex] (a) at (0,2) {$a$};
+    \node[vertex, fill=red!50] (b) at (-1,0.5) {$b$};
+    \node[vertex] (c) at (1,0) {$c$}; 
+    \node[vertex, fill=red!50] (d) at (0,-2) {$d$};
+    \node[vertex] (e) at (3,-1.5) {$e$};
+    \node[vertex] (f) at (3,1.2) {$f$};
 
     % Ακμές με βάρη
     \draw (a) -- (b) node[midway, above left, edge weight] {1};
@@ -748,12 +853,12 @@ a \\ b \\ c \\ d \\ e \\ f
 \begin{minipage}{0.45\textwidth}
 \begin{tikzpicture}[scale=1.1, every node/.style={transform shape}]
     % Κορυφές
-    \node[vertex, fill=red!50] (a) at (0,2) {a};
-    \node[vertex, fill=red!50] (b) at (-1,0.5) {b};
-    \node[vertex] (c) at (1,0) {c}; 
-    \node[vertex, fill=red!50] (d) at (0,-2) {d};
-    \node[vertex] (e) at (3,-1.5) {e};
-    \node[vertex] (f) at (3,1.2) {f};
+    \node[vertex, fill=red!50] (a) at (0,2) {$a$};
+    \node[vertex, fill=red!50] (b) at (-1,0.5) {$b$};
+    \node[vertex] (c) at (1,0) {$c$}; 
+    \node[vertex, fill=red!50] (d) at (0,-2) {$d$};
+    \node[vertex] (e) at (3,-1.5) {$e$};
+    \node[vertex] (f) at (3,1.2) {$f$};
 
     % Ακμές με βάρη
     \draw [line width=3pt, color=black] (a) -- (b) node[midway, above left, edge weight] {1};
