@@ -350,7 +350,132 @@ persecond}), κύρια μνήμη τουλάχιστον της τάξης το
 
 Οι μονάδες επεξεργασίας σε παράλληλους υπολογιστές λειτουργούν είτε υπό τον
 κεντρικό έλεγχο μιας ενιαίας μονάδας ελέγχου, είτε ανεξάρτητα. Στις αρχιτεκτονικές
-που αναφέρονται ως \foreignlanguage{english}{single instruction} \ldots
+που αναφέρονται ως \foreignlanguage{english}{single instruction stream, multiple data stream (SIMD)}, 
+μια ενιαία μονάδα ελέγχου αποστέλλει εντολές σε κάθε μονάδα επεξεργασίας. 
+Το Σχήμα \ref{fig:graph29}(α) απεικονίζει μια τυπική αρχιτεκτονική \foreignlanguage{english}{SIMD}.
+Σε έναν παράλληλο υπολογιστή \foreignlanguage{english}{SIMD}, η ίδια εντολή εκτελείται συγχρόνως από όλες τις
+μονάδες επεξεργασίας. Οι μονάδες επεξεργασίας μπορούν να απενεργοποιούνται επιλεκτικά
+κατά τη διάρκεια ενός κύκλου εντολής. Παραδείγματα παράλληλων υπολογιστών \foreignlanguage{english}{SIMD}
+περιλαμβάνουν τους \foreignlanguage{english}{Illiac IV, MPP, DAP, CM-2, MasPar MP-1} και \foreignlanguage{english}{MasPar MP-2}.
+
+Υπολογιστές στους οποίους κάθε επεξεργαστής είναι ικανός να εκτελεί διαφορετικό
+πρόγραμμα ανεξάρτητα από τους άλλους επεξεργαστές ονομάζονται υπολογιστές
+\foreignlanguage{english}{\textbf{multiple instruction stream, multiple data stream} (MIMD)}. Το Σχήμα \ref{fig:graph29}(β)
+απεικονίζει έναν τυπικό υπολογιστή \foreignlanguage{english}{MIMD}. Παραδείγματα υπολογιστών \foreignlanguage{english}{MIMD}
+περιλαμβάνουν τους \foreignlanguage{english}{Cosmic Cube, nCUBE 2, iPSC, Symmetry, FX-8, FX-2800, TC-2000,
+CM-5, KSR-1} και \foreignlanguage{english}{Paragon XP/S}.
+
+
+Οι υπολογιστές \foreignlanguage{english}{SIMD} απαιτούν λιγότερο υλικό από τους υπολογιστές \foreignlanguage{english}{MIMD}, διότι
+διαθέτουν μόνο μία καθολική μονάδα ελέγχου. Επιπλέον, οι υπολογιστές \foreignlanguage{english}{SIMD} απαιτούν
+λιγότερη μνήμη, καθώς αρκεί να αποθηκευτεί ένα μόνο αντίγραφο του προγράμματος.
+Αντιθέτως, οι υπολογιστές \foreignlanguage{english}{MIMD} αποθηκεύουν το πρόγραμμα και το λειτουργικό σύστημα
+σε κάθε επεξεργαστή. Οι υπολογιστές \foreignlanguage{english}{SIMD} είναι φυσικά κατάλληλοι για
+\textbf{προγράμματα παράλληλης επεξεργασίας δεδομένων}. Δηλαδή, προγράμματα
+στα οποία το ίδιο σύνολο εντολών εκτελείται σε μεγάλο σύνολο δεδομένων. Επιπλέον,
+οι υπολογιστές \foreignlanguage{english}{SIMD} απαιτούν λιγότερο χρόνο εκκίνησης (Ενότητα 2.7) για την
+επικοινωνία με γειτονικούς επεξεργαστές. Αυτό οφείλεται στο ότι η επικοινωνία ενός
+
+\vspace{0.3cm}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    font=\small,
+    pe/.style={
+        draw, ellipse,
+        minimum width=1.6cm, minimum height=0.75cm,
+        align=center
+    },
+    pemimd/.style={
+        draw, ellipse,
+        minimum width=2.5cm, minimum height=1cm,
+        align=center
+    },
+    net/.style={
+        draw, rectangle,
+        minimum width=0.85cm,
+        align=center
+    }
+]
+
+%% ===== (a) SIMD =====
+
+% Global control unit
+\node[draw, rectangle, minimum width=1.5cm, minimum height=3.2cm, align=center]
+    (gcu) at (0,0) {Κεντρική\\μονάδα\\ελέγχου};
+
+% PE nodes
+\node[pe] (pe1) at (3.2,  2.875)  {ΣΕ};
+\node[pe] (pe2) at (3.2,  1.725) {ΣΕ};
+\node[pe] (pe3) at (3.2,  0.575)  {ΣΕ};
+\node          at (2.8, -0.05)  {$\vdots$};
+\node          at (2.8, -0.45)  {$\vdots$};
+\node          at (2.8, -0.85)  {$\vdots$};
+\node          at (3.6, -0.05)  {$\vdots$};
+\node          at (3.6, -0.45)  {$\vdots$};
+\node          at (3.6, -0.85)  {$\vdots$};
+\node[pe] (pe4) at (3.2, -1.6)  {ΣΕ};
+\node[pe] (pe5) at (3.2, -2.75)  {ΣΕ};
+
+% Interconnection network (a)
+\node[net, minimum height=9.8cm] (neta) at (5.6, 0)
+    {\rotatebox{90}{\scriptsize ΔΙΚΤΥΟ ΔΙΑΣΥΝΔΕΣΗΣ}};
+
+% GCU -> PEs
+% GCU -> PEs (fan-out από διαφορετικά ύψη)
+\draw ([yshift= 32pt]gcu.east) -- (pe1.west);
+\draw ([yshift= 18pt]gcu.east) -- (pe2.west);
+\draw ([yshift=  4pt]gcu.east) -- (pe3.west);
+\draw ([yshift=-20pt]gcu.east) -- (pe4.west);
+\draw ([yshift=-32pt]gcu.east) -- (pe5.west);
+
+% PEs -> network (connect at matching height)
+\foreach \n in {1,2,3,4,5} {
+    \draw (pe\n.east) -- (neta.west |- pe\n);
+}
+
+\node at (2.8, -7.0) {(α)};
+
+
+%% ===== (b) MIMD =====
+
+\begin{scope}[xshift=9.5cm]
+
+\node[pemimd] (m1) at (0,  4.4)  {ΣΕ \\ + \\ μονάδα ελέγχου};
+\node[pemimd] (m2) at (0,  1.8)  {ΣΕ \\ + \\ μονάδα ελέγχου};
+\node          at (-1, 0.4)     {$\vdots$};
+\node          at (-1, 0.0)     {$\vdots$};
+\node          at (-1, -0.4)     {$\vdots$};
+\node          at (1, 0.4)     {$\vdots$};
+\node          at (1, 0.0)     {$\vdots$};
+\node          at (1, -0.4)     {$\vdots$};
+\node[pemimd] (m3) at (0, -2.0)  {ΣΕ \\ + \\ μονάδα ελέγχου};
+\node[pemimd] (m4) at (0, -4.6)  {ΣΕ \\ + \\ μονάδα ελέγχου};
+
+% Interconnection network (b)
+\node[net, minimum height=9.8cm] (netb) at (3.0, 0)
+    {\rotatebox{90}{\scriptsize ΔΙΚΤΥΟ ΔΙΑΣΥΝΔΕΣΗΣ}};
+
+% PEs -> network
+\foreach \n in {1,2,3,4} {
+    \draw (m\n.east) -- (netb.west |- m\n);
+}
+
+\node at (1.5, -7.0) {(β)};
+
+\end{scope}
+
+% Header
+\node[anchor=west, font=\footnotesize] at (-1.0, 5.8)
+    {\textbf{ΣΕ}: Στοιχεία Επεξεργασίας};
+
+\end{tikzpicture}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Μία τυπική \foreignlanguage{english}{SIMD} αρχιτεκτονική (α) και μία τυπική \foreignlanguage{english}{MIMD} αρχιτεκτονική (β).}
+\label{fig:graph29}
+\end{figure}
+\vspace{0.3cm}
+
 
 \section{Αλγόριθμοι Γραφημάτων}
 Η θεωρία γραφημάτων διαδραματίζει σημαντικό ρόλο στην επιστήμη των υπολογιστών, επειδή παρέχει έναν εύκολο και συστηματικό τρόπο για τη μοντελοποίηση πολλών προβλημάτων. Πολλά προβλήματα μπορούν να εκφραστούν με όρους γραφημάτων και να επιλυθούν με τη χρήση τυπικών αλγορίθμων γραφημάτων. Το παρόν κεφάλαιο παρουσιάζει παράλληλες υλοποιήσεις κάποιων σημαντικών και θεμελιωδών αλγορίθμων γραφημάτων.
