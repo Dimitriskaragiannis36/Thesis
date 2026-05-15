@@ -1,9 +1,8 @@
 \babel@toc {greek}{}\relax 
 \contentsline {section}{\numberline {1}Εισαγωγή}{3}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Οι Μεγάλες Σύγχρονες Επιστημονικές Προκλήσεις}{3}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Εξέλιξη της Παράλληλης Επεξεργασίας Δεδομένων}{4}{subsection.1.2}%
 \contentsline {section}{\numberline {2}Μοντέλα Παράλληλων Υπολογιστών}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Μια Ταξινόμηση Παράλληλων Αρχιτεκτονικών}{6}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.1}Μια Ταξινόμηση Παράλληλων Αρχιτεκτονικών}{5}{subsection.2.1}%
 \contentsline {subsubsection}{\numberline {2.1.1}Μηχανισμός Ελέγχου}{6}{subsubsection.2.1.1}%
 \contentsline {section}{\numberline {3}Αλγόριθμοι Γραφημάτων}{7}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Ορισμοί και Αναπαράσταση}{7}{subsection.3.1}%
