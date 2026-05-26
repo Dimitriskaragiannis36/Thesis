@@ -6,7 +6,7 @@
 \contentsline {subsubsection}{\numberline {2.1.1}Μηχανισμός Ελέγχου}{7}{subsubsection.2.1.1}%
 \contentsline {subsubsection}{\numberline {2.1.2}Οργάνωση Χώρου Διευθύνσεων}{10}{subsubsection.2.1.2}%
 \contentsline {subsubsection}{\numberline {2.1.3}Δίκτυα Διασύνδεσης}{12}{subsubsection.2.1.3}%
-\contentsline {subsubsection}{\numberline {2.1.4}Κοκκομετρία Επεξεργαστών}{13}{subsubsection.2.1.4}%
+\contentsline {subsubsection}{\numberline {2.1.4}Λεπτομέρεια Επεξεργαστή (\foreignlanguage {english}{Processor Granularity})}{13}{subsubsection.2.1.4}%
 \contentsline {subsection}{\numberline {2.2}Ένας Εξιδανικευμένος Παράλληλος Υπολογιστής}{14}{subsection.2.2}%
 \contentsline {section}{\numberline {3}Αλγόριθμοι Γραφημάτων}{14}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Ορισμοί και Αναπαράσταση}{15}{subsection.3.1}%
