@@ -39,7 +39,7 @@
 
 % TIKZ
 \usepackage{tikz}
-\usetikzlibrary{positioning,shapes,arrows.meta,fit}
+\usetikzlibrary{positioning,shapes,arrows.meta,fit,calc}
 
 \tikzset{
     vertex/.style={circle, draw, fill=blue!20, minimum size=8mm, font=\small},
@@ -2243,8 +2243,13 @@ $p/2$ στοιχεία μεταγωγής. Κάθε μεταγωγέας λει�
 \subsubsection*{Δίκτυο Δέντρου} 
 Ένα \textbf{δίκτυο δέντρου} (\foreignlanguage{english}{tree network})  
 είναι ένα δίκτυο στο οποίο υπάρχει μόνο μία διαδρομή μεταξύ κάθε ζεύγους 
-επεξεργαστών. Τόσο οιγραμμικές συστοιχίες όσο και τα δίκτυα σύνδεσης 
-αστέρα αποτελούν ειδικές περιπτώσεις ...
+επεξεργαστών. Τόσο οι γραμμικές συστοιχίες όσο και τα δίκτυα σύνδεσης 
+αστέρα αποτελούν ειδικές περιπτώσεις δικτύων δέντρων. Το Σχήμα \ref{fig:graph44} 
+παρουσιάζει δίκτυα που βασίζονται σε πλήρη δυαδικά δέντρα. Τα στατικά 
+δίκτυα δέντρων διαθέτουν έναν επεξεργαστή σε κάθε κόμβο του δέντρου {(}Σχήμα \ref{fig:graph44}(α){)}. 
+Τα δίκτυα  διαθέτουν επίσης ένα δυναμικό αντίστοιχο. Σε ένα 
+δυναμικό δίκτυο δέντρου, οι κόμβοι στα ενδιάμεσα επίπεδα είναι στοιχεία 
+μεταγωγής και τα φύλλα του δέντρου είναι επεξεργαστές (Σχήμα \ref{fig:graph44}(β){)}.
 
 \begin{figure}[H]
 \centering
@@ -2359,6 +2364,501 @@ $p/2$ στοιχεία μεταγωγής. Κάθε μεταγωγέας λει�
 \noindent\rule{\textwidth}{0.2pt}
 \caption{Πλήρη δυαδικά δέντρα δικτύων και δρομολόγηση μηνυμάτων σε αυτά.}
 \label{fig:graph44}
+\end{figure}
+\vspace{0.3cm}
+
+Για να δρομολογηθεί ένα μήνυμα σε ένα δέντρο, ο επεξεργαστής πηγής στέλνει 
+το μήνυμα προς τα πάνω στο δέντρο μέχρι να φτάσει στον επεξεργαστή ή στον 
+μεταγωγέα που βρίσκεται στη ρίζα του μικρότερου υποδέντρου το οποίο περιέχει 
+τόσο τον επεξεργαστή πηγής όσο και τον επεξεργαστή προορισμού. Στη συνέχεια, 
+το μήνυμα αποστέλλεται προς τα κάτω στο δέντρο, προς τον επεξεργαστή 
+προορισμού. Αυτό απεικονίζεται στο Σχήμα \ref{fig:graph44}.
+
+Τα δίκτυα δέντρωνυποφέρουν από ένα σημείο συμφόρησης επικοινωνίας στα 
+υψηλότερα επίπεδα του δέντρου. Για παράδειγμα, όταν πολλοί επεξεργαστές 
+στο αριστερό υποδέντρο ενός κόμβου επικοινωνούν με επεξεργαστές στο δεξί 
+υποδέντρο, ο ριζικός κόμβος πρέπει να διαχειριστεί όλα τα μηνύματα. 
+Αυτό το πρόβλημα μπορεί να αντιμετωπιστεί αυξάνοντας τον αριθμό των συνδέσμων 
+επικοινωνίας μεταξύ των επεξεργαστών που βρίσκονται πιο κοντά στη ρίζα. 
+Αυτό το δίκτυο, που παρουσιάζεται στο Σχήμα \ref{fig:graph45}, ονομάζεται 
+\textbf{παχύ δέντρο} (\foreignlanguage{english}{fat tree}).
+
+Ο παράλληλος υπολογιστής \foreignlanguage{english}{DADO} χρησιμοποιεί ένα 
+στατικό διασυνδεδεμένο δυαδικό δίκτυο δέντρων. Το \foreignlanguage{english}{CM-5} 
+βασίζεται σε ένα δυναμικό δίκτυο παχύ δέντρου.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    >=stealth,
+    processor/.style={circle, draw, minimum size=0.25cm, inner sep=0pt},
+    switch/.style={rectangle, draw, inner sep=0pt}
+]
+
+% Βασικές Ρυθμίσεις Διαστάσεων
+\def\xstep{0.7}    % Οριζόντια απόσταση μεταξύ των φύλλων (processors)
+\def\linesep{0.15}  % ΠΙΟ ΑΡΑΙΕΣ ΑΚΜΕΣ: Απόσταση μεταξύ των παράλληλων γραμμών (από 0.05 -> 0.1)
+
+% Κάθετες συντεταγμένες (Y) για κάθε επίπεδο του δέντρου
+\def\yLthree{1.2}
+\def\yLtwo{2.4}
+\def\yLone{3.6}
+\def\yRoot{4.8}
+
+% Macro για τον σχεδιασμό των παράλληλων ακμών προς το ΑΡΙΣΤΕΡΟ παιδί
+\newcommand{\drawbundleL}[3]{
+    % #1: Όνομα Γονέα, #2: Όνομα Παιδιού, #3: Πλήθος γραμμών
+    \pgfmathsetmacro{\n}{#3-1}
+    \pgfmathsetmacro{\startoffset}{-(#3-1)/2*\linesep}
+    \foreach \j in {0,...,\n} {
+        \draw ($(#1.south west)!0.5!(#1.south) + (\startoffset + \j*\linesep, 0)$) -- ($(#2.north) + (\startoffset + \j*\linesep, 0)$);
+    }
+}
+
+% Macro για τον σχεδιασμό των παράλληλων ακμών προς το ΔΕΞΙ παιδί
+\newcommand{\drawbundleR}[3]{
+    % #1: Όνομα Γονέα, #2: Όνομα Παιδιού, #3: Πλήθος γραμμών
+    \pgfmathsetmacro{\n}{#3-1}
+    \pgfmathsetmacro{\startoffset}{-(#3-1)/2*\linesep}
+    \foreach \j in {0,...,\n} {
+        \draw ($(#1.south)!0.5!(#1.south east) + (\startoffset + \j*\linesep, 0)$) -- ($(#2.north) + (\startoffset + \j*\linesep, 0)$);
+    }
+}
+
+% 1. Σχεδιασμός Επεξεργαστών (Φύλλα δέντρου - 16 συνολικά)
+\foreach \i in {0,...,15} {
+    \node[processor] (P\i) at (\i*\xstep, 0) {};
+}
+
+% 2. Σχεδιασμός Level 3 Switches (8 κόμβοι, 1 ακμή ανά παιδί)
+\foreach \i in {0,...,7} {
+    \pgfmathsetmacro{\x}{(\i*2 + 0.5) * \xstep}
+    \node[switch, minimum width=0.6cm, minimum height=0.3cm] (L3\i) at (\x, \yLthree) {};
+    
+    \pgfmathtruncatemacro{\pA}{\i*2}
+    \pgfmathtruncatemacro{\pB}{\i*2+1}
+    \drawbundleL{L3\i}{P\pA}{1}
+    \drawbundleR{L3\i}{P\pB}{1}
+}
+
+% 3. Σχεδιασμός Level 2 Switches (4 κόμβοι, 2 ακμές ανά παιδί)
+\foreach \i in {0,...,3} {
+    \pgfmathsetmacro{\x}{(\i*4 + 1.5) * \xstep}
+    \node[switch, minimum width=1.0cm, minimum height=0.4cm] (L2\i) at (\x, \yLtwo) {};
+    
+    \pgfmathtruncatemacro{\cA}{\i*2}
+    \pgfmathtruncatemacro{\cB}{\i*2+1}
+    \drawbundleL{L2\i}{L3\cA}{2}
+    \drawbundleR{L2\i}{L3\cB}{2}
+}
+
+% 4. Σχεδιασμός Level 1 Switches (2 κόμβοι, 4 ακμές ανά παιδί)
+\foreach \i in {0,...,1} {
+    \pgfmathsetmacro{\x}{(\i*8 + 3.5) * \xstep}
+    \node[switch, minimum width=1.8cm, minimum height=0.5cm] (L1\i) at (\x, \yLone) {};
+    
+    \pgfmathtruncatemacro{\cA}{\i*2}
+    \pgfmathtruncatemacro{\cB}{\i*2+1}
+    \drawbundleL{L1\i}{L2\cA}{4}
+    \drawbundleR{L1\i}{L2\cB}{4}
+}
+
+% 5. Σχεδιασμός Root Switch (1 κόμβος, 8 ακμές ανά παιδί)
+\pgfmathsetmacro{\x}{7.5 * \xstep}
+\node[switch, minimum width=3.4cm, minimum height=0.6cm] (Root) at (\x, \yRoot) {};
+
+\drawbundleL{Root}{L10}{8}
+\drawbundleR{Root}{L11}{8}
+
+\end{tikzpicture}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Ένα παχύ δέντρο δικτύου με 16 επεξεργαστές.}
+\label{fig:graph45}
+\end{figure}
+\vspace{0.3cm}
+
+\subsubsection*{Δίκτυο Υπερκύβου} 
+Ένας υπερκύβος είναι ένα πολυδιάστατο πλέγμα επεξεργαστών με ακριβώς δύο 
+επεξεργαστές σε κάθε διάσταση. Ένας υπερκύβος $d$ διαστάσεων αποτελείται 
+από $p = 2^d$ επεξεργαστές. Ένας υπερκύβος μπορεί να κατασκευαστεί αναδρομικά 
+ως εξής: ένας υπερκύβος μηδενικής διάστασης είναι ένας μόνο επεξεργαστής. 
+Ένας υπερκύβος μίας διάστασης κατασκευάζεται συνδέοντας δύο υπερκύβους 
+μηδενικής διάστασης. Γενικά, ένας υπερκύβος $(d + 1)$ διαστάσεων κατασκευάζεται 
+συνδέοντας τους αντίστοιχους επεξεργαστές δύο υπερκύβων $d$ διαστάσεων.
+
+Το Σχήμα \ref{fig:graph46} παρουσιάζει υπερκύβους διαστάσεων από μηδέν έως 
+τέσσερις. Το σχήμα αυτό παρουσιάζει επίσης πώς μπορούμε να χρησιμοποιήσουμε 
+τον αναδρομικό ορισμό ενός υπερκύβου για να επισημάνουμε τους επεξεργαστές. 
+Όταν ένας υπερκύβος $(d + 1)$ διαστάσεων κατασκευάζεται με τη σύνδεση δύο 
+υπερκύβων $d$ διαστάσεων, οι ετικέτες των επεξεργαστών του ενός υπερκύβου 
+λαμβάνουν ως πρόθεμα το μηδέν, ενώ εκείνες του δεύτερου υπερκύβου λαμβάνουν 
+ως πρόθεμα το ένα.
+
+Μερικές από τις σημαντικές ιδιότητες ενός δικτύου υπερκύβου είναι οι 
+ακόλουθες:
+
+\begin{enumerate}
+    \item Δύο επεξεργαστές συνδέονται με έναν άμεσο σύνδεσμο αν και μόνο 
+    αν η δυαδική αναπαράσταση των ετικετών τους διαφέρει ακριβώς σε μία 
+    θέση \foreignlanguage{english}{bit}. Αυτό απεικονίζεται στο Σχήμα \ref{fig:graph46}.
+
+    \item Σε έναν $d$-διάστατο υπερκύβο, κάθε επεξεργαστής συνδέεται άμεσα 
+    με $d$ άλλους επεξεργαστές.
+
+    \item Ένας $d$-διάστατος υπερκύβος μπορεί να διαμεριστεί σε δύο 
+    υπoκύβους διάστασης $(d-1)$ ως εξής. Επιλέγουμε μία θέση 
+    \foreignlanguage{english}{bit} και ομαδοποιούμε όλους τους επεξεργαστές 
+    των οποίων οι ετικέτες έχουν μηδέν στην επιλεγμένη θέση. Όλοι αυτοί 
+    οι επεξεργαστές αποτελούν μία διαμέριση, ενώ οι υπόλοιποι επεξεργαστές 
+    αποτελούν την δεύτερη διαμέριση. Εφόσον οι ετικέτες των επεξεργαστών 
+    έχουν $d$ \foreignlanguage{english}{bits}, υπάρχουν $d$ τέτοιες διαμερίσεις. 
+    Αυτή η ιδιότητα προκύπτει άμεσα από τον αναδρομικό ορισμό του υπερκύβου. 
+    Το Σχήμα \ref{fig:graph47} απεικονίζει τις τρεις διαμερίσεις ενός 
+    τρισδιάστατου υπερκύβου. Οι σκούρες γραμμές στο σχήμα συνδέουν 
+    τους επεξεργαστές που ανήκουν σε μια διαμέριση.
+
+    \item Οι ετικέτες των επεξεργαστών σε έναν $d$-διάστατο υπερκύβο περιέχουν 
+    $d$ \foreignlanguage{english}{bits}. Αν σταθεροποιήσουμε οποιαδήποτε 
+    $k$ από αυτά τα \foreignlanguage{english}{bits}, τότε οι επεξεργαστές 
+    που διαφέρουν στις υπόλοιπες $d-k$ θέσεις \foreignlanguage{english}{bit} 
+    σχηματίζουν έναν υπoκύβο διάστασης $(d-k)$, ο οποίος αποτελείται από 
+    $2^{(d-k)}$ επεξεργαστές. Εφόσον τα $k$ \foreignlanguage{english}{bits} 
+    μπορούν να σταθεροποιηθούν με $2^k$ διαφορετικούς τρόπους, υπάρχουν 
+    $2^k$ τέτοιοι υπoκύβοι.
+
+    Το Σχήμα \ref{fig:graph48} απεικονίζει αυτή την ιδιότητα. Στο σχήμα αυτό, 
+    $k=2$ και $d=4$. Οι τέσσερις υπoκύβοι (των τεσσάρων επεξεργαστών ο καθένας) 
+    που σχηματίζονται με σταθεροποίηση των δύο σημαντικότερων 
+    \foreignlanguage{english}{bits} παρουσιάζονται στο Σχήμα 
+    \ref{fig:graph48}(α). Οι υποκύβοι που σχηματίζονται με σταθεροποίηση των 
+    δύο λιγότερο σημαντικών \foreignlanguage{english}{bits} παρουσιάζονται 
+    στο Σχήμα \ref{fig:graph48}(β).
+
+    \item Θεωρήστε τις ετικέτες $s$ και $t$ δύο επεξεργαστών σε έναν υπερκύβο. 
+    Ο συνολικός αριθμός θέσεων \foreignlanguage{english}{bit} στις οποίες 
+    διαφέρουν οι δύο αυτές ετικέτες ονομάζεται \textbf{απόσταση \foreignlanguage{english}{Hamming}} 
+    (\foreignlanguage{english}{Hamming distance}) μεταξύ τους. Για παράδειγμα, 
+    η απόσταση \foreignlanguage{english}{Hamming} μεταξύ επεξεργαστών με 
+    ετικέτες 011 και 101 σε έναν τρισδιάστατο υπερκύβο είναι δύο. 
+    Παρομοίως, η απόσταση \foreignlanguage{english}{Hamming} μεταξύ 
+    των ετικετών 101 και 010 είναι τρία. Η απόσταση 
+    \foreignlanguage{english}{Hamming} μεταξύ των $s$ και $t$ είναι 
+    ο αριθμός των \foreignlanguage{english}{bits} που είναι ίσα με ένα 
+    στη δυαδική αναπαράσταση του $s \oplus t$, όπου το $\oplus$ είναι 
+    η πράξη αποκλειστικής διάζευξης κατά \foreignlanguage{english}{bit}.
+
+    Ο αριθμός των συνδέσμων επικοινωνίας στη συντομότερη διαδρομή 
+    μεταξύ δύο επεξεργαστών είναι ίσος με την απόσταση 
+    \foreignlanguage{english}{Hamming} μεταξύ των ετικετών τους. 
+    Ένα μήνυμα μπορεί να δρομολογηθεί από τον επεξεργαστή $s$ στον 
+    επεξεργαστή $t$, προωθώντας το μήνυμα κατά μήκος διαστάσεων που 
+    αντιστοιχούν σε θέσεις \foreignlanguage{english}{bit} όπου η 
+    δυαδική αναπαράσταση του $s \oplus t$ έχει τιμή ένα.Το Σχήμα \ref{fig:graph46} 
+    απεικονίζει τη δρομολόγηση ενός μηνύματος από τον επεξεργαστή $s$ 
+    (με ετικέτα 0101) στον επεξεργαστή $t$ (με ετικέτα 1011). Για αυτό 
+    το παράδειγμα, $s \oplus t = 1110$. Το μήνυμα δρομολογείται κατά 
+    μήκος των διαστάσεων που αντιστοιχούν στις θέσεις \foreignlanguage{english}{bit} 
+    ένα, δύο και τρία (θεωρώντας ότι το λιγότερο σημαντικό 
+    \foreignlanguage{english}{bit} βρίσκεται στη θέση \foreignlanguage{english}{bit} 
+    μηδέν). Εφόσον η δυαδική αναπαράσταση του $s \oplus t$ δεν μπορεί να 
+    περιέχει περισσότερα από $d$ \foreignlanguage{english}{bits} ίσα με 
+    ένα, η συντομότερη διαδρομή μεταξύ οποιωνδήποτε δύο επεξεργαστών σε 
+    έναν υπερκύβο δεν μπορεί να έχει περισσότερους από $d$ συνδέσμους.
+\end{enumerate}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    >=stealth,
+    % Στυλ για τους κόμβους (κύκλοι)
+    cn/.style={circle, draw, thick, minimum size=0.6cm, inner sep=0pt, fill=white, font=\small},
+    % Στυλ για τις απλές ακμές
+    edge/.style={thick},
+    % Στυλ για το μονοπάτι (dashed arrows)
+    path/.style={->, dashed, thick}
+]
+
+% ==========================================
+% 0-D Hypercube
+% ==========================================
+\coordinate (P0) at (0, 9);
+\node[cn] at (P0) {};
+\node[below=0.5cm, font=\small] at (P0) {0-Δ υπερκύβος};
+
+% ==========================================
+% 1-D Hypercube
+% ==========================================
+\coordinate (P1_0) at (2.5, 10.2);
+\coordinate (P1_1) at (2.5, 8.0);
+
+\draw[edge] (P1_0) -- (P1_1);
+
+\node[cn, label=left:0] at (P1_0) {};
+\node[cn, label=left:1] at (P1_1) {};
+\node[below=1cm, font=\small] at (P1_1) {1-Δ υπερκύβος};
+
+% ==========================================
+% 2-D Hypercube
+% ==========================================
+\coordinate (P2_00) at (5.0, 10.2);
+\coordinate (P2_10) at (7.5, 10.2);
+\coordinate (P2_01) at (5.0, 8.0);
+\coordinate (P2_11) at (7.5, 8.0);
+
+\draw[edge] (P2_00) -- (P2_10) -- (P2_11) -- (P2_01) -- cycle;
+
+\node[cn, label=left:00]  at (P2_00) {};
+\node[cn, label=below left:10] at (P2_10) {};
+\node[cn, label=left:01]  at (P2_01) {};
+\node[cn, label=above left:11] at (P2_11) {};
+\node[below=1cm, font=\small] at (6.25, 8.0) {2-Δ υπερκύβος};
+
+% ==========================================
+% 3-D Hypercube
+% ==========================================
+% Μπροστινή όψη
+\coordinate (P3_001) at (9.5, 8.0);
+\coordinate (P3_011) at (12.0, 8.0);
+\coordinate (P3_000) at (9.5, 10.2);
+\coordinate (P3_010) at (12.0, 10.2);
+% Πίσω όψη (μετατοπισμένη)
+\coordinate (P3_101) at (10.5, 9.2);
+\coordinate (P3_111) at (13.0, 9.2);
+\coordinate (P3_100) at (10.5, 11.4);
+\coordinate (P3_110) at (13.0, 11.4);
+
+% Ακμές 3-D
+\draw[edge] (P3_001) -- (P3_011) -- (P3_010) -- (P3_000) -- cycle; % Front
+\draw[edge] (P3_101) -- (P3_111) -- (P3_110) -- (P3_100) -- cycle; % Back
+\draw[edge] (P3_001) -- (P3_101); % Συνδέσεις
+\draw[edge] (P3_011) -- (P3_111);
+\draw[edge] (P3_000) -- (P3_100);
+\draw[edge] (P3_010) -- (P3_110);
+
+% Κόμβοι 3-D
+\node[cn, label=below left:001]  at (P3_001) {};
+\node[cn, label=below right:011] at (P3_011) {};
+\node[cn, label=above left:000]  at (P3_000) {};
+\node[cn, label=above left:010] at (P3_010) {};
+\node[cn, label=below right:101] at (P3_101) {};
+\node[cn, label=right:111]       at (P3_111) {};
+\node[cn, label=above left:100]  at (P3_100) {};
+\node[cn, label=above right:110] at (P3_110) {};
+\node[below=1cm, font=\small]  at (11.25, 8.0) {3-Δ υπερκύβος};
+
+
+% ==========================================
+% 4-D Hypercube
+% ==========================================
+% --- LEFT CUBE (Prefix 0) ---
+\coordinate (L0001) at (1.5, 0);
+\coordinate (L0011) at (4.0, 0);
+\coordinate (L0000) at (1.5, 2.5);
+\coordinate (L0010) at (4.0, 2.5);
+
+\coordinate (L0101) at (2.7, 1.6);
+\coordinate (L0111) at (5.2, 1.6);
+\coordinate (L0100) at (2.7, 4.1);
+\coordinate (L0110) at (5.2, 4.1);
+
+% --- RIGHT CUBE (Prefix 1) ---
+\coordinate (R1001) at (9.5, 0);
+\coordinate (R1011) at (12.0, 0);
+\coordinate (R1000) at (9.5, 2.5);
+\coordinate (R1010) at (12.0, 2.5);
+
+\coordinate (R1101) at (10.7, 1.6);
+\coordinate (R1111) at (13.2, 1.6);
+\coordinate (R1100) at (10.7, 4.1);
+\coordinate (R1110) at (13.2, 4.1);
+
+% --- Ακμές 4-D (Σχεδιάζονται πριν τους κόμβους) ---
+% Left Cube Edges
+\draw[edge] (L0001) -- (L0011) -- (L0010) -- (L0000) -- cycle;
+\draw[edge] (L0101) -- (L0110) -- (L0100) -- cycle; % Το L0101-L0111 παραλείπεται εδώ για να μπει dashed
+\draw[edge] (L0111) -- (L0110);
+\draw[edge] (L0001) -- (L0101);
+\draw[edge] (L0010) -- (L0110);
+\draw[edge] (L0000) -- (L0100);
+% Dashed connections για το left cube
+\draw[edge] (L0101) -- (L0111); % s ->
+\draw[edge] (L0111) -- (L0011); % -> προς τα εμπρός
+\draw[path] ([yshift=3pt]L0101) -- ([yshift=3pt]L0111); % s ->
+\draw[path] ([xshift=-3pt]L0111) -- ([xshift=-3pt]L0011); % -> προς τα εμπρός
+
+% Right Cube Edges
+\draw[edge] (R1001) -- (R1011) -- (R1010) -- (R1000) -- cycle;
+\draw[edge] (R1101) -- (R1111) -- (R1110) -- (R1100) -- cycle;
+\draw[edge] (R1001) -- (R1101);
+\draw[edge] (R1011) -- (R1111);
+\draw[edge] (R1010) -- (R1110);
+\draw[edge] (R1000) -- (R1100);
+
+% Curved Ακμές μεταξύ Left & Right (Hypercube connections)
+\draw[edge] (L0100) to[bend left=20] (R1100);
+\draw[edge] (L0110) to[bend left=20] (R1110);
+\draw[edge] (L0000) to[bend left=20] (R1000);
+\draw[edge] (L0010) to[bend left=20] (R1010);
+
+\draw[edge] (L0101) to[bend right=20] (R1101);
+\draw[edge] (L0111) to[bend right=20] (R1111);
+\draw[edge] (L0001) to[bend right=20] (R1001);
+% Η σύνδεση L0011 -> R1011 είναι το τελευταίο βήμα του μονοπατιού (dashed)
+\draw[edge] (L0011) to[bend right=20] (R1011);
+\draw[path] ([yshift=-3pt]L0011) to[bend right=20] ([yshift=-3pt]R1011);
+
+% --- Κόμβοι 4-D (Με λευκό γέμισμα για να κρύβουν τις γραμμές) ---
+% Left
+\node[cn, label=left:0001]       at (L0001) {};
+\node[cn, label=above left:0011]       at (L0011) {};
+\node[cn, label=left:0000]       at (L0000) {};
+\node[cn, label=below right:0010] at (L0010) {};
+\node[cn, label=below:0101]       at (L0101) {};
+\node[cn, label=left:$s$]       at (L0101) {};
+\node[cn, label=above right:0111]at (L0111) {};
+\node[cn, label=left:0100]       at (L0100) {};
+\node[cn, label=below right:0110]      at (L0110) {};
+
+% Right
+\node[cn, label=above left:1001]      at (R1001) {};
+\node[cn, label=below right:1011]at (R1011) {};
+\node[cn, label=below left:1000] at (R1000) {};
+\node[cn, label=above left:1010]      at (R1010) {};
+\node[cn, label=above left:1101]      at (R1101) {};
+\node[cn, label=right:1111]      at (R1111) {};
+\node[cn, label=below left:1100]      at (R1100) {};
+\node[cn, label=above right:1110]at (R1110) {};
+
+\node[below=1.5cm, font=\small] at (6.75, 0) {4-Δ υπερκύβος};
+
+\end{tikzpicture}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Αρχιτεκτονικές συνδεδεμένες με υπερκύβο μηδέν, μίας, δύο, τριών 
+και τεσσάρων διαστάσεων. Το σχήμα επίσης απεικονίζει τη δρομολόγηση ενός 
+μηνύματος από τον επεξεργαστή 0101 στον επεξεργαστή 1011 σε έναν τετραδιάστατο 
+υπερκύβο.}
+\label{fig:graph46}
+\end{figure}
+\vspace{0.3cm}
+
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=0.9,
+    transform shape,
+    >=stealth,
+    % Στυλ για τους κόμβους (κύκλοι)
+    cn/.style={circle, draw, thick, minimum size=0.6cm, inner sep=0pt, fill=white, font=\small},
+    % Στυλ για τις απλές ακμές
+    edge/.style={thick}, boldedge/.style={line width=1.5pt}, % Εδώ ορίζουμε το bold πάχος
+    % Στυλ για το μονοπάτι (dashed arrows)
+    path/.style={->, dashed, thick}
+]
+
+% ==========================================
+% 1ος 3-D Υπερκύβος (Αριστερά)
+% ==========================================
+\begin{scope}[xshift=0cm]
+    % Μπροστινή όψη
+    \coordinate (C1_001) at (0, 8.0);
+    \coordinate (C1_011) at (2.5, 8.0);
+    \coordinate (C1_000) at (0, 10.2);
+    \coordinate (C1_010) at (2.5, 10.2);
+    % Πίσω όψη (μετατοπισμένη)
+    \coordinate (C1_101) at (1.0, 9.2);
+    \coordinate (C1_111) at (3.5, 9.2);
+    \coordinate (C1_100) at (1.0, 11.4);
+    \coordinate (C1_110) at (3.5, 11.4);
+
+    % Ακμές 1ου (μπορείς να αλλάξεις το [edge] σε π.χ. [edge, ultra thick, red])
+    \draw[boldedge] (C1_001) -- (C1_011) -- (C1_010) -- (C1_000) -- cycle; % Front
+    \draw[boldedge] (C1_101) -- (C1_111) -- (C1_110) -- (C1_100) -- cycle; % Back
+    \draw[edge] (C1_001) -- (C1_101); % Συνδέσεις
+    \draw[edge] (C1_011) -- (C1_111);
+    \draw[edge] (C1_000) -- (C1_100);
+    \draw[edge] (C1_010) -- (C1_110);
+
+    % Κόμβοι 1ου
+    \node[cn, label=below left:001]  at (C1_001) {};
+    \node[cn, label=below right:011] at (C1_011) {};
+    \node[cn, label=above left:000]  at (C1_000) {};
+    \node[cn, label=above left:010] at (C1_010) {};
+    \node[cn, label=below right:101] at (C1_101) {};
+    \node[cn, label=right:111]       at (C1_111) {};
+    \node[cn, label=above left:100]  at (C1_100) {};
+    \node[cn, label=above right:110] at (C1_110) {};
+\end{scope}
+
+% ==========================================
+% 2ος 3-D Υπερκύβος (Μέση)
+% ==========================================
+\begin{scope}[xshift=5.5cm]
+    % Μπροστινή όψη
+    \coordinate (C2_001) at (0, 8.0);
+    \coordinate (C2_011) at (2.5, 8.0);
+    \coordinate (C2_000) at (0, 10.2);
+    \coordinate (C2_010) at (2.5, 10.2);
+    % Πίσω όψη
+    \coordinate (C2_101) at (1.0, 9.2);
+    \coordinate (C2_111) at (3.5, 9.2);
+    \coordinate (C2_100) at (1.0, 11.4);
+    \coordinate (C2_110) at (3.5, 11.4);
+
+    % Ακμές 2ου
+    \draw[edge] (C2_001) -- (C2_011) -- (C2_010) -- (C2_000) -- cycle;
+    \draw[edge] (C2_101) -- (C2_111) -- (C2_110) -- (C2_100) -- cycle;
+    \draw[boldedge] (C2_001) -- (C2_101) -- (C2_100) -- (C2_000) -- cycle;
+    \draw[boldedge] (C2_010) -- (C2_110) -- (C2_111) -- (C2_011) -- cycle;
+
+    % Κόμβοι 2ου
+    \node[cn, label=below left:001]  at (C2_001) {};
+    \node[cn, label=below right:011] at (C2_011) {};
+    \node[cn, label=above left:000]  at (C2_000) {};
+    \node[cn, label=above left:010] at (C2_010) {};
+    \node[cn, label=below right:101] at (C2_101) {};
+    \node[cn, label=right:111]       at (C2_111) {};
+    \node[cn, label=above left:100]  at (C2_100) {};
+    \node[cn, label=above right:110] at (C2_110) {};
+\end{scope}
+
+% ==========================================
+% 3ος 3-D Υπερκύβος (Δεξιά)
+% ==========================================
+\begin{scope}[xshift=11.0cm]
+    % Μπροστινή όψη
+    \coordinate (C3_001) at (0, 8.0);
+    \coordinate (C3_011) at (2.5, 8.0);
+    \coordinate (C3_000) at (0, 10.2);
+    \coordinate (C3_010) at (2.5, 10.2);
+    % Πίσω όψη
+    \coordinate (C3_101) at (1.0, 9.2);
+    \coordinate (C3_111) at (3.5, 9.2);
+    \coordinate (C3_100) at (1.0, 11.4);
+    \coordinate (C3_110) at (3.5, 11.4);
+
+    % Ακμές 3ου
+    \draw[edge] (C3_001) -- (C3_011) -- (C3_010) -- (C3_000) -- cycle;
+    \draw[edge] (C3_101) -- (C3_111) -- (C3_110) -- (C3_100) -- cycle;
+    \draw[boldedge] (C3_001) -- (C3_101) -- (C3_111) -- (C3_011) -- cycle;
+    \draw[boldedge] (C3_000) -- (C3_100) -- (C3_110) -- (C3_010) -- cycle;
+
+    % Κόμβοι 3ου
+    \node[cn, label=below left:001]  at (C3_001) {};
+    \node[cn, label=below right:011] at (C3_011) {};
+    \node[cn, label=above left:000]  at (C3_000) {};
+    \node[cn, label=above left:010] at (C3_010) {};
+    \node[cn, label=below right:101] at (C3_101) {};
+    \node[cn, label=right:111]       at (C3_111) {};
+    \node[cn, label=above left:100]  at (C3_100) {};
+    \node[cn, label=above right:110] at (C3_110) {};
+\end{scope}
+
+\end{tikzpicture}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Τρεις διακριτές διαμερίσεις ενός τρισδιάστατου υπερκύβου σε δύο 
+δισδιάστατους κύβους. Οι σύνδεσμοι που συνδέουν επεξεργαστές μέσα σε μία 
+διαμέριση υποδεικνύονται με έντονες γραμμές.}
+\label{fig:graph47}
 \end{figure}
 \vspace{0.3cm}
 
