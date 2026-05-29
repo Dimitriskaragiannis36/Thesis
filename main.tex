@@ -1780,6 +1780,588 @@ $p/2$ στοιχεία μεταγωγής. Κάθε μεταγωγέας λει�
 \end{figure}
 \vspace{0.3cm}
 
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+
+% ---- Ετικέτες εισόδου ----
+\node[left, font=\small] at (0, 7.0) {\texttt{000}};
+\node[left, font=\small] at (0, 6.2) {\texttt{001}};
+\node[left, font=\small] at (0, 5.0) {\texttt{010}};
+\node[left, font=\small] at (0, 4.2) {\texttt{011}};
+\node[left, font=\small] at (0, 3.0) {\texttt{100}};
+\node[left, font=\small] at (0, 2.2) {\texttt{101}};
+\node[left, font=\small] at (0, 1.0) {\texttt{110}};
+\node[left, font=\small] at (0, 0.2) {\texttt{111}};
+
+% ---- Οριζόντιες γραμμές εισόδου → Στάδιο 1 ----
+\foreach \y in {7.0, 0.2}
+    \draw (0, \y) -- (1.5, \y);
+
+% ---- Shuffle Στάδιο 0 → Στάδιο 1 ----
+\draw (0.0, 6.2) -- (1.5, 4.8);
+\draw (0.0, 5.0) -- (1.5, 2.8);
+\draw [dashed] (0.0, 4.9) -- (1.5, 2.7);
+\draw [dashed] (1.5, 2.7) -- (2.7, 2.2) node[right] {$A$};
+\draw (0.0, 4.2) -- (1.5, 0.8);
+\draw (0.0, 3.0) -- (1.5, 6.4);
+\draw (0.0, 2.2) -- (1.5, 4.4);
+\draw (0.0, 1.0) -- (1.5, 2.4);
+\draw [dashed] (0.0, 0.9) -- (1.5, 2.3);
+\draw [dashed] (1.5, 2.3) -- (2.7, 2.2);
+
+
+% ---- Στάδιο 1: κουτιά διακοπτών ----
+\draw (1.5, 6.0) rectangle (2.7, 7.2);
+\draw (1.5, 4.0) rectangle (2.7, 5.2);
+\draw (1.5, 2.0) rectangle (2.7, 3.2);
+\draw (1.5, 0.0) rectangle (2.7, 1.2);
+
+% ---- Shuffle Στάδιο 1 → Στάδιο 2 ----
+% 0→0, 1→2, 2→4, 3→6, 4→1, 5→3, 6→5, 7→7
+\draw (2.7, 7.0) -- (4.5, 7.0);
+\draw (2.7, 6.2) -- (4.5, 5.0);
+\draw (2.7, 5.0) -- (4.5, 3.0);
+\draw (2.7, 4.2) -- (4.5, 1.0);
+\draw (2.7, 3.0) -- (4.5, 6.2);
+\draw (2.7, 2.2) -- (4.5, 4.2);
+\draw [dashed] (2.7, 2.1) -- (4.5, 4.1) node[left] {$B$};
+\draw [dashed] (4.5, 4.1) -- (5.7, 5.0);
+\draw [dashed] (4.5, 4.1) -- (5.7, 4.05);
+\draw (2.7, 1.0) -- (4.5, 2.2);
+\draw (2.7, 0.2) -- (4.5, 0.2);
+
+% ---- Στάδιο 2: κουτιά διακοπτών ----
+\draw (4.5, 6.0) rectangle (5.7, 7.2);
+\draw (4.5, 4.0) rectangle (5.7, 5.2);
+\draw (4.5, 2.0) rectangle (5.7, 3.2);
+\draw (4.5, 0.0) rectangle (5.7, 1.2);
+
+% ---- Shuffle Στάδιο 2 → Στάδιο 3 ----
+\draw (5.7, 7.0) -- (7.5, 7.0);
+\draw (5.7, 6.2) -- (7.5, 5.0);
+\draw (5.7, 5.0) -- (7.5, 3.0);
+\draw [dashed] (5.7, 4.9) -- (7.5, 2.9);
+\draw [dashed] (7.5, 2.9) -- (8.7, 2.9);
+\draw (5.7, 4.2) -- (7.5, 1.0);
+\draw [dashed] (5.7, 4.1) -- (7.5, 0.9);
+\draw [dashed] (7.5, 0.9) -- (8.7, 0.1);
+\draw (5.7, 3.0) -- (7.5, 6.2);
+\draw (5.7, 2.2) -- (7.5, 4.2);
+\draw (5.7, 1.0) -- (7.5, 2.2);
+\draw (5.7, 0.2) -- (7.5, 0.2);
+
+% ---- Στάδιο 3: κουτιά διακοπτών ----
+\draw (7.5, 6.0) rectangle (8.7, 7.2);
+\draw (7.5, 4.0) rectangle (8.7, 5.2);
+\draw (7.5, 2.0) rectangle (8.7, 3.2);
+\draw (7.5, 0.0) rectangle (8.7, 1.2);
+
+% ---- Οριζόντιες γραμμές Στάδιο 3 → εξόδους ----
+\foreach \y in {7.0, 6.2, 5.0, 4.2, 3.0, 2.2, 1.0, 0.2}
+    \draw (8.7, \y) -- (10.2, \y);
+
+\draw [dashed] (8.7, 2.9) -- (10.2, 2.9);
+\draw [dashed] (8.7, 0.1) -- (10.2, 0.1);
+
+% ---- Ετικέτες εξόδου ----
+\node[right, font=\small] at (10.2, 7.0) {\texttt{000}};
+\node[right, font=\small] at (10.2, 6.2) {\texttt{001}};
+\node[right, font=\small] at (10.2, 5.0) {\texttt{010}};
+\node[right, font=\small] at (10.2, 4.2) {\texttt{011}};
+\node[right, font=\small] at (10.2, 3.0) {\texttt{100}};
+\node[right, font=\small] at (10.2, 2.2) {\texttt{101}};
+\node[right, font=\small] at (10.2, 1.0) {\texttt{110}};
+\node[right, font=\small] at (10.2, 0.2) {\texttt{111}};
+
+\end{tikzpicture}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Ένα παράδειγμα αποκλεισμού σε ένα δίκτυο ωμέγα: ένα από τα μηνύματα
+(010 σε 111 ή 110 σε 100) μπλοκάρεται στον σύνδεσμο ΑΒ.}
+\label{fig:graph40}
+\end{figure}
+\vspace{0.3cm}
+
+\subsection{Στατικά Δίκτυα Διασύνδεσης}
+Οι αρχιτεκτονικές ανταλλαγής μηνυμάτων χρησιμοποιούν συνήθως στατικά 
+δίκτυα διασύνδεσης για τη σύνδεση επεξεργαστών. Σε αυτή την ενότητα, 
+συζητούμε μερικά σημαντικά στατικά δίκτυα διασύνδεσης και τις ιδιότητές τους.
+
+\subsubsection{Τύποι Στατικών Δικτύων Διασύνδεσης}
+\subsubsection*{Πλήρως Συνδεδεμένο Δίκτυο}
+Σε ένα \textbf{πλήρως συνδεδεμένο δίκτυο} (\foreignlanguage{english}{completely-connected network}), 
+κάθε επεξεργαστής διαθέτει έναν άμεσο σύνδεσμο επικοινωνίας με κάθε άλλον 
+επεξεργαστή του δικτύου. Το Σχήμα \ref{fig:graph41}(α) απεικονίζει ένα 
+πλήρως συνδεδεμένο δίκτυο οκτώ επεξεργαστών. Το δίκτυο αυτό είναι ιδανικό 
+με την έννοια ότι ένας επεξεργαστής μπορεί να στείλει ένα μήνυμα σε έναν 
+άλλο επεξεργαστή σε ένα μόνο βήμα, αφού υπάρχει σύνδεσμος επικοινωνίας 
+μεταξύ τους. Τα πλήρως συνδεδεμένα δίκτυα αποτελούν τα στατικά αντίστοιχα 
+των δικτύων μεταγωγής εγκάρσιας ράβδου, αφού και στα δύο δίκτυα η 
+επικοινωνία μεταξύ οποιουδήποτε ζεύγους εισόδου/εξόδου δεν εμποδίζει την 
+επικοινωνία μεταξύ οποιουδήποτε άλλου ζεύγους. Ωστόσο, τα 
+πλήρως συνδεδεμένα δίκτυα μπορούν να υποστηρίξουν επικοινωνία μέσω 
+πολλαπλών καναλιών που ξεκινούν από τον ίδιο επεξεργαστή, ενώ οι 
+διακόπτες μεταγωγής εγκάρσιας ράβδου δεν μπορούν.
+
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+
+% ============ (a) Πλήρως συνδεδεμένο δίκτυο 8 κόμβων ============
+\begin{scope}[xshift=0cm]
+
+% Σχεδίαση ακμών πρώτα (κάτω από τους κόμβους)
+\foreach \i in {0,...,7} {
+    \foreach \j in {0,...,7} {
+        \ifnum\j>\i
+            \draw ({2*cos(90+\i*45)}, {2*sin(90+\i*45)})
+               -- ({2*cos(90+\j*45)}, {2*sin(90+\j*45)});
+        \fi
+    }
+}
+
+% Σχεδίαση κόμβων πάνω από τις ακμές
+\foreach \i in {0,...,7} {
+    \node[circle, draw, fill=white, minimum size=0.35cm, inner sep=0pt]
+        at ({2*cos(90+\i*45)}, {2*sin(90+\i*45)}) {};
+}
+
+% Ετικέτα
+\node[font=\small] at (0, -2.8) {(α)};
+
+\end{scope}
+
+% ============ (b) Δίκτυο αστέρα 9 κόμβων ============
+\begin{scope}[xshift=7.5cm]
+
+% Κεντρικός κόμβος
+\node[circle, draw, fill=white, minimum size=0.35cm, inner sep=0pt]
+    (C) at (0, 0) {};
+
+% Εξωτερικοί κόμβοι και συνδέσεις με κέντρο
+\foreach \i in {0,...,7} {
+    \node[circle, draw, fill=white, minimum size=0.35cm, inner sep=0pt]
+        (S\i) at ({2*cos(90+\i*45)}, {2*sin(90+\i*45)}) {};
+    \draw (C) -- (S\i);
+}
+
+% Ετικέτα
+\node[font=\small] at (0, -2.8) {(β)};
+
+\end{scope}
+
+\end{tikzpicture}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Ένα πλήρως συνδεδεμένο δίκτυο οκτώ επεξεργαστών (α) και ένα 
+συνδεδεμένο δίκτυο αστέρα εννέα επεξεργαστών (β).}
+\label{fig:graph41}
+\end{figure}
+\vspace{0.3cm}
+
+\subsubsection*{Δίκτυο Αστέρα} 
+Σε ένα \textbf{δίκτυο αστέρα} (\foreignlanguage{english}{star-connected network}), 
+ένας επεξεργαστής λειτουργεί ως ο κεντρικός επεξεργαστής. Κάθε άλλος 
+επεξεργαστής διαθέτει έναν σύνδεσμο επικοινωνίας που τον συνδέει με αυτόν 
+τον επεξεργαστή. Το Σχήμα \ref{fig:graph41}(b) δείχνει ένα συνδεδεμένο 
+δίκτυο αστέρα εννέα επεξεργαστών. Το συνδεδεμένο δίκτυο αστέρα είναι 
+παρόμοιο με τα δίκτυα τοπολογίας διαύλου. Η επικοινωνία μεταξύ οποιουδήποτε 
+ζεύγους επεξεργαστών δρομολογείται μέσω του κεντρικού επεξεργαστή, όπως 
+ακριβώς ο διαμοιραζόμενος δίαυλος αποτελεί το μέσο για όλη την επικοινωνία 
+σε ένα δίκτυο τοπολογίας διαύλου. Ο κεντρικός επεξεργαστής αποτελεί το 
+σημείο συμφόρησης στην τοπολογία αστέρα.
+
+Ένα δίκτυο σταθμών εργασίας που συνδέονται χρησιμοποιώντας ένα 
+\foreignlanguage{english}{ethernet} μπορεί να χρησιμοποιηθεί ως ένας 
+παράλληλος υπολογιστής. Το \foreignlanguage{english}{ethernet} σχηματίζει 
+ένα κοινό μέσο για την επικοινωνία μηνυμάτων μεταξύ επεξεργαστών. Ένα τέτοιο 
+δίκτυο παρουσιάζει χαρακτηριστικά απόδοσης παρόμοια με εκείνα των  παράλληλων 
+υπολογιστών σύνδεσης αστέρα και τοπολογίας διαύλου.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}
+
+% ============ (a) Γραμμική συστοιχία 4 κόμβων ============
+\begin{scope}[xshift=0cm]
+
+% Κόμβοι
+\foreach \i in {0,...,3} {
+    \node[circle, draw, fill=white, minimum size=0.65cm, inner sep=0pt]
+        (A\i) at (\i*1.6, 0) {};
+}
+% Ακμές
+\draw (A0) -- (A1);
+\draw (A1) -- (A2);
+\draw (A2) -- (A3);
+
+\node[font=\small] at (2.4, -0.8) {(α)};
+
+\end{scope}
+
+% ============ (b) Δακτύλιος 4 κόμβων ============
+\begin{scope}[xshift=7.5cm]
+
+% Κλείσιμο δακτυλίου κάτω
+\draw
+(-0.325,0) -- (-0.55,0)
+.. controls (-0.75,-0.05) and (-0.75,-0.65) .. (-0.2,-0.65)
+-- (5.0,-0.65)
+.. controls (5.55,-0.65) and (5.55,-0.05) .. (5.35,0)
+-- (5.125,0);
+
+% Οριζόντιες συνδέσεις πάνω
+\draw (0, 0) -- (1.6, 0);
+\draw (1.6, 0) -- (3.2, 0);
+\draw (3.2, 0) -- (4.8, 0);
+
+% Κόμβοι (πάνω από τις γραμμές)
+\foreach \i in {0,...,3} {
+    \node[circle, draw, fill=white, minimum size=0.65cm, inner sep=0pt]
+        at (\i*1.6, 0) {};
+}
+
+\node[font=\small] at (2.4, -1.1) {(β)};
+
+\end{scope}
+
+\end{tikzpicture}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Μια γραμμική συστοιχία τεσσάρων επεξεργαστών (α) και ένας
+δακτύλιος τεσσάρων επεξεργαστών (β).}
+\label{fig:graph42}
+\end{figure}
+\vspace{0.3cm}
+
+\subsubsection*{Γραμμική Συστοιχία και Δακτύλιος}
+Ένας απλός τρόπος σύνδεσης επεξεργαστών παρουσιάζεται στο Σχήμα \ref{fig:graph42}(α). 
+Κάθε επεξεργαστής σε αυτό το δίκτυο (εκτός από τους επεξεργαστές στα άκρα) 
+διαθέτει έναν άμεσο σύνδεσμο επικοινωνίας με δύο άλλους επεξεργαστές. 
+Ένα τέτοιο δίκτυο διασύνδεσης ονομάζεται \textbf{γραμμική συστοιχία} 
+(\foreignlanguage{english}{linear array}). Μία σύνδεση επαναφοράς παρέχεται 
+συχνά μεταξύ των επεξεργαστών στα άκρα. 
+Μία γραμμική συστοιχία με σύνδεση επαναφοράς αναφέρεται ως \textbf{δακτύλιος} 
+(\foreignlanguage{english}{ring}). Το Σχήμα \ref{fig:graph42}(b) δείχνει 
+έναν δακτύλιο τεσσάρων επεξεργαστών. Ένας τρόπος επικοινωνίας ενός μηνύματος 
+μεταξύ επεξεργαστών είναι να το προωθούν επανειλημμένα στον αμέσως δεξιό 
+(ή αριστερό ανάλογα με το ποια κατεύθυνση δίνει συντομότερη διαδρομή) 
+επεξεργαστή, μέχρι να φτάσει στον προορισμό του.Παράλληλοι υπολογιστές 
+που χρησιμοποιούν δίκτυο δακτυλίου περιλαμβάνουν τους 
+\foreignlanguage{english}{ZMOB} και \foreignlanguage{english}{CDC Cyberplus}.
+
+\subsubsection*{Δίκτυο Πλέγματος}
+Το \textbf{δισδιάστατο πλέγμα} (\foreignlanguage{english}{two-dimensional mesh}) 
+είναι μια επέκταση της γραμμικής συστοιχίας σε δύο διαστάσεις. Σε ένα 
+δισδιάστατο πλέγμα, κάθε επεξεργαστής διαθέτει έναν άμεσο σύνδεσμο 
+επικοινωνίας που τον συνδέει με τέσσερις άλλους επεξεργαστές. Το Σχήμα 
+\ref{fig:graph43}(α) παρουσιάζει ένα δισδιάστατο πλέγμα εννέα επεξεργαστών. 
+Αν και οι δύο διαστάσεις του πλέγματος περιέχουν ίσο αριθμό επεξεργαστών, 
+τότε ονομάζεται \textbf{τετραγωνικό πλέγμα} (\foreignlanguage{english}{square mesh}). 
+Διαφορετικά, ονομάζεται \textbf{ορθογώνιο πλέγμα}
+(\foreignlanguage{english}{rectangular mesh}).
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    mesh_node/.style={circle, draw, fill=white, inner sep=0pt, minimum size=6.5pt, thick},
+    routing_path/.style={dashed, ->, >=stealth, thick}
+]
+
+    % ==========================================
+    % SCHEME (a) - Two-dimensional mesh
+    % ==========================================
+    \begin{scope}[xshift=0cm]
+        % Grid Lines
+        \foreach \y in {0,1,2} {
+            \draw[thick, gray!80] (0, \y*1.3) -- (2*1.3, \y*1.3);
+        }
+        \foreach \x in {0,1,2} {
+            \draw[thick, gray!80] (\x*1.3, 0) -- (\x*1.3, 2*1.3);
+        }
+        
+        % Routing Path (Dashed Arrows)
+        % Slightly y-shifted up for horizontal, x-shifted left for vertical
+        \draw[routing_path] (0, 1.3+0.07) -- (1.3, 1.3+0.07);
+        \draw[routing_path] (1.3, 1.3+0.07) -- (2.6, 1.3+0.07);
+        \draw[routing_path] (2.6-0.07, 1.3) -- (2.6-0.07, 0);
+
+        % Nodes Placed on Top
+        \foreach \x in {0,1,2} {
+            \foreach \y in {0,1,2} {
+                \node[mesh_node] at (\x*1.3, \y*1.3) {};
+            }
+        }
+        
+        % Labels
+        \node[below left] at (0, 1.3) {$P_s$};
+        \node[below left] at (2.6, 0) {$P_d$};
+        \node at (1.3, -1.0) {(α)};
+    \end{scope}
+
+
+    % ==========================================
+    % SCHEME (b) - Two-dimensional wraparound mesh
+    % ==========================================
+    \begin{scope}[xshift=5.2cm]
+        % Grid Lines
+        \foreach \y in {0,1,2} {
+            \draw[thick, gray!80] (0, \y*1.3) -- (2*1.3, \y*1.3);
+        }
+        \foreach \x in {0,1,2} {
+            \draw[thick, gray!80] (\x*1.3, 0) -- (\x*1.3, 2*1.3);
+        }
+        
+        % Wraparound Solid Lines (Rows)
+        % Top Row
+        \draw[thick, gray!80] (0, 2.6) .. controls (-0.4, 2.6) and (-0.4, 2.9) .. (0, 2.9) 
+                              -- (2.6, 2.9) .. controls (3.0, 2.9) and (3.0, 2.6) .. (2.6, 2.6);
+        % Middle Row
+        \draw[thick, gray!80] (0, 1.3) .. controls (-0.4, 1.3) and (-0.4, 1.6) .. (0, 1.6) 
+                              -- (2.6, 1.6) .. controls (3.0, 1.6) and (3.0, 1.3) .. (2.6, 1.3);
+        % Bottom Row
+        \draw[thick, gray!80] (0, 0) .. controls (-0.4, 0) and (-0.4, -0.3) .. (0, -0.3) 
+                              -- (2.6, -0.3) .. controls (3.0, -0.3) and (3.0, 0) .. (2.6, 0);
+
+       % Wraparound Solid Lines (Columns - shifted to the RIGHT & extended UP/DOWN)
+        % Left Column (loops to x = 0.3)
+        \draw[thick, gray!80] (0, 2.6) .. controls (0, 3.4) and (0.3, 3.4) .. (0.3, 2.6) 
+                              -- (0.3, 0) .. controls (0.3, -0.8) and (0, -0.8) .. (0, 0);
+        % Middle Column (loops to x = 1.6)
+        \draw[thick, gray!80] (1.3, 2.6) .. controls (1.3, 3.4) and (1.6, 3.4) .. (1.6, 2.6) 
+                              -- (1.6, 0) .. controls (1.6, -0.8) and (1.3, -0.8) .. (1.3, 0);
+        % Right Column (loops to x = 2.9)
+        \draw[thick, gray!80] (2.6, 2.6) .. controls (2.6, 3.4) and (2.9, 3.4) .. (2.9, 2.6) 
+                              -- (2.9, 0) .. controls (2.9, -0.8) and (2.6, -0.8) .. (2.6, 0);
+
+        % Wraparound Routing Path (Dashed Outer Sleeve)
+        \draw[routing_path] (0, 1.3) .. controls (-0.5, 1.3) and (-0.5, 1.72) .. (0, 1.72) -- (1.3, 1.72);
+        \draw[routing_path] (1.3, 1.72) -- (2.6, 1.72) .. controls (3.1, 1.72) and (3.1, 1.3) .. (2.6, 1.3);
+        \draw[routing_path] (2.6-0.07, 1.3) -- (2.6-0.07, 0);
+
+        % Nodes Placed on Top
+        \foreach \x in {0,1,2} {
+            \foreach \y in {0,1,2} {
+                \node[mesh_node] at (\x*1.3, \y*1.3) {};
+            }
+        }
+
+        % Labels
+        \node[below left] at (0, 1.3) {$P_s$};
+        \node[below left] at (2.6, 0) {$P_d$};
+        \node at (1.3, -1.0) {(β)};
+    \end{scope}
+
+
+   % ==========================================
+    % SCHEME (c) - Three-dimensional mesh (LARGER, NODES OVERLAP)
+    % ==========================================
+    \begin{scope}[xshift=10.2cm]
+        % Define layers spacing for 3D perspective projection
+        % Layer 0: Front, Layer 1: Middle, Layer 2: Back
+        
+        % -- ΝΕΟ: Αυξημένη κλίμακα (s) για μεγαλύτερο κύβο, μειωμένη μετατόπιση (dx,dy) για επικάλυψη --
+        \pgfmathsetmacro{\s}{1.3} % Απόσταση μεταξύ κόμβων σε ένα επίπεδο (x, y)
+        \pgfmathsetmacro{\dx}{0.3} % Μετατόπιση X μεταξύ επιπέδων (perspective)
+        \pgfmathsetmacro{\dy}{0.25} % Μετατόπιση Y μεταξύ επιπέδων (perspective)
+
+        % 1. Draw ALL connecting grid/depth lines first
+        \foreach \l in {0,1,2} {
+            \pgfmathsetmacro{\ox}{\l*\dx}
+            \pgfmathsetmacro{\oy}{\l*\dy}
+            
+            % Horizontal Lines per layer
+            \foreach \y in {0,1,2} {
+                \draw[thick, gray!80] (\ox, \y*\s + \oy) -- (2*\s + \ox, \y*\s + \oy);
+            }
+            % Vertical Lines per layer
+            \foreach \x in {0,1,2} {
+                \draw[thick, gray!80] (\x*\s + \ox, \oy) -- (\x*\s + \ox, 2*\s + \oy);
+            }
+        }
+        
+        % Depth interconnect lines (Z-axis) - connecting front to back
+        \foreach \x in {0,1,2} {
+            \foreach \y in {0,1,2} {
+                \draw[thick, gray!80] (\x*\s, \y*\s) -- (\x*\s + 2*\dx, \y*\s + 2*\dy);
+            }
+        }
+
+        % 2. Draw Nodes BACK-TO-FRONT for proper overlapping perspective
+        % Σχεδίαση Επιπέδου 2 (Πίσω)
+        \foreach \x in {0,1,2} {
+            \foreach \y in {0,1,2} {
+                \node[mesh_node] at (\x*\s + 2*\dx, \y*\s + 2*\dy) {};
+            }
+        }
+        % Σχεδίαση Επιπέδου 1 (Μεσαίο)
+        \foreach \x in {0,1,2} {
+            \foreach \y in {0,1,2} {
+                \node[mesh_node] at (\x*\s + 1*\dx, \y*\s + 1*\dy) {};
+            }
+        }
+        % Σχεδίαση Επιπέδου 0 (Μπροστά)
+        \foreach \x in {0,1,2} {
+            \foreach \y in {0,1,2} {
+                \node[mesh_node] at (\x*\s + 0*\dx, \y*\s + 0*\dy) {};
+            }
+        }
+        
+        % Label - reposition for larger size and proper centering
+        \node at (1.6, -1.0) {(γ)};
+    \end{scope}
+
+\end{tikzpicture}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{(α) Ένα δισδιάστατο πλέγμα με παράδειγμα δρομολόγησης ενός 
+μηνύματος από τον επεξεργαστή $P_s$ στον επεξεργαστή $P_d$. 
+(β) Ένα δισδιάστατο πλέγμα με σύνδεση επαναφοράς με παράδειγμα 
+δρομολόγησης ενός μηνύματος από τον επεξεργαστή $P_s$ στον επεξεργαστή $P_d$. 
+(γ) Ένα τρισδιάστατο πλέγμα.}
+\label{fig:graph43}
+\end{figure}
+\vspace{0.3cm}
+
+Συχνά, οι επεξεργαστές στην περιφέρεια συνδέονται με συνδέσεις επαναφοράς. 
+Ένα τέτοιο πλέγμα ονομάζεται \textbf{πλέγμα επαναφοράς} 
+(\foreignlanguage{english}{wraparound mesh}) ή \textbf{τοροειδές} (\foreignlanguage{english}{torus}) 
+{(}Σχήμα \ref{fig:graph43}(β){)}. Ένα μήνυμα από έναν επεξεργαστή σε έναν άλλο 
+μπορεί να δρομολογηθεί στο πλέγμα στέλνοντάς το αρχικά κατά μήκος της μίας 
+διάστασης και στη συνέχεια κατά μήκος της άλλης διάστασης μέχρι να φτάσει 
+στον προορισμό του. Τα Σχήματα \ref{fig:graph43}(α) και (β) παρουσιάζουν 
+αυτήν τη στρατηγική δρομολόγησης για την επικοινωνία ενός μηνύματος μεταξύ 
+δύο επεξεργαστών. Συνήθεις επεκτάσεις του δισδιάστατου πλέγματος 
+περιλαμβάνουν το \textbf{τρισδιάστατο πλέγμα} (\foreignlanguage{english}{three-dimensional mesh}) 
+και το \textbf{τρισδιάστατο πλέγμα επαναφοράς} (\foreignlanguage{english}{three-dimensional wraparound mesh}). 
+Το Σχήμα \ref{fig:graph43}(γ) παρουσιάζει ένα τρισδιάστατο πλέγμα. Πολλοί εμπορικά διαθέσιμοι 
+παράλληλοι υπολογιστές βασίζονται στο δίκτυο πλέγματος. Αυτοί περιλαμβάνουν 
+δισδιάστατα πλέγματα όπως τα \foreignlanguage{english}{DAP} και 
+\foreignlanguage{english}{Paragon XP/S}, καθώς και τρισδιάστατα πλέγματα όπως 
+τα \foreignlanguage{english}{Cray T3D} και \foreignlanguage{english}{J-Machine}. 
+Ο υπολογιστής \foreignlanguage{english}{Tera} βασίζεται σε ένα αραιό τρισδιάστατο 
+δίκτυο πλέγματος.
+
+\subsubsection*{Δίκτυο Δέντρου} 
+Ένα \textbf{δίκτυο δέντρου} (\foreignlanguage{english}{tree network})  
+είναι ένα δίκτυο στο οποίο υπάρχει μόνο μία διαδρομή μεταξύ κάθε ζεύγους 
+επεξεργαστών. Τόσο οιγραμμικές συστοιχίες όσο και τα δίκτυα σύνδεσης 
+αστέρα αποτελούν ειδικές περιπτώσεις ...
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    processor/.style={circle, draw, fill=white, thick, minimum size=15pt, inner sep=0pt},
+    switch/.style={rectangle, draw, fill=white, thick, minimum size=13pt, inner sep=0pt},
+    link/.style={thick, black!80},
+    route/.style={dashed, ->, >=stealth, thick}
+]
+
+    % ==========================================
+    % ΛΕΖΑΝΤΑ / LEGEND (Πάνω δεξιά)
+    % ==========================================
+    \begin{scope}[xshift=8.2cm, yshift=1.3cm]
+        \node[processor] (leg_p) at (0, 0.7) {};
+        \node[right=0.2cm of leg_p] {\small Επεξεργαστές};
+        
+        \node[switch] (leg_s) at (0, 0) {};
+        \node[right=0.2cm of leg_s] {\small Στοχεία μεταγωγής};
+    \end{scope}
+
+
+    % ==========================================
+    % ΣΧΗΜΑ (a) - Κλασικό Δυαδικό Δέντρο
+    % ==========================================
+    \begin{scope}[xshift=0cm]
+        % Συντεταγμένες Κόμβων
+        % Επίπεδο 0 (Ρίζα)
+        \coordinate (RootA) at (0, 2.2);
+        % Επίπεδο 1
+        \coordinate (L1A) at (-1.0, 1.1);
+        \coordinate (R1A) at (1.0, 1.1);
+        % Επίπεδο 2 (Φύλλα)
+        \coordinate (Leaf1A) at (-1.7, 0);
+        \coordinate (Leaf2A) at (-0.4, 0); % P_s
+        \coordinate (Leaf3A) at (0.4, 0);
+        \coordinate (Leaf4A) at (1.7, 0);  % P_d
+
+        % 1. Γραμμές Δέντρου (Edges)
+        \draw[link] (RootA) -- (L1A);
+        \draw[link] (RootA) -- (R1A);
+        \draw[link] (L1A) -- (Leaf1A);
+        \draw[link] (L1A) -- (Leaf2A);
+        \draw[link] (R1A) -- (Leaf3A);
+        \draw[link] (R1A) -- (Leaf4A);
+
+        % 2. Διαδρομή Δρομολόγησης (Dashed Arrows shifted to the right)
+        \draw[route] (-0.3, 0.15) -- (-0.9, 1.0);   % Από Ps προς Αριστερό Παιδί
+        \draw[route] (-0.9, 1.15) -- (-0.00, 2.1);   % Από Αριστερό Παιδί προς Ρίζα
+        \draw[route] (0.00, 2.1) -- (1.0, 1.0);    % Από Ρίζα προς Δεξί Παιδί
+        \draw[route] (0.95, 0.9) -- (1.6, 0.0);    % Από Δεξί Παιδί προς Pd
+
+        % 3. Τοποθέτηση Κόμβων (Όλοι Processors - Κύκλοι)
+        \node[processor] at (RootA) {};
+        \node[processor] at (L1A) {};
+        \node[processor] at (R1A) {};
+        \node[processor] at (Leaf1A) {};
+        \node[processor] at (Leaf2A) {};
+        \node[processor] at (Leaf3A) {};
+        \node[processor] at (Leaf4A) {};
+
+        % Ετικέτες
+        \node[below=5pt] at (Leaf2A) {$P_s$};
+        \node[below=5pt] at (Leaf4A) {$P_d$};
+        \node at (0, -1.0) {(α)};
+    \end{scope}
+
+
+    % ==========================================
+    % ΣΧΗΜΑ (b) - Δέντρο με Διακόπτες (Switches)
+    % ==========================================
+    \begin{scope}[xshift=4.8cm]
+        % Συντεταγμένες Κόμβων (Ίδιες αποστάσεις για ομοιομορφία)
+        \coordinate (RootB) at (0, 2.2);
+        \coordinate (L1B) at (-1.0, 1.1);
+        \coordinate (R1B) at (1.0, 1.1);
+        \coordinate (Leaf1B) at (-1.7, 0);
+        \coordinate (Leaf2B) at (-0.4, 0); % P_s
+        \coordinate (Leaf3B) at (0.4, 0);
+        \coordinate (Leaf4B) at (1.7, 0);  % P_d
+
+        % 1. Γραμμές Δέντρου (Edges)
+        \draw[link] (RootB) -- (L1B);
+        \draw[link] (RootB) -- (R1B);
+        \draw[link] (L1B) -- (Leaf1B);
+        \draw[link] (L1B) -- (Leaf2B);
+        \draw[link] (R1B) -- (Leaf3B);
+        \draw[link] (R1B) -- (Leaf4B);
+
+        % 2. Διαδρομή Δρομολόγησης (Dashed Arrows)
+        \draw[route] (-0.3, 0.15) -- (-0.9, 1.0);   % Από Ps προς Αριστερό Παιδί
+        \draw[route] (-0.9, 1.15) -- (-0.00, 2.1);   % Από Αριστερό Παιδί προς Ρίζα
+        \draw[route] (0.00, 2.1) -- (1.0, 1.0);    % Από Ρίζα προς Δεξί Παιδί
+        \draw[route] (0.95, 0.9) -- (1.6, 0.0);    % Από Δεξί Παιδί προς Pd
+
+        % 3. Τοποθέτηση Κόμβων (Εσωτερικοί = Διακόπτες, Φύλλα = Processors)
+        \node[switch] at (RootB) {};
+        \node[switch] at (L1B) {};
+        \node[switch] at (R1B) {};
+        \node[processor] at (Leaf1B) {};
+        \node[processor] at (Leaf2B) {};
+        \node[processor] at (Leaf3B) {};
+        \node[processor] at (Leaf4B) {};
+
+        % Ετικέτες
+        \node[below=5pt] at (Leaf2B) {$P_s$};
+        \node[below=5pt] at (Leaf4B) {$P_d$};
+        \node at (0, -1.0) {(β)};
+    \end{scope}
+
+\end{tikzpicture}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Πλήρη δυαδικά δέντρα δικτύων και δρομολόγηση μηνυμάτων σε αυτά.}
+\label{fig:graph44}
+\end{figure}
+\vspace{0.3cm}
+
 \section{Αλγόριθμοι Γραφημάτων}
 Η θεωρία γραφημάτων διαδραματίζει σημαντικό ρόλο στην επιστήμη των υπολογιστών, επειδή παρέχει έναν εύκολο και συστηματικό τρόπο για τη μοντελοποίηση πολλών προβλημάτων. Πολλά προβλήματα μπορούν να εκφραστούν με όρους γραφημάτων και να επιλυθούν με τη χρήση τυπικών αλγορίθμων γραφημάτων. Το παρόν κεφάλαιο παρουσιάζει παράλληλες υλοποιήσεις κάποιων σημαντικών και θεμελιωδών αλγορίθμων γραφημάτων.
 
