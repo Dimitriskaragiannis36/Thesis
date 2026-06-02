@@ -20,9 +20,9 @@
 \contentsline {subsubsection}{\numberline {2.5.2}Ενσωμάτωση ενός Πλέγματος σε Υπερκύβο}{33}{subsubsection.2.5.2}%
 \contentsline {subsubsection}{\numberline {2.5.3}Ενσωμάτωση ενός Δυαδικού Δένδρου σε έναν Υπερκύβο}{34}{subsubsection.2.5.3}%
 \contentsline {subsection}{\numberline {2.6}Μηχανισμοί Δρομολόγησης για Στατικά Δίκτυα}{35}{subsection.2.6}%
-\contentsline {section}{\numberline {3}Αλγόριθμοι Γραφημάτων}{35}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Ορισμοί και Αναπαράσταση}{35}{subsection.3.1}%
-\contentsline {section}{\numberline {4}Eλάχιστο δέντρο επικάλυψης: Ο αλγόριθμος του \foreignlanguage {english}{Prim}}{39}{section.4}%
+\contentsline {section}{\numberline {3}Αλγόριθμοι Γραφημάτων}{37}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Ορισμοί και Αναπαράσταση}{37}{subsection.3.1}%
+\contentsline {section}{\numberline {4}Eλάχιστο δέντρο επικάλυψης: Ο αλγόριθμος του \foreignlanguage {english}{Prim}}{40}{section.4}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
@@ -41,50 +41,46 @@
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {section}{\numberline {5}Συντομότερες Διαδρομές από Μία Πηγή: Ο αλγόριθμος του \foreignlanguage {english}{Dijkstra}}{45}{section.5}%
+\contentsline {section}{\numberline {5}Συντομότερες Διαδρομές από Μία Πηγή: Ο αλγόριθμος του \foreignlanguage {english}{Dijkstra}}{46}{section.5}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \contentsline {subsection}{\numberline {5.1}\foreignlanguage {english}{API}/Σύστημα μεταβίβασης μηνυμάτων}{47}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}\foreignlanguage {english}{API}/Σύστημα κοινής διεύθυνσης}{47}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Γλώσσα}{47}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Περιβάλλον συστήματος}{47}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Δεδομένα δοκιμών}{47}{subsection.5.5}%
-\contentsline {subsection}{\numberline {5.6}Αλγόριθμος}{48}{subsection.5.6}%
-\contentsline {subsubsection}{\numberline {5.6.1}Υλοποίηση του αλγορίθμου του \foreignlanguage {english}{Dijkstra} με \foreignlanguage {english}{MPI}}{48}{subsubsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.2}\foreignlanguage {english}{API}/Σύστημα κοινής διεύθυνσης}{48}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Γλώσσα}{48}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Περιβάλλον συστήματος}{48}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Δεδομένα δοκιμών}{48}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Αλγόριθμος}{49}{subsection.5.6}%
+\contentsline {subsubsection}{\numberline {5.6.1}Υλοποίηση του αλγορίθμου του \foreignlanguage {english}{Dijkstra} με \foreignlanguage {english}{MPI}}{49}{subsubsection.5.6.1}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {subsubsection}{\numberline {5.6.2}Υλοποίηση του αλγορίθμου του \foreignlanguage {english}{Dijkstra} με \foreignlanguage {english}{OpenMP}}{50}{subsubsection.5.6.2}%
+\contentsline {subsubsection}{\numberline {5.6.2}Υλοποίηση του αλγορίθμου του \foreignlanguage {english}{Dijkstra} με \foreignlanguage {english}{OpenMP}}{51}{subsubsection.5.6.2}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {subsection}{\numberline {5.7}Αποτελέσματα Υλοποίησης και Ανάλυση}{51}{subsection.5.7}%
-\contentsline {subsection}{\numberline {5.8}Συμπεράσματα και Περαιτέρω Έρευνα}{57}{subsection.5.8}%
-\contentsline {section}{\numberline {6}Συντομότερες Διαδρομές για Όλα τα Ζεύγη}{58}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Αλγόριθμος βασισμένος στον Πολλαπλασιασμό Πίνακα}{58}{subsection.6.1}%
+\contentsline {subsection}{\numberline {5.7}Αποτελέσματα Υλοποίησης και Ανάλυση}{52}{subsection.5.7}%
+\contentsline {subsection}{\numberline {5.8}Συμπεράσματα και Περαιτέρω Έρευνα}{58}{subsection.5.8}%
+\contentsline {section}{\numberline {6}Συντομότερες Διαδρομές για Όλα τα Ζεύγη}{59}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Αλγόριθμος βασισμένος στον Πολλαπλασιασμό Πίνακα}{59}{subsection.6.1}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {subsection}{\numberline {6.2}Ο αλγόριθμος του \foreignlanguage {english}{Dijkstra}}{60}{subsection.6.2}%
-\contentsline {paragraph}{Υλοποίηση με διαμέριση κατά πηγή}{61}{section*.64}%
-\contentsline {paragraph}{Παράλληλη υλοποίηση πηγής}{61}{section*.65}%
-\babel@toc {english}{}\relax 
-\babel@toc {greek}{}\relax 
-\babel@toc {english}{}\relax 
-\babel@toc {greek}{}\relax 
-\contentsline {subsection}{\numberline {6.3}Ο αλγόριθμος του \foreignlanguage {english}{Floyd}}{63}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.2}Ο αλγόριθμος του \foreignlanguage {english}{Dijkstra}}{61}{subsection.6.2}%
+\contentsline {paragraph}{Υλοποίηση με διαμέριση κατά πηγή}{62}{section*.65}%
+\contentsline {paragraph}{Παράλληλη υλοποίηση πηγής}{62}{section*.66}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
+\contentsline {subsection}{\numberline {6.3}Ο αλγόριθμος του \foreignlanguage {english}{Floyd}}{64}{subsection.6.3}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
-\babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
@@ -103,24 +99,28 @@
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {subsection}{\numberline {6.4}Συγκρίσεις Απόδοσης}{69}{subsection.6.4}%
-\contentsline {section}{\numberline {7}Μεταβατική Κλειστότητα}{70}{section.7}%
-\contentsline {section}{\numberline {8}Συνεκτικές Συνιστώσες}{70}{section.8}%
-\contentsline {subsection}{\numberline {8.1}Αλγόριθμος Βασισμένος στην Αναζήτηση Πρώτα Κατά Βάθος}{71}{subsection.8.1}%
-\contentsline {section}{\numberline {9}Αλγόριθμοι για Αραιά Γραφήματα}{74}{section.9}%
-\babel@toc {english}{}\relax 
-\babel@toc {greek}{}\relax 
-\contentsline {subsection}{\numberline {9.1}Συντομότερα Μονοπάτια Μονής Πηγής}{77}{subsection.9.1}%
-\contentsline {section}{\numberline {10}Δυναμικός Προγραμματισμός}{84}{section.10}%
-\contentsline {subsection}{\numberline {10.1}Σειριακές Μοναδικές Υλοποιήσεις ΔΠ}{86}{subsection.10.1}%
-\contentsline {subsubsection}{\numberline {10.1.1}Το Πρόβλημα του Συντομότερου Μονοπατιού}{86}{subsubsection.10.1.1}%
-\contentsline {subsubsection}{\numberline {10.1.2}Το Πρόβλημα του Σακιδίου 0/1 (\foreignlanguage {english}{The 0/1 Knapsack Problem})}{89}{subsubsection.10.1.2}%
-\contentsline {subsection}{\numberline {10.2}Μη Σειριακές Μοναδικές Διατυπώσεις ΔΠ}{91}{subsection.10.2}%
-\contentsline {subsubsection}{\numberline {10.2.1}Το Πρόβλημα της Μέγιστης Κοινής Υπακολουθίας}{92}{subsubsection.10.2.1}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
+\contentsline {subsection}{\numberline {6.4}Συγκρίσεις Απόδοσης}{70}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Μεταβατική Κλειστότητα}{71}{section.7}%
+\contentsline {section}{\numberline {8}Συνεκτικές Συνιστώσες}{71}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Αλγόριθμος Βασισμένος στην Αναζήτηση Πρώτα Κατά Βάθος}{72}{subsection.8.1}%
+\contentsline {section}{\numberline {9}Αλγόριθμοι για Αραιά Γραφήματα}{75}{section.9}%
 \babel@toc {english}{}\relax 
 \babel@toc {greek}{}\relax 
-\contentsline {section}{Βιβλιογραφία}{95}{section*.96}%
+\contentsline {subsection}{\numberline {9.1}Συντομότερα Μονοπάτια Μονής Πηγής}{78}{subsection.9.1}%
+\contentsline {section}{\numberline {10}Δυναμικός Προγραμματισμός}{85}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Σειριακές Μοναδικές Υλοποιήσεις ΔΠ}{87}{subsection.10.1}%
+\contentsline {subsubsection}{\numberline {10.1.1}Το Πρόβλημα του Συντομότερου Μονοπατιού}{87}{subsubsection.10.1.1}%
+\contentsline {subsubsection}{\numberline {10.1.2}Το Πρόβλημα του Σακιδίου 0/1 (\foreignlanguage {english}{The 0/1 Knapsack Problem})}{90}{subsubsection.10.1.2}%
+\contentsline {subsection}{\numberline {10.2}Μη Σειριακές Μοναδικές Διατυπώσεις ΔΠ}{92}{subsection.10.2}%
+\contentsline {subsubsection}{\numberline {10.2.1}Το Πρόβλημα της Μέγιστης Κοινής Υπακολουθίας}{93}{subsubsection.10.2.1}%
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\babel@toc {english}{}\relax 
+\babel@toc {greek}{}\relax 
+\contentsline {section}{Βιβλιογραφία}{96}{section*.97}%
