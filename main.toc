@@ -15,10 +15,10 @@
 \contentsline {subsection}{\numberline {2.4}Στατικά Δίκτυα Διασύνδεσης}{21}{subsection.2.4}%
 \contentsline {subsubsection}{\numberline {2.4.1}Τύποι Στατικών Δικτύων Διασύνδεσης}{21}{subsubsection.2.4.1}%
 \contentsline {subsubsection}{\numberline {2.4.2}Αξιολόγηση Στατικών Δικτύων Διασύνδεσης}{29}{subsubsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.5}Ενσωμάτωση Άλλων Δικτύων σε Υπερκύβο}{31}{subsection.2.5}%
-\contentsline {subsubsection}{\numberline {2.5.1}Ενσωμάτωση Γραμμικής Συστοιχίας σε Υπερκύβο}{31}{subsubsection.2.5.1}%
-\contentsline {subsubsection}{\numberline {2.5.2}Ενσωμάτωση ενός Πλέγματος σε Υπερκύβο}{33}{subsubsection.2.5.2}%
-\contentsline {subsubsection}{\numberline {2.5.3}Ενσωμάτωση ενός Δυαδικού Δένδρου σε έναν Υπερκύβο}{34}{subsubsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.5}Εμφύτευση Άλλων Δικτύων σε Υπερκύβο}{31}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Εμφύτευση Γραμμικού Πίνακα σε Υπερκύβο}{31}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}Εμφύτευση ενός Πλέγματος σε Υπερκύβο}{33}{subsubsection.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.5.3}Εμφύτευση ενός Δυαδικού Δένδρου σε έναν Υπερκύβο}{34}{subsubsection.2.5.3}%
 \contentsline {subsection}{\numberline {2.6}Μηχανισμοί Δρομολόγησης για Στατικά Δίκτυα}{35}{subsection.2.6}%
 \contentsline {subsection}{\numberline {2.7}Κόστη Επικοινωνίας σε Στατικά Δίκτυα Διασύνδεσης}{37}{subsection.2.7}%
 \contentsline {subsubsection}{\numberline {2.7.1}Δρομολόγηση Αποθήκευσης και Προώθησης}{38}{subsubsection.2.7.1}%
