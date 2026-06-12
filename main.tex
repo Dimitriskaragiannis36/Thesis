@@ -4838,7 +4838,7 @@ E = \Theta \left(\frac{1}{\log n}\right).
 κόστους προς το παράλληλο κόστος, ένα παράλληλο σύστημα βέλτιστο ως προς το 
 κόστος έχει αποδοτικότητα $\Theta(1)$.
 
-Το κόστος αναφέρεται μερικές φορές ως έργο ή \textbf{γινόμενο χρόνου επεξεργαστή} 
+Το κόστος αναφέρεται μερικές φορές ως \textbf{έργο} ή \textbf{γινόμενο χρόνου επεξεργαστή} 
 (\foreignlanguage{english}{work} ή \foreignlanguage{english}{processor-time product}), 
 και ένα σύστημα βέλτιστο ως προς το κόστος είναι επίσης γνωστό ως σύστημα $pT_P$-βέλτιστο.
 
@@ -4902,6 +4902,151 @@ $p < n$ και τόσο το $n$ όσο και το $p$ είναι δυνάμε�
 τον ίδιο αλγόριθμο όπως στο Παράδειγμα \ref{par:4} και ...
 \end{paradeigma}
 \end{quote}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[>=Stealth, scale=1]
+
+% =========================================================================
+    % ΜΕΡΟΣ (a) - First Communication Step
+    % =========================================================================
+
+    % --- Substep 1 ---
+    \begin{scope}[xshift=0cm, yshift=10cm]
+        \foreach \i in {0,1,2,3} {
+            \node[draw, circle, minimum size=0.5cm, inner sep=0pt] (c\i) at (\i*1.2, 0) {\i};
+        }
+        \node at (0*1.2, 0.6) {0};  \node at (1*1.2, 0.6) {1};  \node at (2*1.2, 0.6) {2};  \node at (3*1.2, 0.6) {3};
+        \node at (0*1.2, 1.1) {4};  \node at (1*1.2, 1.1) {5};  \node at (2*1.2, 1.1) {6};  \node at (3*1.2, 1.1) {7};
+        \node at (0*1.2, 1.6) {8};  \node at (1*1.2, 1.6) {9};  \node at (2*1.2, 1.6) {10}; \node at (3*1.2, 1.6) {11};
+        \node at (0*1.2, 2.1) {12}; \node at (1*1.2, 2.1) {13}; \node at (2*1.2, 2.1) {14}; \node at (3*1.2, 2.1) {15};
+        
+        \draw[dotted, thick, ->] (c1) to[out=-120, in=-60] (c0);
+        \draw[dotted, thick, ->] (c3) to[out=-120, in=-60] (c2);
+        \node at (1.8, -0.9) {\small Υποβήμα 1};
+    \end{scope}
+
+    % --- Substep 2 ---
+    \begin{scope}[xshift=5.8cm, yshift=10cm]
+        \foreach \i in {0,1,2,3} {
+            \node[draw, circle, minimum size=0.5cm, inner sep=0pt] (c\i) at (\i*1.2, 0) {\i};
+        }
+        \node at (0*1.2, 0.6) {$\Sigma_0^1$};                           \node at (2*1.2, 0.6) {$\Sigma_2^3$}; 
+        \node at (0*1.2, 1.1) {4};  \node at (1*1.2, 1.1) {5};  \node at (2*1.2, 1.1) {6};  \node at (3*1.2, 1.1) {7};
+        \node at (0*1.2, 1.6) {8};  \node at (1*1.2, 1.6) {9};  \node at (2*1.2, 1.6) {10}; \node at (3*1.2, 1.6) {11};
+        \node at (0*1.2, 2.1) {12}; \node at (1*1.2, 2.1) {13}; \node at (2*1.2, 2.1) {14}; \node at (3*1.2, 2.1) {15};
+        
+        \draw[dotted, thick, ->] (c1) to[out=-120, in=-60] (c0);
+        \draw[dotted, thick, ->] (c3) to[out=-120, in=-60] (c2);
+        \node at (1.8, -0.9) {\small Υποβήμα 2};
+    \end{scope}
+
+    % --- Substep 3 ---
+    \begin{scope}[xshift=0cm, yshift=6cm]
+        \foreach \i in {0,1,2,3} {
+            \node[draw, circle, minimum size=0.5cm, inner sep=0pt] (c\i) at (\i*1.2, 0) {\i};
+        }
+        \node at (0*1.2, 0.6) {$\Sigma_0^1$};                           \node at (2*1.2, 0.6) {$\Sigma_2^3$};
+        \node at (0*1.2, 1.1) {$\Sigma_4^5$};                           \node at (2*1.2, 1.1) {$\Sigma_6^7$}; 
+        \node at (0*1.2, 1.6) {8};  \node at (1*1.2, 1.6) {9};  \node at (2*1.2, 1.6) {10}; \node at (3*1.2, 1.6) {11};
+        \node at (0*1.2, 2.1) {12}; \node at (1*1.2, 2.1) {13}; \node at (2*1.2, 2.1) {14}; \node at (3*1.2, 2.1) {15};
+        
+        \draw[dotted, thick, ->] (c1) to[out=-120, in=-60] (c0);
+        \draw[dotted, thick, ->] (c3) to[out=-120, in=-60] (c2);
+        \node at (1.8, -0.9) {\small Υποβήμα 3};
+    \end{scope}
+
+    % --- Substep 4 ---
+    \begin{scope}[xshift=5.8cm, yshift=6cm]
+        \foreach \i in {0,1,2,3} {
+            \node[draw, circle, minimum size=0.5cm, inner sep=0pt] (c\i) at (\i*1.2, 0) {\i};
+        }
+        \node at (0*1.2, 0.6) {$\Sigma_0^1$};                           \node at (2*1.2, 0.6) {$\Sigma_2^3$};
+        \node at (0*1.2, 1.1) {$\Sigma_4^5$};                           \node at (2*1.2, 1.1) {$\Sigma_6^7$};
+        \node at (0*1.2, 1.6) {$\Sigma_8^9$};                           \node at (2*1.2, 1.6) {$\Sigma_{10}^{11}$}; 
+        \node at (0*1.2, 2.1) {12}; \node at (1*1.2, 2.1) {13}; \node at (2*1.2, 2.1) {14}; \node at (3*1.2, 2.1) {15};
+        
+        \draw[dotted, thick, ->] (c1) to[out=-120, in=-60] (c0);
+        \draw[dotted, thick, ->] (c3) to[out=-120, in=-60] (c2);
+        \node at (1.8, -0.9) {\small Υποβήμα 4};
+    \end{scope}
+
+    % Λεζάντα για το μέρος (a)
+    \node[anchor=west, align=left] at (-0.5, 3.5) 
+      {(α) Τέσσερις επεξεργαστές προσομοιώνουν
+      το πρώτο βήμα επικοινωνίας \\  16 επεξεργαστών.};
+    % =========================================================================
+    % ΜΕΡΟΣ (b) - Second Communication Step
+    % =========================================================================
+
+    % --- Substep 1 ---
+    \begin{scope}[xshift=0cm, yshift=-1cm]
+        \foreach \i in {0,1,2,3} {
+            \node[draw, circle, minimum size=0.5cm, inner sep=0pt] (c\i) at (\i*1.2, 0) {\i};
+        }
+        \node at (0*1.2, 0.6) {$\Sigma_0^1$};       \node at (2*1.2, 0.6) {$\Sigma_2^3$};
+        \node at (0*1.2, 1.1) {$\Sigma_4^5$};       \node at (2*1.2, 1.1) {$\Sigma_6^7$};
+        \node at (0*1.2, 1.6) {$\Sigma_8^9$};       \node at (2*1.2, 1.6) {$\Sigma_{10}^{11}$};
+        \node at (0*1.2, 2.1) {$\Sigma_{12}^{13}$}; \node at (2*1.2, 2.1) {$\Sigma_{14}^{15}$};
+        
+        \draw[dotted, thick, ->] (c2) to[out=-140, in=-40, looseness=1.1] (c0);
+        \node at (1.8, -0.9) {\small Υποβήμα 1};
+    \end{scope}
+
+    % --- Substep 2 ---
+    \begin{scope}[xshift=5.8cm, yshift=-1cm]
+        \foreach \i in {0,1,2,3} {
+            \node[draw, circle, minimum size=0.5cm, inner sep=0pt] (c\i) at (\i*1.2, 0) {\i};
+        }
+        \node at (0*1.2, 0.6) {$\Sigma_0^3$};     
+        \node at (0*1.2, 1.1) {$\Sigma_4^5$};       \node at (2*1.2, 1.1) {$\Sigma_6^7$};
+        \node at (0*1.2, 1.6) {$\Sigma_8^9$};       \node at (2*1.2, 1.6) {$\Sigma_{10}^{11}$};
+        \node at (0*1.2, 2.1) {$\Sigma_{12}^{13}$}; \node at (2*1.2, 2.1) {$\Sigma_{14}^{15}$};
+        
+        \draw[dotted, thick, ->] (c2) to[out=-140, in=-40, looseness=1.1] (c0);
+        \node at (1.8, -0.9) {\small Υποβήμα 2};
+    \end{scope}
+
+    % --- Substep 3 ---
+    \begin{scope}[xshift=0cm, yshift=-6cm]
+        \foreach \i in {0,1,2,3} {
+            \node[draw, circle, minimum size=0.5cm, inner sep=0pt] (c\i) at (\i*1.2, 0) {\i};
+        }
+        \node at (0*1.2, 0.6) {$\Sigma_0^3$};     
+        \node at (0*1.2, 1.1) {$\Sigma_4^7$};     
+        \node at (0*1.2, 1.6) {$\Sigma_8^9$};       \node at (2*1.2, 1.6) {$\Sigma_{10}^{11}$};
+        \node at (0*1.2, 2.1) {$\Sigma_{12}^{13}$}; \node at (2*1.2, 2.1) {$\Sigma_{14}^{15}$};
+        
+        \draw[dotted, thick, ->] (c2) to[out=-140, in=-40, looseness=1.1] (c0);
+        \node at (1.8, -0.9) {\small Υποβήμα 3};
+    \end{scope}
+
+    % --- Substep 4 ---
+    \begin{scope}[xshift=5.8cm, yshift=-6cm]
+        \foreach \i in {0,1,2,3} {
+            \node[draw, circle, minimum size=0.5cm, inner sep=0pt] (c\i) at (\i*1.2, 0) {\i};
+        }
+        \node at (0*1.2, 0.6) {$\Sigma_0^3$};     
+        \node at (0*1.2, 1.1) {$\Sigma_4^7$};     
+        \node at (0*1.2, 1.6) {$\Sigma_8^{11}$};     
+        \node at (0*1.2, 2.1) {$\Sigma_{12}^{13}$}; \node at (2*1.2, 2.1) {$\Sigma_{14}^{15}$};
+        
+        \draw[dotted, thick, ->] (c2) to[out=-140, in=-40, looseness=1.1] (c0);
+        \node at (1.8, -0.9) {\small Υποβήμα 4};
+    \end{scope}
+
+    % Λεζάντα για το μέρος (b)
+    \node[anchor=west, align=left] at (-0.5, -8.2) {(β) Τέσσερις επεξεργαστές προσομοιώνουν
+     το δεύτερο βήμα επικοινωνίας \\ 16 επεξεργαστών.};
+
+\end{tikzpicture}
+\noindent\rule{\textwidth}{0.2pt}
+\caption{Τέσσερις επεξεργαστές προσομοιώνουν 16 επεξεργαστές για τον 
+υπολογισμό του αθροίσματος 16 αριθμών (τα δύο πρώτα βήματα). Το $\sum_{i}^{j}$ 
+δηλώνει το άθροισμα αριθμών με διαδοχικές ετικέτες από $i$ έως $j$.}
+\label{fig:graph56}
+\end{figure}
+\vspace{0.3cm}
 
 \section{Αλγόριθμοι Γραφημάτων}
 Η θεωρία γραφημάτων διαδραματίζει σημαντικό ρόλο στην επιστήμη των υπολογιστών, επειδή παρέχει έναν εύκολο και συστηματικό τρόπο για τη μοντελοποίηση πολλών προβλημάτων. Πολλά προβλήματα μπορούν να εκφραστούν με όρους γραφημάτων και να επιλυθούν με τη χρήση τυπικών αλγορίθμων γραφημάτων. Το παρόν κεφάλαιο παρουσιάζει παράλληλες υλοποιήσεις κάποιων σημαντικών και θεμελιωδών αλγορίθμων γραφημάτων.
