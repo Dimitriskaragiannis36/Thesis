@@ -1,0 +1,65 @@
+\contentsline {section}{\numberline {1}Εισαγωγή}{7}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Οι Μεγάλες Σύγχρονες Επιστημονικές Προκλήσεις}{7}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Μοντέλα Παράλληλων Υπολογιστών}{8}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Μια Ταξινόμηση Παράλληλων Αρχιτεκτονικών}{10}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Μηχανισμός Ελέγχου}{10}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Οργάνωση Χώρου Διευθύνσεων}{13}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Δίκτυα Διασύνδεσης}{16}{subsubsection.2.1.3}%
+\contentsline {subsubsection}{\numberline {2.1.4}Λεπτομέρεια Επεξεργαστή (Processor Granularity)}{16}{subsubsection.2.1.4}%
+\contentsline {subsection}{\numberline {2.2}Ένας Εξιδανικευμένος Παράλληλος Υπολογιστής}{17}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Δυναμικά Δίκτυα Διασύνδεσης}{18}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Δίκτυα Μεταγωγής Εγκάρσιας Ράβδου (Crossbar)}{18}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Δίκτυα Τοπολογίας Διαύλου (Bus)}{19}{subsubsection.2.3.2}%
+\contentsline {subsubsection}{\numberline {2.3.3}Δίκτυα Διασύνδεσης Πολλαπλών Σταδίων}{21}{subsubsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.4}Στατικά Δίκτυα Διασύνδεσης}{24}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Τύποι Στατικών Δικτύων Διασύνδεσης}{25}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Αξιολόγηση Στατικών Δικτύων Διασύνδεσης}{32}{subsubsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.5}Εμφύτευση Άλλων Δικτύων σε Υπερκύβο}{34}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Εμφύτευση Γραμμικού Πίνακα σε Υπερκύβο}{34}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}Εμφύτευση ενός Πλέγματος σε Υπερκύβο}{37}{subsubsection.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.5.3}Εμφύτευση ενός Δυαδικού Δένδρου σε έναν Υπερκύβο}{38}{subsubsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.6}Μηχανισμοί Δρομολόγησης για Στατικά Δίκτυα}{38}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Κόστη Επικοινωνίας σε Στατικά Δίκτυα Διασύνδεσης}{41}{subsection.2.7}%
+\contentsline {subsubsection}{\numberline {2.7.1}Δρομολόγηση Αποθήκευσης και Προώθησης}{42}{subsubsection.2.7.1}%
+\contentsline {subsubsection}{\numberline {2.7.2}Δρομολόγηση Άμεσης Προώθησης}{42}{subsubsection.2.7.2}%
+\contentsline {section}{\numberline {3}Επιδόσεις και Κλιμακωσιμότητα Παράλληλων Συστημάτων}{45}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Μετρικές Απόδοσης για Παράλληλα Συστήματα}{45}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Χρόνος Εκτέλεσης}{45}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\numberline {3.1.2}Επιτάχυνση}{45}{subsubsection.3.1.2}%
+\contentsline {subsubsection}{\numberline {3.1.3}Αποδοτικότητα}{48}{subsubsection.3.1.3}%
+\contentsline {subsubsection}{\numberline {3.1.4}Κόστος}{48}{subsubsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.2}Η Επίδραση της Λεπτομέρειας και της Αντιστοίχισης Δεδομένων στην Απόδοση}{49}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Η Κλιμακωσιμότητα των Παράλληλων Συστημάτων}{55}{subsection.3.3}%
+\contentsline {section}{\numberline {4}Αλγόριθμοι Γραφημάτων}{57}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Ορισμοί και Αναπαράσταση}{57}{subsection.4.1}%
+\contentsline {section}{\numberline {5}Eλάχιστο δέντρο επικάλυψης: Ο αλγόριθμος του Prim}{61}{section.5}%
+\contentsline {section}{\numberline {6}Συντομότερες Διαδρομές από Μία Πηγή: Ο αλγόριθμος του Dijkstra}{67}{section.6}%
+\contentsline {subsection}{\numberline {6.1}API}{69}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}API}{69}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Γλώσσα}{69}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Περιβάλλον συστήματος}{69}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Δεδομένα δοκιμών}{69}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Αλγόριθμος}{70}{subsection.6.6}%
+\contentsline {subsubsection}{\numberline {6.6.1}Υλοποίηση του αλγορίθμου του Dijkstra}{70}{subsubsection.6.6.1}%
+\contentsline {subsubsection}{\numberline {6.6.2}Υλοποίηση του αλγορίθμου του Dijkstra με OpenMP}{72}{subsubsection.6.6.2}%
+\contentsline {subsection}{\numberline {6.7}Αποτελέσματα Υλοποίησης και Ανάλυση}{73}{subsection.6.7}%
+\contentsline {subsection}{\numberline {6.8}Συμπεράσματα και Περαιτέρω Έρευνα}{80}{subsection.6.8}%
+\contentsline {section}{\numberline {7}Συντομότερες Διαδρομές για Όλα τα Ζεύγη}{81}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Αλγόριθμος βασισμένος στον Πολλαπλασιασμό Πίνακα}{81}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Ο αλγόριθμος του Dijkstra}{84}{subsection.7.2}%
+\contentsline {paragraph}{Υλοποίηση με διαμέριση κατά πηγή}{84}{section*.74}%
+\contentsline {paragraph}{Παράλληλη υλοποίηση πηγής}{85}{section*.75}%
+\contentsline {subsection}{\numberline {7.3}Ο αλγόριθμος του Floyd}{86}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Συγκρίσεις Απόδοσης}{93}{subsection.7.4}%
+\contentsline {section}{\numberline {8}Μεταβατική Κλειστότητα}{94}{section.8}%
+\contentsline {section}{\numberline {9}Συνεκτικές Συνιστώσες}{94}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Αλγόριθμος Βασισμένος στην Αναζήτηση Πρώτα Κατά Βάθος}{95}{subsection.9.1}%
+\contentsline {section}{\numberline {10}Αλγόριθμοι για Αραιά Γραφήματα}{98}{section.10}%
+\contentsline {subsection}{\numberline {10.1}Συντομότερα Μονοπάτια \newline Μονής Πηγής}{101}{subsection.10.1}%
+\contentsline {section}{\numberline {11}Δυναμικός Προγραμματισμός}{108}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Σειριακές Μοναδικές Υλοποιήσεις ΔΠ}{111}{subsection.11.1}%
+\contentsline {subsubsection}{\numberline {11.1.1}Το Πρόβλημα του Συντομότερου Μονοπατιού}{111}{subsubsection.11.1.1}%
+\contentsline {subsubsection}{\numberline {11.1.2}Το Πρόβλημα του Σακιδίου 0/1 (The 0/1 Knap\-sack Problem)}{114}{subsubsection.11.1.2}%
+\contentsline {subsection}{\numberline {11.2}Μη Σειριακές Μοναδικές Διατυ\-πώσεις ΔΠ}{116}{subsection.11.2}%
+\contentsline {subsubsection}{\numberline {11.2.1}Το Πρόβλημα της Μέγιστης Κοινής Υπα\-κο\-λου\-θίας}{117}{subsubsection.11.2.1}%
+\contentsline {section}{Αναφορές}{120}{section*.106}%
