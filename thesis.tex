@@ -74,26 +74,26 @@
 \pagestyle{fancy}
 \fancyhf{} 
 
-% Διόρθωση για το ύψος του Header (κάνει resolve το warning)
 \setlength{\headheight}{15pt}
+\renewcommand{\headrulewidth}{0pt} % Χωρίς γραμμή κάτω από το header
+\renewcommand{\footrulewidth}{0pt} % Χωρίς γραμμή πάνω από το footer
 
-\fancyhead[C]{Σειριακοί και Παράλληλοι Αλγόριθμοι} 
-% Footer: Ο αριθμός σελίδας ΣΤΑΘΕΡΑ στο κέντρο για όλες τις σελίδες
-\fancyfoot[C]{\thepage} 
+% Header: Τίτλος αριστερά, Arial, Μέγεθος 8pt
+\fancyhead[L]{\fontsize{8}{10}\selectfont Σειριακοί και Παράλληλοι Αλγόριθμοι}
 
-% Footer Αριστερά: Αρχικά κενό (για τις σελίδες 2 και 3)
-\fancyfoot[L]{}
-\renewcommand{\headrulewidth}{0.4pt} 
-\renewcommand{\footrulewidth}{0pt}
+% Footer: Όνομα αριστερά, Σελίδα δεξιά
+\fancyfoot[L]{Δημήτριος Ν. Καραγιάννης}
+\fancyfoot[C]{\thepage}
 
-% Εντολή για να ενεργοποιήσουμε το όνομα αργότερα
-\newcommand{\activatefullname}{%
-  \fancyfoot[L]{Δημήτριος Ν. Καραγιάννης}%
-}
+% --- Κάθε κεφάλαιο (section) να ξεκινάει σε νέα σελίδα, στο ΚΕΝΤΡΟ και ΚΕΦΑΛΑΙΑ ---
+\usepackage{titlesec}
+\newcommand{\sectionbreak}{\clearpage}
+\titleformat{\section}[block]{\Large\bfseries\centering}{\thesection}{1em}{\MakeUppercase}
 
+% --- Διόρθωση των περιθωρίων στα Περιεχόμενα ---
 \makeatletter
-\renewcommand{\@pnumwidth}{2em} % Δίνει λίγο παραπάνω χώρο στους αριθμούς σελίδων
-\renewcommand{\@tocrmarg}{3.5em} % Μεγαλώνει το δεξί περιθώριο πριν κοπεί η λέξη
+\renewcommand{\@pnumwidth}{2em} 
+\renewcommand{\@tocrmarg}{3.5em} 
 \makeatother
 
 % =====================================================================
@@ -200,13 +200,15 @@ This thesis investigates the design and per\-for\-mance of serial and par\-al\-l
 \noindent \textbf{SUBJECT AREA:} Technology – Computer Science\\[0.4cm]
 \noindent \textbf{KEYWORDS:} Graph Algorithms, Parallel Algorithms, Serial Algorithms, Dynamic Pro\-gram\-ming, Shortest Paths, Minimum Spanning Tree (MST), Sparse and Dense Graphs, Speedup, Parallel Systems, MPI, OpenMP
 
-\clearpage % Κλείνει τη σελίδα και μας πάει στα περιεχόμενα
+\clearpage
+\pagestyle{empty} % <-- Απενεργοποιεί ΠΛΗΡΩΣ τα header/footer για ΟΛΕΣ τις σελίδες των περιεχομένων
 
 \tableofcontents
 \clearpage
 
 % ---------------- BODY ----------------
-\activatefullname
+\pagestyle{fancy} % <-- Ενεργοποιεί ξανά τα header/footer ακριβώς από εδώ και κάτω
+\setcounter{page}{1} % Αρχίζει η αρίθμηση των σελίδων από το 1 στην Εισαγωγή
 \nocite{*}
 \section{Εισαγωγή}
 \subsection{Οι Μεγάλες Σύγχρονες Επιστημονικές Προκλήσεις}
@@ -4676,8 +4678,7 @@ $\Theta(m+l)$ για τη δρομολόγηση άμεσης προώθησης
 $l=1$, ή αν το μέγεθος του μηνύματος είναι μικρό, τότε ο χρόνος 
 επικοινωνίας είναι παρόμοιος και για τα δύο σχήματα δρομολόγησης.
 
-\section[Επιδόσεις και Κλιμακωσιμότητα Παράλληλων Συστημάτων]
-{Επιδόσεις και Κλιμακωσιμότητα Παράλληλων\\Συστημάτων}
+\section[Επιδόσεις και Κλιμακωσιμότητα Παράλληλων Συστημάτων]{Επιδόσεις και Κλιμακωσιμότητα Παράλληλων \protect\\ Συστημάτων}
 Ένας σειριακός αλγόριθμος συνήθως αξιολογείται με βάση τον χρόνο εκτέλεσής 
 του, ο οποίος εκφράζεται ως συνάρτηση του μεγέθους της εισόδου του. Ο 
 χρόνος εκτέλεσης ενός παράλληλου αλγορίθμου δεν εξαρτάται μόνο από το 
@@ -5926,7 +5927,7 @@ w(v_i, v_j) & \text{εάν } (v_i, v_j) \in E\\[2mm]
 \vspace{1cm}
 
 
-\section[Eλάχιστο δέντρο επικάλυψης: Ο αλγόριθμος του Prim]{Eλάχιστο δέντρο επικάλυψης:\\ Ο αλγόριθμος του Prim}
+\section[Ελάχιστο δέντρο επικάλυψης: Ο αλγόριθμος του Prim]{Ελάχιστο δέντρο επικάλυψης: \protect\\ Ο αλγόριθμος του Prim}
 
 \begin{figure}[ht]
 \centering
